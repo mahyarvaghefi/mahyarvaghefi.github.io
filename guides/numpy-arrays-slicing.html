@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to NumPy — Arrays, Slicing & Element-wise Operations | Dr. Mahyar Vaghefi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --text: #1A1A1A;
+            --text-secondary: #555;
+            --accent: #0C4A6E;
+            --border: #E5E5E3;
+            --sans: 'DM Sans', sans-serif;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <header style="background: linear-gradient(135deg, #1C2833 0%, #2C3E50 100%); color: #ffffff; padding: 30px; border-radius: 8px; margin-bottom: 30px; text-align: center;">
+            <h1 style="margin: 0 0 10px 0; font-size: 28px;">Introduction to NumPy</h1>
+            <p style="margin: 0; font-size: 18px;">Arrays, Slicing &amp; Element-wise Operations</p>
+            <p style="margin: 15px 0 0 0; font-size: 14px; background-color: rgba(255,255,255,0.15); padding: 8px 15px; border-radius: 20px; display: inline-block;">Video Companion Guide</p>
+        </header>
+
+        <div style="background-color: #1c2833; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+            <p style="margin: 0 0 15px 0; font-size: 18px; color: #ffffff;">📺 Arrays, Slicing &amp; Element-wise Operations</p>
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000000; border-radius: 8px;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                    src="https://www.youtube.com/embed/J3ODVrN3Vx8" 
+                    title="NumPy: Arrays, Slicing & Element-wise Operations" 
+                    loading="lazy" 
+                    allowfullscreen 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+            </div>
+        </div>
+
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #1c2833; font-size: 22px; border-bottom: 3px solid #BF5700; padding-bottom: 10px; margin-bottom: 20px;">Section 1.1: What is NumPy?</h2>
+            <p style="font-size: 16px; margin-bottom: 20px;">NumPy (Numerical Python) is the foundational package for scientific computing in Python. It provides powerful tools for working with arrays—organized collections of numbers that can be manipulated efficiently.</p>
+            <div style="background-color: #ebf5fb; border-left: 6px solid #3498DB; border-radius: 0 8px 8px 0; padding: 20px; margin-bottom: 25px;">
+                <div style="display: flex; align-items: flex-start; gap: 15px;"><span style="font-size: 40px;">💡</span>
+                    <div>
+                        <h3 style="margin: 0 0 10px 0; color: #1a5276; font-size: 18px;">The Big Picture</h3>
+                        <p style="margin: 0; color: #333333;">Everything in AI and machine learning—from ChatGPT to neural networks—processes data as <strong>matrices</strong>. Data goes in as matrices, computations happen on matrices, and results come out as matrices. NumPy is the foundation for all of this.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color: #ffffff; border: 2px solid #2C3E50; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                <h3 style="margin: 0 0 15px 0; color: #1c2833; font-size: 18px;">🚀 Why NumPy Over Python Lists?</h3>
+                <div style="display: grid; gap: 15px;">
+                    <div style="background-color: #e8f8f5; border-radius: 6px; padding: 15px;">
+                        <p style="margin: 0 0 8px 0; color: #0e6655;">1. Speed</p>
+                        <p style="margin: 0; color: #333333; font-size: 14px;">Adding 2 to a million numbers with a for loop? Takes a while. With NumPy? About <strong>one second</strong>.</p>
+                    </div>
+                    <div style="background-color: #fef9e7; border-radius: 6px; padding: 15px;">
+                        <p style="margin: 0 0 8px 0; color: #9c640c;">2. Elegant Syntax</p>
+                        <p style="margin: 0; color: #333333; font-size: 14px;">Instead of looping through elements one by one, treat the <strong>entire array as a single object</strong>. Say "add 2 to the whole thing" instead of "add 2 to element 1, then element 2..."</p>
+                    </div>
+                </div>
+            </div>
+            <h3 style="color: #1c2833; font-size: 18px; margin-bottom: 15px;">Array Types: Rank 1 vs Rank 2</h3>
+            <div style="overflow-x: auto; margin-bottom: 25px;">
+                <table style="width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; font-size: 14px;">
+                    <thead>
+                        <tr style="background-color: #2c3e50; color: #ffffff;">
+                            <th style="padding: 12px 15px; text-align: left;">Type</th>
+                            <th style="padding: 12px 15px; text-align: left;">Description</th>
+                            <th style="padding: 12px 15px; text-align: left;">Code Example</th>
+                            <th style="padding: 12px 15px; text-align: left;">Shape</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E5E8E8;">
+                            <td style="padding: 12px 15px; color: #1a5276;">Rank 1 (1D)</td>
+                            <td style="padding: 12px 15px;">One-dimensional, like a vector</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">np.array([1, 2, 3])</td>
+                            <td style="padding: 12px 15px; font-family: monospace;">(3,)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; color: #0e6655;">Rank 2 (2D)</td>
+                            <td style="padding: 12px 15px;">Two-dimensional, like a matrix</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">np.array([[1,2,3], [4,5,6]])</td>
+                            <td style="padding: 12px 15px; font-family: monospace;">(2, 3)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="background-color: #fdedec; border: 3px solid #C0392B; border-radius: 12px; padding: 25px; text-align: center;">
+                <p style="margin: 0 0 10px 0; font-size: 28px;">⚠️</p>
+                <h3 style="margin: 0 0 15px 0; color: #922b21; font-size: 22px;">Common Exam Pitfall: The Shape Tuple</h3>
+                <p style="margin: 0; color: #333333; font-size: 16px;"><strong>(3,)</strong> — The trailing comma indicates <strong>one dimension</strong><br><strong>(3, 4)</strong> — Two numbers means <strong>two dimensions</strong><br><br>That comma with nothing after it is Python's way of saying "this is a tuple with just one element."</p>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #1c2833; font-size: 22px; border-bottom: 3px solid #BF5700; padding-bottom: 10px; margin-bottom: 20px;">Section 1.2: Array Slicing &amp; Indexing</h2>
+            <p style="font-size: 16px; margin-bottom: 20px;">Slicing is one of the most important skills in NumPy. The basic structure is: <code style="background-color: #f8f9f9; padding: 2px 6px; border-radius: 4px; font-family: monospace;">array[row_index, column_index]</code></p>
+            <div style="background-color: #e8f8f5; border-left: 6px solid #27AE60; border-radius: 0 8px 8px 0; padding: 20px; margin-bottom: 25px;">
+                <div style="display: flex; align-items: flex-start; gap: 15px;"><span style="font-size: 40px;">🔑</span>
+                    <div>
+                        <h3 style="margin: 0 0 10px 0; color: #0e6655; font-size: 18px;">The Golden Rule of Slicing</h3>
+                        <p style="margin: 0; color: #333333;"><strong>What you put in determines what you get out.</strong> Both parts (row and column) can be either a specific number (index) or a range (like 0:3). The combination determines the output shape.</p>
+                    </div>
+                </div>
+            </div>
+            <h3 style="color: #1c2833; font-size: 18px; margin-bottom: 15px;">📋 The Three Scenarios to Memorize</h3>
+            <div style="overflow-x: auto; margin-bottom: 25px;">
+                <table style="width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; font-size: 14px;">
+                    <thead>
+                        <tr style="background-color: #2c3e50; color: #ffffff;">
+                            <th style="padding: 12px 15px; text-align: left;">What You Input</th>
+                            <th style="padding: 12px 15px; text-align: left;">What You Get</th>
+                            <th style="padding: 12px 15px; text-align: left;">Example</th>
+                            <th style="padding: 12px 15px; text-align: left;">Result Shape</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E5E8E8;">
+                            <td style="padding: 12px 15px;">Both numbers (index, index)</td>
+                            <td style="padding: 12px 15px; color: #8e44ad;">Single value</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a[1, 2]</td>
+                            <td style="padding: 12px 15px; font-family: monospace;">scalar</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E8E8; background-color: #f8f9f9;">
+                            <td style="padding: 12px 15px;">One number, one range</td>
+                            <td style="padding: 12px 15px; color: #1a5276;">Rank 1 array (1D)</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #eaecee;">a[2, 1:3]</td>
+                            <td style="padding: 12px 15px; font-family: monospace;">(2,)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px;">Both ranges</td>
+                            <td style="padding: 12px 15px; color: #0e6655;">Rank 2 array (2D)</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a[0:3, 1:4]</td>
+                            <td style="padding: 12px 15px; font-family: monospace;">(3, 3)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="background-color: #ffffff; border: 2px solid #3498DB; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                <h3 style="margin: 0 0 15px 0; color: #1a5276; font-size: 18px;">🔹 What Does the Colon Mean?</h3>
+                <div style="display: grid; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;"><code style="background-color: #ebf5fb; padding: 5px 12px; border-radius: 4px; font-family: monospace; min-width: 80px; text-align: center;">:</code> <span>by itself means <strong>"everything"</strong> (from beginning to end)</span></div>
+                    <div style="display: flex; align-items: center; gap: 10px;"><code style="background-color: #ebf5fb; padding: 5px 12px; border-radius: 4px; font-family: monospace; min-width: 80px; text-align: center;">:3</code> <span>means from start up to (but not including) index 3</span></div>
+                    <div style="display: flex; align-items: center; gap: 10px;"><code style="background-color: #ebf5fb; padding: 5px 12px; border-radius: 4px; font-family: monospace; min-width: 80px; text-align: center;">2:</code> <span>means from index 2 to the end</span></div>
+                    <div style="display: flex; align-items: center; gap: 10px;"><code style="background-color: #ebf5fb; padding: 5px 12px; border-radius: 4px; font-family: monospace; min-width: 80px; text-align: center;">1:4</code> <span>means from index 1 up to (but not including) index 4</span></div>
+                </div>
+            </div>
+            <div style="background-color: #fef9e7; border: 3px solid #F1C40F; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                <div style="display: flex; align-items: flex-start; gap: 15px;"><span style="font-size: 32px;">⚠️</span>
+                    <div>
+                        <h4 style="margin: 0 0 10px 0; color: #9a7b0a; font-size: 18px;">Exam Alert: Range vs Index Changes Output Dimension!</h4>
+                        <p style="margin: 0; color: #7d6608; font-size: 15px;"><code style="background-color: #ffffff; padding: 2px 6px; border-radius: 4px;">a[1:2, :]</code> → Shape <strong>(1, 4)</strong> — 2D array (range used)<br><code style="background-color: #ffffff; padding: 2px 6px; border-radius: 4px;">a[1, :]</code> → Shape <strong>(4,)</strong> — 1D array (index used)<br><br><strong>Same row, different shapes!</strong> Using a range (1:2) preserves dimensionality; using an index (1) reduces it.</p>
+                    </div>
+                </div>
+            </div>
+            <h3 style="color: #1c2833; font-size: 18px; margin-bottom: 15px;">📊 Visual Example</h3>
+            <div style="background-color: #ffffff; border: 2px solid #2C3E50; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                <p style="margin: 0 0 15px 0; font-family: monospace; font-size: 14px; color: #333333;">a = np.array([[1, 5, 8, 9],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2, 3, 4, 6],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7, 8, 9, 1]])</p>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; max-width: 300px; margin: 20px auto;">
+                    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 60px repeat(4, 1fr); gap: 5px; margin-bottom: 5px;">
+                        <div></div>
+                        <div style="text-align: center; font-size: 12px; color: #666;">col 0</div>
+                        <div style="text-align: center; font-size: 12px; color: #666;">col 1</div>
+                        <div style="text-align: center; font-size: 12px; color: #666;">col 2</div>
+                        <div style="text-align: center; font-size: 12px; color: #666;">col 3</div>
+                    </div>
+                    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 60px repeat(4, 1fr); gap: 5px;">
+                        <div style="font-size: 12px; color: #666; display: flex; align-items: center;">row 0</div>
+                        <div style="background-color: #ebf5fb; padding: 15px; text-align: center; border-radius: 4px;">1</div>
+                        <div style="background-color: #ebf5fb; padding: 15px; text-align: center; border-radius: 4px;">5</div>
+                        <div style="background-color: #ebf5fb; padding: 15px; text-align: center; border-radius: 4px;">8</div>
+                        <div style="background-color: #ebf5fb; padding: 15px; text-align: center; border-radius: 4px;">9</div>
+                    </div>
+                    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 60px repeat(4, 1fr); gap: 5px;">
+                        <div style="font-size: 12px; color: #666; display: flex; align-items: center;">row 1</div>
+                        <div style="background-color: #e8f8f5; padding: 15px; text-align: center; border-radius: 4px;">2</div>
+                        <div style="background-color: #e8f8f5; padding: 15px; text-align: center; border-radius: 4px;">3</div>
+                        <div style="background-color: #bf5700; color: #ffffff; padding: 15px; text-align: center; border-radius: 4px;">4</div>
+                        <div style="background-color: #e8f8f5; padding: 15px; text-align: center; border-radius: 4px;">6</div>
+                    </div>
+                    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 60px repeat(4, 1fr); gap: 5px;">
+                        <div style="font-size: 12px; color: #666; display: flex; align-items: center;">row 2</div>
+                        <div style="background-color: #fef9e7; padding: 15px; text-align: center; border-radius: 4px;">7</div>
+                        <div style="background-color: #fef9e7; padding: 15px; text-align: center; border-radius: 4px;">8</div>
+                        <div style="background-color: #fef9e7; padding: 15px; text-align: center; border-radius: 4px;">9</div>
+                        <div style="background-color: #fef9e7; padding: 15px; text-align: center; border-radius: 4px;">1</div>
+                    </div>
+                </div>
+                <p style="margin: 15px 0 0 0; text-align: center; color: #333333;"><code style="background-color: #f8f9f9; padding: 4px 10px; border-radius: 4px;">a[1, 2]</code> returns <strong style="color: #bf5700;">4</strong> (highlighted cell)</p>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #1c2833; font-size: 22px; border-bottom: 3px solid #BF5700; padding-bottom: 10px; margin-bottom: 20px;">Section 1.3: Element-wise Operations</h2>
+            <p style="font-size: 16px; margin-bottom: 20px;">With NumPy, you're not thinking about individual elements anymore—you're treating the <strong>entire array as a single object</strong>.</p>
+            <div style="background-color: #e8f8f5; border-left: 6px solid #27AE60; border-radius: 0 8px 8px 0; padding: 20px; margin-bottom: 25px;">
+                <div style="display: flex; align-items: flex-start; gap: 15px;"><span style="font-size: 40px;">✨</span>
+                    <div>
+                        <h3 style="margin: 0 0 10px 0; color: #0e6655; font-size: 18px;">The Magic of Broadcasting</h3>
+                        <p style="margin: 0; color: #333333;">When you add a number to an array, NumPy automatically applies the operation to <strong>every element</strong>. No loops required. This is called <em>broadcasting</em>.</p>
+                    </div>
+                </div>
+            </div>
+            <h3 style="color: #1c2833; font-size: 18px; margin-bottom: 15px;">📋 Common Element-wise Operations</h3>
+            <div style="overflow-x: auto; margin-bottom: 25px;">
+                <table style="width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; font-size: 14px;">
+                    <thead>
+                        <tr style="background-color: #2c3e50; color: #ffffff;">
+                            <th style="padding: 12px 15px; text-align: left;">Operation</th>
+                            <th style="padding: 12px 15px; text-align: left;">Syntax</th>
+                            <th style="padding: 12px 15px; text-align: left;">In-place Version</th>
+                            <th style="padding: 12px 15px; text-align: left;">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E5E8E8;">
+                            <td style="padding: 12px 15px;">Addition</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a + 2</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a += 2</td>
+                            <td style="padding: 12px 15px;">Add 2 to all elements</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E8E8; background-color: #f8f9f9;">
+                            <td style="padding: 12px 15px;">Subtraction</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #eaecee;">a - 3</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #eaecee;">a -= 3</td>
+                            <td style="padding: 12px 15px;">Subtract 3 from all elements</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E8E8;">
+                            <td style="padding: 12px 15px;">Multiplication</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a * 2</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a *= 2</td>
+                            <td style="padding: 12px 15px;">Multiply all elements by 2</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E8E8; background-color: #f8f9f9;">
+                            <td style="padding: 12px 15px;">Division</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #eaecee;">a / 4</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #eaecee;">a /= 4</td>
+                            <td style="padding: 12px 15px;">Divide all elements by 4</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px;">Remainder</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a % 2</td>
+                            <td style="padding: 12px 15px; font-family: monospace; background-color: #f8f9f9;">a %= 2</td>
+                            <td style="padding: 12px 15px;">Remainder when divided by 2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="background-color: #ffffff; border: 2px solid #2C3E50; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                <h3 style="margin: 0 0 15px 0; color: #1c2833; font-size: 16px;">📊 Visual Example: Adding 2 to an Array</h3>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <p style="margin: 0 0 10px 0; font-size: 14px; color: #666;">Original Array</p>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;">
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">1</div>
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">5</div>
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">8</div>
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">9</div>
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">2</div>
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">3</div>
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">4</div>
+                            <div style="background-color: #ebf5fb; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">6</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 24px; color: #bf5700;">+ 2 →</div>
+                    <div style="text-align: center;">
+                        <p style="margin: 0 0 10px 0; font-size: 14px; color: #666;">Result</p>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;">
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">3</div>
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">7</div>
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">10</div>
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">11</div>
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">4</div>
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">5</div>
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">6</div>
+                            <div style="background-color: #e8f8f5; padding: 12px 8px; text-align: center; border-radius: 4px; font-size: 14px;">8</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color: #f5eef8; border-left: 6px solid #8E44AD; border-radius: 0 8px 8px 0; padding: 20px; margin-bottom: 25px;">
+                <p style="margin: 0 0 10px 0; font-size: 16px; color: #333333;"><strong>💡 Pro Tip: In-place vs New Array</strong></p>
+                <p style="margin: 0; color: #5b2c6f; font-size: 15px;"><code style="background-color: #ffffff; padding: 2px 6px; border-radius: 4px;">a + 5</code> creates a <strong>new array</strong> (original unchanged)<br><code style="background-color: #ffffff; padding: 2px 6px; border-radius: 4px;">a += 5</code> modifies the array <strong>in place</strong> (slightly more memory-efficient for large arrays)</p>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #1c2833; font-size: 22px; border-bottom: 3px solid #BF5700; padding-bottom: 10px; margin-bottom: 20px;">Quick Reference: Key Takeaways</h2>
+            <div style="background-color: #1c2833; border-radius: 12px; padding: 25px; color: #ffffff;">
+                <div style="display: grid; gap: 15px;">
+                    <div style="display: flex; align-items: flex-start; gap: 12px;"><span style="color: #58d68d; font-size: 20px;">✓</span>
+                        <p style="margin: 0; font-size: 15px;"><strong>NumPy is the foundation</strong> of all data science and AI in Python—everything is matrices.</p>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px;"><span style="color: #58d68d; font-size: 20px;">✓</span>
+                        <p style="margin: 0; font-size: 15px;"><strong>Shape tells dimensionality:</strong> (3,) is 1D, (3, 4) is 2D—watch for that trailing comma!</p>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px;"><span style="color: #58d68d; font-size: 20px;">✓</span>
+                        <p style="margin: 0; font-size: 15px;"><strong>Slicing rule:</strong> index + index = scalar, number + range = 1D, range + range = 2D.</p>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px;"><span style="color: #58d68d; font-size: 20px;">✓</span>
+                        <p style="margin: 0; font-size: 15px;"><strong>Colon means "everything":</strong> <code style="background-color: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px;">a[1, :]</code> gets all columns of row 1.</p>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px;"><span style="color: #58d68d; font-size: 20px;">✓</span>
+                        <p style="margin: 0; font-size: 15px;"><strong>Element-wise operations</strong> apply to the whole array at once—no loops needed.</p>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 12px;"><span style="color: #f1c40f; font-size: 20px;">⚠️</span>
+                        <p style="margin: 0; font-size: 15px;"><strong>Common exam trap:</strong> <code style="background-color: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px;">a[1:2, :]</code> vs <code style="background-color: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px;">a[1, :]</code> have different shapes!</p>
+                    </div>
+                </div>
+                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #566573;">
+                    <p style="margin: 0; font-size: 15px; font-style: italic; color: #abb2b9; text-align: center;">"If Python is your car, NumPy is the engine that makes everything go fast."</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #1c2833; font-size: 22px; border-bottom: 3px solid #BF5700; padding-bottom: 10px; margin-bottom: 20px;">📝 Code Cheat Sheet</h2>
+            <div style="background-color: #2c3e50; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 14px; color: #ffffff; overflow-x: auto;">
+                <p style="margin: 0 0 5px 0; color: #58d68d;"># Import NumPy</p>
+                <p style="margin: 0 0 15px 0;">import numpy as np</p>
+                <p style="margin: 0 0 5px 0; color: #58d68d;"># Create arrays</p>
+                <p style="margin: 0 0 5px 0;">b = np.array([1, 2, 3])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># 1D: shape (3,)</span></p>
+                <p style="margin: 0 0 15px 0;">a = np.array([[1,2,3], [4,5,6]])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># 2D: shape (2, 3)</span></p>
+                <p style="margin: 0 0 5px 0; color: #58d68d;"># Check shape</p>
+                <p style="margin: 0 0 15px 0;">print(a.shape)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># Output: (2, 3)</span></p>
+                <p style="margin: 0 0 5px 0; color: #58d68d;"># Indexing</p>
+                <p style="margin: 0 0 5px 0;">a[1, 2]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># Single value</span></p>
+                <p style="margin: 0 0 5px 0;">a[1, :]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># Entire row 1 (1D)</span></p>
+                <p style="margin: 0 0 5px 0;">a[:, 1]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># Entire column 1 (1D)</span></p>
+                <p style="margin: 0 0 15px 0;">a[0:2, 1:3]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># Subarray (2D)</span></p>
+                <p style="margin: 0 0 5px 0; color: #58d68d;"># Element-wise operations</p>
+                <p style="margin: 0 0 5px 0;">a + 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># Add 2 to all elements</span></p>
+                <p style="margin: 0;">a *= 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #abb2b9;"># Multiply all by 3 (in place)</span></p>
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 25px; background-color: #eaecee; border-radius: 8px; margin-top: 30px;">
+            <p style="margin: 0 0 10px 0; font-size: 14px; color: #566573;"><strong>Introduction to NumPy</strong> | Arrays, Slicing &amp; Element-wise Operations</p>
+            <p style="margin: 0 0 10px 0; font-size: 13px; color: #7f8c8d;">Video Companion Guide — Dr. Mahyar Sharif Vaghefi</p>
+            <a href="../index.html" style="color: #0C4A6E; text-decoration: none; font-size: 13px;">← Back to mahyarvaghefi.github.io</a>
+        </footer>
+    </div>
+</body>
+</html>
