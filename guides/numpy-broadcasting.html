@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to NumPy — Broadcasting | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for Introduction to NumPy: Broadcasting. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --accent-hover: #075985;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .guide-header .meta {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .guide-header .meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: #FEF2F2; border-color: #FECACA; }
+        .callout.important .callout-title { color: #991B1B; }
+        .callout.purple { background: var(--purple-light); border-color: var(--purple-border); }
+        .callout.purple .callout-title { color: var(--purple); }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.82rem;
+            letter-spacing: 0.02em;
+        }
+        td {
+            padding: 0.7rem 1rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-primary);
+        }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+        td code, p code {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            background: var(--tag-bg);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+        td .yes { color: var(--tip-text); font-weight: 600; }
+        td .no { color: #991B1B; font-weight: 600; }
+
+        .code-block {
+            background: #1E293B;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: var(--mono);
+            font-size: 0.84rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+        }
+        .code-block .comment { color: #64748B; }
+        .code-block .output { color: #94A3B8; }
+
+        .visual-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .visual-example .label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 1rem;
+        }
+
+        .mini-grid-3 { display: inline-grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+        .mini-grid-1 { display: inline-grid; grid-template-columns: 1fr; gap: 4px; }
+        .mini-cell {
+            width: 44px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 4px;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .mini-cell.a { background: var(--tag-bg); color: var(--text-primary); }
+        .mini-cell.b { background: var(--tip-bg); color: var(--tip-text); border: 1px solid var(--tip-border); }
+        .mini-cell.ghost { background: var(--tip-bg); color: var(--tip-text); border: 2px dashed var(--tip-border); }
+        .mini-cell.a-ghost { background: var(--accent-light); color: var(--accent); border: 2px dashed #BAE6FD; }
+        .mini-cell.result { background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); font-weight: 600; }
+
+        .operation-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .op-symbol {
+            font-family: var(--mono);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .grid-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .grid-note {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+            text-align: center;
+        }
+
+        /* Decision flow */
+        .decision-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+        .decision-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .decision-badge {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+            min-width: 60px;
+            text-align: center;
+        }
+        .decision-badge.go {
+            background: var(--tip-text);
+        }
+        .decision-arrow {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        /* Example cards */
+        .example-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+        .example-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .example-card .ex-header {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .example-card .ex-header.fail {
+            background: #FEF2F2;
+            color: #991B1B;
+            border-bottom: 1px solid #FECACA;
+        }
+        .example-card .ex-header.pass {
+            background: var(--tip-bg);
+            color: var(--tip-text);
+            border-bottom: 1px solid var(--tip-border);
+        }
+        .example-card .ex-header.both {
+            background: var(--purple-light);
+            color: var(--purple);
+            border-bottom: 1px solid var(--purple-border);
+        }
+        .example-card .ex-body {
+            padding: 0.85rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.88rem;
+        }
+        .shape-pair {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .shape-item span {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+        .shape-item code {
+            font-family: var(--mono);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+        .ex-reason {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .takeaways {
+            background: var(--accent);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            color: #fff;
+        }
+        .takeaways h3 {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+        .takeaway-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 0.85rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check {
+            color: #6EE7B7;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .takeaway-item code { background: rgba(255,255,255,0.15); color: #fff; }
+
+        .guide-footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+            .operation-visual { gap: 0.75rem; }
+            .decision-step { flex-wrap: wrap; }
+            .decision-arrow { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>Introduction to NumPy</h1>
+            <p class="subtitle">Broadcasting</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 3
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/o0UQxn53kAM"
+                title="NumPy: Broadcasting"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- SECTION 1.6: What is Broadcasting?      -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">1.6 &mdash; What is Broadcasting?</h2>
+
+        <p>We know that arrays with the <strong>exact same shape</strong> can be combined with math operations. But what happens when shapes don't match exactly? Sometimes NumPy can still make it work through <strong>broadcasting</strong> — automatically expanding one or both arrays to compatible shapes.</p>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                The Key Insight
+            </p>
+            <p><strong>If you don't see a dimension of 1 anywhere, no broadcasting happens.</strong> The number 1 is the magic ingredient that allows an array to "stretch" to match another array's shape.</p>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- The Broadcasting Rules                  -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">The Broadcasting Rules</h2>
+
+        <div class="callout tip">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>
+                Rule 1 &mdash; Match + One
+            </p>
+            <p>If arrays don't match completely, they can still be combined if they <strong>match on at least one dimension</strong>, AND the non-matching dimension has a <strong>1</strong> in at least one array.</p>
+        </div>
+
+        <div class="callout purple">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01"/></svg>
+                Rule 2 &mdash; Opposite Ones
+            </p>
+            <p>If arrays have dimension <strong>1 in opposite directions</strong>, <strong>both</strong> can broadcast to create a matching shape.</p>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- Quick Decision Guide                    -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">Quick Decision Guide</h2>
+
+        <div class="visual-example">
+            <div class="decision-flow">
+                <div class="decision-step">
+                    <span class="decision-badge">Step 1</span>
+                    <span>Are the shapes <strong>exactly the same</strong>?</span>
+                    <span class="decision-arrow">&rarr; YES = Works!</span>
+                </div>
+                <div class="decision-step">
+                    <span class="decision-badge">Step 2</span>
+                    <span>Do they <strong>match on at least one dimension</strong>?</span>
+                    <span class="decision-arrow">&rarr; NO = Error!</span>
+                </div>
+                <div class="decision-step">
+                    <span class="decision-badge">Step 3</span>
+                    <span>Is there a <strong>1</strong> in the non-matching dimension?</span>
+                    <span class="decision-arrow">&rarr; NO = Error!</span>
+                </div>
+                <div class="decision-step">
+                    <span class="decision-badge go">Result</span>
+                    <span>If YES to Step 2 and Step 3:</span>
+                    <span class="decision-arrow">&rarr; Broadcasting Works!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- Examples                                -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">Examples: Can We Add These?</h2>
+
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="ex-header fail">
+                    <span>Example 1</span>
+                    <span>No</span>
+                </div>
+                <div class="ex-body">
+                    <div class="shape-pair">
+                        <div class="shape-item"><span>Array A</span><code>(2, 8)</code></div>
+                        <div class="shape-item"><span>Array B</span><code>(3, 7)</code></div>
+                    </div>
+                    <p class="ex-reason">No dimensions match (2&ne;3, 8&ne;7), and neither has a 1.</p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="ex-header fail">
+                    <span>Example 2</span>
+                    <span>No</span>
+                </div>
+                <div class="ex-body">
+                    <div class="shape-pair">
+                        <div class="shape-item"><span>Array A</span><code>(2, 3)</code></div>
+                        <div class="shape-item"><span>Array B</span><code>(3, 2)</code></div>
+                    </div>
+                    <p class="ex-reason">2&ne;3 and 3&ne;2. No match, no 1. <em>(Common exam trap!)</em></p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="ex-header fail">
+                    <span>Example 3</span>
+                    <span>No</span>
+                </div>
+                <div class="ex-body">
+                    <div class="shape-pair">
+                        <div class="shape-item"><span>Array A</span><code>(2, 4)</code></div>
+                        <div class="shape-item"><span>Array B</span><code>(2, 5)</code></div>
+                    </div>
+                    <p class="ex-reason">The 2s match, but 4&ne;5 and neither is 1.</p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="ex-header pass">
+                    <span>Example 4 &mdash; Rule 1</span>
+                    <span>Yes</span>
+                </div>
+                <div class="ex-body">
+                    <div class="shape-pair">
+                        <div class="shape-item"><span>Array A</span><code>(<strong style="color:#991B1B;">1</strong>, 5)</code></div>
+                        <div class="shape-item"><span>Array B</span><code>(3, 5)</code></div>
+                    </div>
+                    <p class="ex-reason">The 5s match, and we have a <strong>1</strong> in the non-matching dimension!</p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="ex-header both">
+                    <span>Example 5 &mdash; Rule 2</span>
+                    <span>Both Broadcast</span>
+                </div>
+                <div class="ex-body">
+                    <div class="shape-pair">
+                        <div class="shape-item"><span>Array A</span><code>(2, <strong style="color:#991B1B;">1</strong>)</code></div>
+                        <div class="shape-item"><span>Array B</span><code>(<strong style="color:#991B1B;">1</strong>, 3)</code></div>
+                    </div>
+                    <p class="ex-reason">Both have 1s in opposite positions — both expand to (2, 3)!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- Visual Walkthrough: Rule 1              -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">Visual Walkthrough: Rule 1</h2>
+        <p>One array broadcasts to match the other.</p>
+
+        <div class="visual-example">
+            <div class="code-block" style="margin: 0 0 1.25rem 0; padding: 1rem 1.25rem;"><pre style="margin:0; font-family:inherit; font-size:inherit; line-height:inherit; color:inherit;">A = np.array([[1, 2, 3],
+              [4, 5, 6]])   <span class="output"># Shape: (2, 3)</span>
+
+B = np.array([[1, 5, 6]])   <span class="output"># Shape: (1, 3)</span></pre></div>
+
+            <h3 class="sub" style="margin-top: 0;">Step 1: Original Arrays</h3>
+
+            <div class="operation-visual">
+                <div>
+                    <p class="grid-label">A (2, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell a">1</div><div class="mini-cell a">2</div><div class="mini-cell a">3</div>
+                        <div class="mini-cell a">4</div><div class="mini-cell a">5</div><div class="mini-cell a">6</div>
+                    </div>
+                </div>
+                <div>
+                    <p class="grid-label">B (<strong style="color:#991B1B;">1</strong>, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell b">1</div><div class="mini-cell b">5</div><div class="mini-cell b">6</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-family: var(--mono); font-size: 0.9rem; color: var(--accent); margin: 1rem 0;">&darr; B broadcasts (row duplicates to match A) &darr;</p>
+
+            <h3 class="sub">Step 2: B Expands to Match A</h3>
+
+            <div class="operation-visual">
+                <div>
+                    <p class="grid-label">A (2, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell a">1</div><div class="mini-cell a">2</div><div class="mini-cell a">3</div>
+                        <div class="mini-cell a">4</div><div class="mini-cell a">5</div><div class="mini-cell a">6</div>
+                    </div>
+                </div>
+                <div class="op-symbol">+</div>
+                <div>
+                    <p class="grid-label">B expanded (2, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell b">1</div><div class="mini-cell b">5</div><div class="mini-cell b">6</div>
+                        <div class="mini-cell ghost">1</div><div class="mini-cell ghost">5</div><div class="mini-cell ghost">6</div>
+                    </div>
+                    <p class="grid-note">Dashed = duplicated row</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-family: var(--mono); font-size: 0.9rem; color: var(--accent); margin: 1rem 0;">&darr; Element-wise addition &darr;</p>
+
+            <h3 class="sub">Step 3: Result (A + B)</h3>
+
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    <p class="grid-label">Result (2, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell result">2</div><div class="mini-cell result">7</div><div class="mini-cell result">9</div>
+                        <div class="mini-cell result">5</div><div class="mini-cell result">10</div><div class="mini-cell result">12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- Visual Walkthrough: Rule 2              -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">Visual Walkthrough: Rule 2</h2>
+        <p>Both arrays broadcast to a shared shape.</p>
+
+        <div class="visual-example">
+            <div class="code-block" style="margin: 0 0 1.25rem 0; padding: 1rem 1.25rem;"><pre style="margin:0; font-family:inherit; font-size:inherit; line-height:inherit; color:inherit;">A = np.array([[5],
+              [6]])         <span class="output"># Shape: (2, 1)</span>
+
+B = np.array([[1, 1, 1]])   <span class="output"># Shape: (1, 3)</span></pre></div>
+
+            <h3 class="sub" style="margin-top: 0;">Step 1: Original Arrays</h3>
+
+            <div class="operation-visual">
+                <div>
+                    <p class="grid-label">A (2, <strong style="color:#991B1B;">1</strong>)</p>
+                    <div class="mini-grid-1">
+                        <div class="mini-cell a">5</div>
+                        <div class="mini-cell a">6</div>
+                    </div>
+                </div>
+                <div style="width: 2rem;"></div>
+                <div>
+                    <p class="grid-label">B (<strong style="color:#991B1B;">1</strong>, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell b">1</div><div class="mini-cell b">1</div><div class="mini-cell b">1</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-family: var(--mono); font-size: 0.9rem; color: var(--purple); margin: 1rem 0;">&darr; BOTH broadcast to (2, 3) &darr;</p>
+
+            <h3 class="sub">Step 2: Both Expand</h3>
+
+            <div class="operation-visual">
+                <div>
+                    <p class="grid-label">A expanded (2, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell a">5</div><div class="mini-cell a-ghost">5</div><div class="mini-cell a-ghost">5</div>
+                        <div class="mini-cell a">6</div><div class="mini-cell a-ghost">6</div><div class="mini-cell a-ghost">6</div>
+                    </div>
+                    <p class="grid-note">Columns duplicated</p>
+                </div>
+                <div class="op-symbol">+</div>
+                <div>
+                    <p class="grid-label">B expanded (2, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell b">1</div><div class="mini-cell b">1</div><div class="mini-cell b">1</div>
+                        <div class="mini-cell ghost">1</div><div class="mini-cell ghost">1</div><div class="mini-cell ghost">1</div>
+                    </div>
+                    <p class="grid-note">Row duplicated</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-family: var(--mono); font-size: 0.9rem; color: var(--accent); margin: 1rem 0;">&darr; Element-wise addition &darr;</p>
+
+            <h3 class="sub">Step 3: Result (A + B)</h3>
+
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    <p class="grid-label">Result (2, 3)</p>
+                    <div class="mini-grid-3">
+                        <div class="mini-cell result">6</div><div class="mini-cell result">6</div><div class="mini-cell result">6</div>
+                        <div class="mini-cell result">7</div><div class="mini-cell result">7</div><div class="mini-cell result">7</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- Why This Matters for AI                 -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">Why This Matters for AI</h2>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.58-3.25 3.93L12 22l-.75-12.07A4.001 4.001 0 0112 2z"/></svg>
+                Everything in AI is Matrices
+            </p>
+            <p>When you send a prompt to ChatGPT, your words get converted into <strong>vectors</strong> (arrays of numbers), those vectors go through layers of <strong>matrix multiplications</strong>, and the output is another matrix converted <strong>back to words</strong>.</p>
+            <p style="margin-top: 0.5rem;">Neural networks are just layers of matrix multiplications with some functions applied. Understanding matrices and broadcasting is foundational to understanding AI.</p>
+        </div>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- Broadcasting Cheat Sheet                -->
+        <!-- ══════════════════════════════════════ -->
+        <h2 class="section-title">Broadcasting Cheat Sheet</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr><th>Shape A</th><th>Shape B</th><th>Compatible?</th><th>Result Shape</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>(2, 3)</code></td>
+                        <td><code>(2, 3)</code></td>
+                        <td><span class="yes">Yes</span></td>
+                        <td><code>(2, 3)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>(2, 3)</code></td>
+                        <td><code>(<strong style="color:#991B1B;">1</strong>, 3)</code></td>
+                        <td><span class="yes">Yes</span></td>
+                        <td><code>(2, 3)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>(2, <strong style="color:#991B1B;">1</strong>)</code></td>
+                        <td><code>(<strong style="color:#991B1B;">1</strong>, 3)</code></td>
+                        <td><span class="yes">Yes</span></td>
+                        <td><code>(2, 3)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>(2, 3)</code></td>
+                        <td><code>(3, 2)</code></td>
+                        <td><span class="no">No</span></td>
+                        <td><span class="no">Error</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>(2, 4)</code></td>
+                        <td><code>(2, 5)</code></td>
+                        <td><span class="no">No</span></td>
+                        <td><span class="no">Error</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>(3, 7)</code></td>
+                        <td><code>(2, 8)</code></td>
+                        <td><span class="no">No</span></td>
+                        <td><span class="no">Error</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Same shape</strong> = Always works (element-wise operations).</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Look for the 1</strong> — it's the key to broadcasting.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Rule 1:</strong> Match on one dimension + have a 1 in the other.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Rule 2:</strong> 1s in opposite positions = both arrays broadcast.</span></div>
+            <div class="takeaway-item"><span class="check" style="color: #FDE68A;">!</span><span><strong>No 1 anywhere?</strong> No broadcasting — you'll get an error.</span></div>
+            <div class="takeaway-item"><span class="check" style="color: #FDE68A;">!</span><span><strong>Common trap:</strong> <code>(2, 3)</code> and <code>(3, 2)</code> do NOT broadcast.</span></div>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>Introduction to NumPy</strong> &middot; Broadcasting</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>
