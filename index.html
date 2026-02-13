@@ -443,6 +443,17 @@
             color: var(--text-secondary);
             line-height: 1.65;
         }
+        .blog-card .news-images {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .blog-card .news-images img {
+            width: 50%;
+            border-radius: 6px;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
         .blog-tag {
             display: inline-block;
             background: var(--accent-light);
@@ -583,7 +594,7 @@
     <!-- ═══ NAVIGATION ═══ -->
     <nav id="navbar">
         <div class="nav-inner">
-            <a href="#" class="nav-logo">M<span>.</span> Vaghefi</a>
+            <a href="#" class="nav-logo">M<span>.</span>S<span>.</span> Vaghefi</a>
             <div class="nav-links" id="navLinks">
                 <a href="#news">News</a>
                 <a href="#research">Research</a>
@@ -615,6 +626,7 @@
                 <span class="tag">Data Science</span>
                 <span class="tag">Online Social Networks</span>
                 <span class="tag">Marketing Analytics</span>
+                <span class="tag">Crowd Sourcing</span>
             </div>
             <p class="hero-bio">
                 My research explores the intersection of information systems, machine learning, and online social networks. 
@@ -650,10 +662,14 @@
         </div>
         <div class="card-grid">
             <div class="card blog-card">
-                <p class="blog-date">2025-02-06</p>
+                <p class="blog-date">2026-02-06</p>
                 <span class="blog-tag">Event</span>
                 <h3><a href="#">Hosting Dr. Viswanath Venkatesh at UTA</a></h3>
                 <p>Our department hosted Dr. Viswanath Venkatesh from Virginia Tech for a research talk. A wonderful opportunity to learn from one of the leading scholars in IS.</p>
+                <div class="news-images">
+                    <img src="images/IMG_0898.jpg" alt="Dr. Venkatesh visit at UTA">
+                    <img src="images/IMG_4941.jpg" alt="Dr. Venkatesh research talk">
+                </div>
             </div>
             <div class="card blog-card">
                 <p class="blog-date">2024-12-15</p>
