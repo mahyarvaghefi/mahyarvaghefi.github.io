@@ -311,6 +311,7 @@
             margin-bottom: 0.75rem;
         }
         .repo-card .repo-tech { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        a > .repo-card:hover { border-color: var(--accent); transform: translateY(-2px); transition: all 0.2s; }
         .repo-card .repo-tech span {
             font-size: 0.72rem;
             font-weight: 500;
@@ -567,9 +568,13 @@
 
         /* ── Scroll animations ── */
         .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .fade-in.will-animate {
             opacity: 0;
             transform: translateY(16px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .fade-in.visible {
             opacity: 1;
@@ -624,7 +629,7 @@
                 <a href="#teaching">Teaching</a>
                 <a href="#training">Training</a>
                 <a href="docs/Mahyar_CV_GitHub.pdf" target="_blank">CV</a>
-                <a href="mailto:Mahyar.sharifvaghefi@uta.edu">Contact</a>
+                <a href="/cdn-cgi/l/email-protection#e1ac8089988093cf92898093888797808689848788a1949580cf848594">Contact</a>
             </div>
             <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -656,7 +661,7 @@
                 methods including node embedding techniques for social network analysis and decision support frameworks.
             </p>
             <div class="hero-links">
-                <a href="mailto:Mahyar.sharifvaghefi@uta.edu" class="btn-primary">
+                <a href="/cdn-cgi/l/email-protection#6a270b02130b184419020b18030c1c0b0d020f0c032a1f1e0b440f0e1f" class="btn-primary">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12v10H4z"/><path d="M4 4l6 5 6-5"/></svg>
                     Contact
                 </a>
@@ -813,18 +818,20 @@
             <div class="line"></div>
         </div>
         <div class="card-grid">
+            <a href="https://github.com/Mahyarvaghefi/HUE" target="_blank" style="text-decoration: none; color: inherit;">
             <div class="card repo-card">
                 <div class="repo-header">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-                    <span class="repo-name">node-embedding-osn</span>
+                    <span class="repo-name">HUE</span>
                 </div>
-                <p class="repo-desc">Node embedding method for analysis of online social network graphs — user preference identification, community detection, and link prediction.</p>
+                <p class="repo-desc">Homophily-based User Embedding — interpretable node embedding for online social networks. User preference identification, community detection, and link prediction.</p>
                 <div class="repo-tech">
                     <span>Python</span>
                     <span>NetworkX</span>
                     <span>Machine Learning</span>
                 </div>
             </div>
+            </a>
             <div class="card repo-card">
                 <div class="repo-header">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
@@ -1179,7 +1186,7 @@
                     </div>
                     <div>
                         <p class="label">Email</p>
-                        <p class="value"><a href="mailto:Mahyar.sharifvaghefi@uta.edu">Mahyar.sharifvaghefi@uta.edu</a></p>
+                        <p class="value"><a href="/cdn-cgi/l/email-protection#a5e8c4cddcc4d78bd6cdc4d7ccc3d3c4c2cdc0c3cce5d0d1c48bc0c1d0"><span class="__cf_email__" data-cfemail="1b567a73627a693568737a69727d6d7a7c737e7d725b6e6f7a357e7f6e">[email&#160;protected]</span></a></p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -1232,7 +1239,7 @@
     </footer>
 
     <!-- ═══ SCRIPTS ═══ -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navbar scroll effect
         const nav = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
@@ -1247,6 +1254,8 @@
         });
 
         // Scroll-triggered fade-in animations
+        // First hide elements (only if JS runs), then reveal on scroll
+        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('will-animate'));
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1265,16 +1274,4 @@
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - 100;
                 if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+         
