@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — AI Terminology &amp; Discipline Applications | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: AI Terminology and Discipline Applications. AI, ML, Deep Learning, Generative AI, and AI Agents explained. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --accent-hover: #075985;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+            --red: #991B1B;
+            --red-light: #FEF2F2;
+            --red-border: #FECACA;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: var(--red-light); border-color: var(--red-border); }
+        .callout.important .callout-title { color: var(--red); }
+        .callout.purple { background: var(--purple-light); border-color: var(--purple-border); }
+        .callout.purple .callout-title { color: var(--purple); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+        td code, p code {
+            font-family: var(--mono); font-size: 0.82rem;
+            background: var(--tag-bg); padding: 0.15rem 0.4rem; border-radius: 4px;
+        }
+
+        .visual-example {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0;
+        }
+        .visual-example .label {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 1rem;
+        }
+
+        /* Nesting dolls visual */
+        .nesting {
+            max-width: 480px; margin: 0 auto; padding: 1rem 0;
+        }
+        .nest-layer {
+            border-radius: var(--radius); padding: 0.9rem 1rem 0.9rem 1rem;
+        }
+        .nest-layer .nest-label {
+            font-size: 0.78rem; font-weight: 600; text-align: center;
+            margin-bottom: 0.6rem; letter-spacing: 0.02em;
+        }
+        .nest-ai { background: var(--accent-light); border: 2px solid #7DD3FC; }
+        .nest-ai .nest-label { color: var(--accent); }
+        .nest-ml { background: var(--tip-bg); border: 2px solid var(--tip-border); }
+        .nest-ml .nest-label { color: var(--tip-text); }
+        .nest-dl { background: var(--purple-light); border: 2px solid var(--purple-border); }
+        .nest-dl .nest-label { color: var(--purple); }
+        .nest-gen { background: var(--warn-bg); border: 2px solid var(--warn-border); }
+        .nest-gen .nest-label { color: var(--warn); }
+
+        .agent-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--red-light); border: 2px solid var(--red-border);
+            border-radius: var(--radius); padding: 0.5rem 1rem;
+            margin-top: 0.75rem;
+        }
+        .agent-badge .nest-label { color: var(--red); margin: 0; font-size: 0.78rem; font-weight: 600; }
+        .newest-tag {
+            font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+            background: var(--red-border); color: var(--red); padding: 0.1rem 0.4rem;
+            border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;
+        }
+
+        /* Term cards */
+        .term-grid { display: grid; gap: 1rem; margin: 1.5rem 0; }
+        .term-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            display: flex; align-items: flex-start; gap: 1rem;
+        }
+        .term-card .term-icon {
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 1.2rem; color: #fff;
+        }
+        .term-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .term-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .term-card .term-examples { font-size: 0.82rem; color: var(--text-muted); }
+        .term-card .term-note {
+            font-size: 0.82rem; padding: 0.5rem 0.75rem; border-radius: 6px;
+            margin-top: 0.5rem;
+        }
+
+        .term-blue { border-left: 4px solid var(--accent); }
+        .term-blue .term-icon { background: var(--accent); }
+        .term-blue .term-note { background: var(--accent-light); color: var(--accent); }
+        .term-green { border-left: 4px solid var(--tip-text); }
+        .term-green .term-icon { background: #16A34A; }
+        .term-green .term-note { background: var(--tip-bg); color: var(--tip-text); }
+        .term-purple { border-left: 4px solid var(--purple); }
+        .term-purple .term-icon { background: var(--purple); }
+        .term-purple .term-note { background: var(--purple-light); color: var(--purple); }
+        .term-orange { border-left: 4px solid #D97706; }
+        .term-orange .term-icon { background: #D97706; }
+        .term-orange .term-note { background: var(--warn-bg); color: var(--warn); }
+        .term-red { border-left: 4px solid #DC2626; }
+        .term-red .term-icon { background: #DC2626; }
+        .term-red .term-note { background: var(--red-light); color: var(--red); }
+
+        /* Discipline cards */
+        .disc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+        .disc-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden;
+        }
+        .disc-card .disc-header {
+            padding: 0.6rem 1rem;
+            color: #fff; font-size: 0.85rem; font-weight: 600;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .disc-card .disc-body { padding: 0.85rem 1rem; }
+        .disc-card .disc-body p {
+            font-size: 0.82rem; color: var(--text-secondary);
+            margin-bottom: 0.35rem; line-height: 1.55;
+        }
+        .disc-card .disc-body p:last-child { margin-bottom: 0; }
+        .disc-card .disc-body strong.ml { color: #16A34A; }
+        .disc-card .disc-body strong.gen { color: #D97706; }
+        .disc-card .disc-body strong.agent { color: #DC2626; }
+
+        /* Color legend */
+        .legend {
+            display: flex; gap: 1.25rem; flex-wrap: wrap;
+            margin-top: 1rem; padding-top: 0.75rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        .legend-item {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.78rem; color: rgba(255,255,255,0.8);
+        }
+        .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+        .legend-dot.ml { background: #16A34A; }
+        .legend-dot.gen { background: #D97706; }
+        .legend-dot.agent { background: #DC2626; }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { color: #6EE7B7; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+            .disc-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">AI Terminology &amp; Discipline Applications</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 3
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/LqM4UHCh6-k"
+                title="AI Literacy for Education: AI Terminology &amp; Discipline Applications"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── 1.5 AI Terminology ── -->
+        <h2 class="section-title">1.5 &mdash; Speaking the Same Language: AI Terminology</h2>
+
+        <p>&ldquo;AI,&rdquo; &ldquo;machine learning,&rdquo; &ldquo;deep learning,&rdquo; &ldquo;generative AI&rdquo; &mdash; are these the same thing? <strong>No.</strong> Think of them like Russian nesting dolls, each one fitting inside the other.</p>
+
+        <div class="visual-example">
+            <p class="label">The Nesting Dolls of AI</p>
+            <div class="nesting">
+                <div class="nest-layer nest-ai">
+                    <p class="nest-label">Artificial Intelligence (AI)</p>
+                    <div class="nest-layer nest-ml">
+                        <p class="nest-label">Machine Learning</p>
+                        <div class="nest-layer nest-dl">
+                            <p class="nest-label">Deep Learning</p>
+                            <div class="nest-layer nest-gen">
+                                <p class="nest-label">Generative AI</p>
+                                <p style="text-align:center; font-size:0.75rem; color:var(--warn); margin:0;">(ChatGPT, Claude, DALL&middot;E)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 0.75rem;">
+                    <div class="agent-badge">
+                        <p class="nest-label">AI Agents</p>
+                        <span class="newest-tag">Newest</span>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">(Autonomous task execution)</p>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; font-style: italic;">Each layer fits inside the one above it &mdash; like Russian nesting dolls.</p>
+        </div>
+
+        <div class="term-grid">
+            <div class="term-card term-blue">
+                <div class="term-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                </div>
+                <div>
+                    <h4>Artificial Intelligence (AI)</h4>
+                    <p><strong>Definition:</strong> Technology that lets machines solve problems in ways similar to humans.</p>
+                    <p class="term-examples"><strong>Examples:</strong> Spam filters, GPS navigation, fraud detection, recommendation engines, smart home devices</p>
+                    <div class="term-note"><strong>Key Point:</strong> AI isn&rsquo;t just robots &mdash; it&rsquo;s already in your everyday tools!</div>
+                </div>
+            </div>
+
+            <div class="term-card term-green">
+                <div class="term-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div>
+                    <h4>Machine Learning (ML)</h4>
+                    <p><strong>Definition:</strong> Teaching computers to find patterns in data without programming every single rule.</p>
+                    <p class="term-examples"><strong>Examples:</strong> Stock price prediction, customer churn analysis, sales forecasting</p>
+                    <div class="term-note"><strong>Analogy:</strong> Like teaching a child to recognize cats by showing hundreds of cat pictures, rather than writing down all the rules that make something a &ldquo;cat.&rdquo;</div>
+                </div>
+            </div>
+
+            <div class="term-card term-purple">
+                <div class="term-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.58-3.25 3.93L12 22l-.75-12.07A4.001 4.001 0 0112 2z"/></svg>
+                </div>
+                <div>
+                    <h4>Deep Learning (DL)</h4>
+                    <p><strong>Definition:</strong> ML with multiple &ldquo;layers&rdquo; of analysis, similar to how human brains process information.</p>
+                    <p class="term-examples"><strong>Examples:</strong> Facial recognition, voice assistants (Siri, Alexa), autonomous vehicles</p>
+                    <div class="term-note"><strong>Analogy:</strong> Like recognizing a face &mdash; first layer detects edges, second layer identifies eyes/nose/mouth, third layer recognizes whose face it is.</div>
+                </div>
+            </div>
+
+            <div class="term-card term-orange">
+                <div class="term-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div>
+                    <h4>Generative AI</h4>
+                    <p><strong>Definition:</strong> AI that creates <em>new</em> content &mdash; text, images, videos, code &mdash; not just analyze existing data.</p>
+                    <p class="term-examples"><strong>Examples:</strong> ChatGPT (text), DALL&middot;E (images), GitHub Copilot (code), Synthesia (video)</p>
+                    <div class="term-note"><strong>The Breakthrough:</strong> AI moved from only <em>identifying</em> cats in photos &rarr; to <em>creating</em> images of cats on demand!</div>
+                </div>
+            </div>
+
+            <div class="term-card term-red">
+                <div class="term-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                </div>
+                <div>
+                    <h4>AI Agents <span class="newest-tag" style="margin-left: 0.4rem;">Newest</span></h4>
+                    <p><strong>Definition:</strong> AI that can take <em>actions</em> &mdash; browsing the web, executing code, completing multi-step tasks autonomously.</p>
+                    <p class="term-examples"><strong>Examples:</strong> AutoGPT, AgentGPT, specialized enterprise agents</p>
+                    <div class="term-note"><strong>Key Distinction:</strong> If Generative AI is a smart assistant that answers when you ask, AI Agents are smart assistants that can actually <em>go do things</em> for you.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Generative AI vs AI Agents ── -->
+        <h3 class="sub">Generative AI vs. AI Agents: Key Differences</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Generative AI</th>
+                        <th>AI Agents</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Interaction</strong></td>
+                        <td>Reactive &mdash; responds to prompts</td>
+                        <td>Proactive &mdash; initiates actions, plans ahead</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Task Type</strong></td>
+                        <td>Single-step tasks</td>
+                        <td>Multi-step, complex workflows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Workflow</strong></td>
+                        <td>Human &rarr; AI &rarr; Human (iterative)</td>
+                        <td>Human sets goal &rarr; AI executes end-to-end</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Human Role</strong></td>
+                        <td>High &mdash; guides each step</td>
+                        <td>Low&ndash;Medium &mdash; sets goals, reviews outcomes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analogy</strong></td>
+                        <td><strong>Consultant:</strong> advises when asked, you implement</td>
+                        <td><strong>Executive Assistant:</strong> plans and completes tasks end-to-end</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── 1.6 AI in Your Discipline ── -->
+        <h2 class="section-title">1.6 &mdash; AI in Your Discipline</h2>
+
+        <p>No matter what you teach, AI is already in your field. Your students will encounter it professionally. The question isn&rsquo;t <em>whether</em> &mdash; it&rsquo;s whether they&rsquo;re <strong>ready</strong>.</p>
+
+        <div class="disc-grid">
+            <div class="disc-card">
+                <div class="disc-header" style="background: #0C4A6E;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+                    Finance
+                </div>
+                <div class="disc-body">
+                    <p><strong class="ml">ML:</strong> Algorithmic trading, risk models, credit scoring</p>
+                    <p><strong class="gen">Gen AI:</strong> Financial report analysis, scenario modeling</p>
+                    <p><strong class="agent">Agents:</strong> Real-time market data retrieval</p>
+                </div>
+            </div>
+
+            <div class="disc-card">
+                <div class="disc-header" style="background: #7E22CE;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    Marketing
+                </div>
+                <div class="disc-body">
+                    <p><strong class="ml">ML:</strong> Customer segmentation, ad targeting</p>
+                    <p><strong class="gen">Gen AI:</strong> Content creation, campaign ideas</p>
+                    <p><strong class="agent">Agents:</strong> Competitive analysis, trend monitoring</p>
+                </div>
+            </div>
+
+            <div class="disc-card">
+                <div class="disc-header" style="background: #166534;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                    Accounting
+                </div>
+                <div class="disc-body">
+                    <p><strong class="ml">ML:</strong> Fraud detection, anomaly detection</p>
+                    <p><strong class="gen">Gen AI:</strong> Practice problems, explanations</p>
+                    <p><strong class="agent">Agents:</strong> Regulatory update monitoring</p>
+                </div>
+            </div>
+
+            <div class="disc-card">
+                <div class="disc-header" style="background: #92400E;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    Management
+                </div>
+                <div class="disc-body">
+                    <p><strong class="ml">ML:</strong> HR analytics, workforce prediction</p>
+                    <p><strong class="gen">Gen AI:</strong> Case analysis, strategic scenarios</p>
+                    <p><strong class="agent">Agents:</strong> Industry research</p>
+                </div>
+            </div>
+
+            <div class="disc-card">
+                <div class="disc-header" style="background: #1E40AF;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                    Operations
+                </div>
+                <div class="disc-body">
+                    <p><strong class="ml">ML:</strong> Demand forecasting, optimization</p>
+                    <p><strong class="gen">Gen AI:</strong> Process improvement ideas</p>
+                    <p><strong class="agent">Agents:</strong> Supply chain monitoring</p>
+                </div>
+            </div>
+
+            <div class="disc-card">
+                <div class="disc-header" style="background: #475569;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    Information Systems
+                </div>
+                <div class="disc-body">
+                    <p><strong class="ml">ML:</strong> Predictive analytics, data mining</p>
+                    <p><strong class="gen">Gen AI:</strong> Code generation, documentation</p>
+                    <p><strong class="agent">Agents:</strong> System integration, automation</p>
+                </div>
+            </div>
+
+            <div class="disc-card" style="grid-column: 1 / -1;">
+                <div class="disc-header" style="background: #065F46;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                    Economics
+                </div>
+                <div class="disc-body">
+                    <p><strong class="ml">ML:</strong> Economic forecasting, market predictions, policy impact analysis</p>
+                    <p><strong class="gen">Gen AI:</strong> Explaining theories</p>
+                    <p><strong class="agent">Agents:</strong> Real-time economic indicator monitoring</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                The Bottom Line for Every Discipline
+            </p>
+            <p>No matter your discipline, <strong>AI is already in your field</strong>. Your students will encounter it professionally. The question isn&rsquo;t whether &mdash; it&rsquo;s whether they&rsquo;re ready.</p>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>AI, ML, Deep Learning, Generative AI, and AI Agents are <strong>not</strong> the same &mdash; they&rsquo;re nested layers.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>AI is already everywhere: spam filters, GPS, fraud detection &mdash; <strong>not just robots</strong>.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Generative AI</strong> (ChatGPT, Claude) is what you&rsquo;ll mostly encounter in education &mdash; AI that creates content.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>AI Agents</strong> are the newest development &mdash; more capability, more risk, more autonomy.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>No matter your discipline, <strong>AI is already in your field</strong> &mdash; your students will encounter it professionally.</span></div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-dot ml"></div> Machine Learning</div>
+                <div class="legend-item"><div class="legend-dot gen"></div> Generative AI</div>
+                <div class="legend-item"><div class="legend-dot agent"></div> AI Agents</div>
+            </div>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; AI Terminology &amp; Discipline Applications</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

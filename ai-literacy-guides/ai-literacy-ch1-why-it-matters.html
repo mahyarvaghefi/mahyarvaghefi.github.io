@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Why AI Literacy Matters NOW | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Chapter 1 — Why AI Literacy Matters NOW. Cognitive traps, terminology, and the reality of AI in higher education. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --accent-hover: #075985;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: #FEF2F2; border-color: #FECACA; }
+        .callout.important .callout-title { color: #991B1B; }
+        .callout.purple { background: var(--purple-light); border-color: var(--purple-border); }
+        .callout.purple .callout-title { color: var(--purple); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+        td code, p code {
+            font-family: var(--mono); font-size: 0.82rem;
+            background: var(--tag-bg); padding: 0.15rem 0.4rem; border-radius: 4px;
+        }
+
+        .compare-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;
+        }
+        .compare-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.25rem;
+        }
+        .compare-card h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .compare-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* Stat cards */
+        .stat-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .stat-card .stat-value {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        .stat-card .stat-label {
+            font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;
+        }
+        .stat-card.blue { border: 2px solid #BAE6FD; }
+        .stat-card.blue .stat-value { color: var(--accent); }
+        .stat-card.green { border: 2px solid var(--tip-border); }
+        .stat-card.green .stat-value { color: var(--tip-text); }
+        .stat-card.purple { border: 2px solid var(--purple-border); }
+        .stat-card.purple .stat-value { color: var(--purple); }
+        .stat-card.orange { border: 2px solid var(--warn-border); }
+        .stat-card.orange .stat-value { color: var(--warn); }
+
+        /* Pillar cards */
+        .pillar-grid { display: grid; gap: 1rem; margin: 1.5rem 0; }
+        .pillar-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            display: flex; align-items: flex-start; gap: 1rem;
+        }
+        .pillar-card .pillar-icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 1.1rem; font-weight: 700;
+            font-family: var(--mono);
+        }
+        .pillar-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .pillar-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0; }
+
+        .pillar-blue { border-left: 4px solid var(--accent); }
+        .pillar-blue .pillar-icon { background: var(--accent-light); color: var(--accent); }
+        .pillar-green { border-left: 4px solid var(--tip-text); }
+        .pillar-green .pillar-icon { background: var(--tip-bg); color: var(--tip-text); }
+        .pillar-purple { border-left: 4px solid var(--purple); }
+        .pillar-purple .pillar-icon { background: var(--purple-light); color: var(--purple); }
+
+        /* Trap cards */
+        .trap-card {
+            border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0;
+        }
+        .trap-card .trap-label {
+            font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.25rem;
+        }
+        .trap-card h3 {
+            font-family: var(--serif); font-size: 1.25rem; font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .trap-table { width: 100%; font-size: 0.88rem; border-collapse: collapse; }
+        .trap-table td {
+            padding: 0.7rem 0; border-top: 1px solid rgba(0,0,0,0.08);
+            vertical-align: top;
+        }
+        .trap-table td:first-child {
+            width: 120px; font-weight: 600; padding-right: 1rem;
+        }
+        .trap-table tr:first-child td { border-top: none; }
+
+        .trap-blue { background: var(--accent-light); border-left: 5px solid var(--accent); }
+        .trap-blue .trap-label, .trap-blue h3, .trap-blue td:first-child { color: var(--accent); }
+        .trap-green { background: var(--tip-bg); border-left: 5px solid var(--tip-text); }
+        .trap-green .trap-label, .trap-green h3, .trap-green td:first-child { color: var(--tip-text); }
+        .trap-purple { background: var(--purple-light); border-left: 5px solid var(--purple); }
+        .trap-purple .trap-label, .trap-purple h3, .trap-purple td:first-child { color: var(--purple); }
+
+        /* Numbered list */
+        .num-list { display: grid; gap: 0; margin: 1.5rem 0; }
+        .num-item {
+            display: flex; align-items: flex-start; gap: 1rem;
+            padding: 1rem 0; border-bottom: 1px solid var(--border-light);
+        }
+        .num-item:last-child { border-bottom: none; }
+        .num-item .num {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--accent); color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem; font-weight: 600; flex-shrink: 0;
+        }
+        .num-item .num-text strong { display: block; font-size: 0.92rem; margin-bottom: 0.15rem; }
+        .num-item .num-text p { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
+
+        .visual-example {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0;
+        }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { color: #6EE7B7; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+            .compare-grid, .stat-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 1: Why AI Literacy Matters NOW</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 2
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/2XX5F_6SE-s"
+                title="AI Literacy for Education: Why AI Literacy Matters NOW"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── 1.1 The Reality in Higher Education ── -->
+        <h2 class="section-title">1.1 &mdash; The Reality in Higher Education</h2>
+
+        <p>AI is no longer a future consideration &mdash; it&rsquo;s already reshaping how students learn and how employers hire. Here are the key statistics faculty need to know:</p>
+
+        <div class="stat-grid">
+            <div class="stat-card green">
+                <p class="stat-value">Fortune 500</p>
+                <p class="stat-label">The majority of Fortune 500 companies are now <strong>integrating</strong> AI into operations &mdash; not just experimenting.</p>
+            </div>
+            <div class="stat-card blue">
+                <p class="stat-value">70&ndash;90%</p>
+                <p class="stat-label">of college students have used AI tools for coursework. Many don&rsquo;t admit it.</p>
+            </div>
+            <div class="stat-card purple">
+                <p class="stat-value">Employers</p>
+                <p class="stat-label">increasingly expect graduates to have AI literacy skills &mdash; across <strong>all</strong> industries.</p>
+            </div>
+            <div class="stat-card orange">
+                <p class="stat-value">Faculty Gap</p>
+                <p class="stat-label">Many faculty report feeling unprepared to teach with or about AI. <strong>You&rsquo;re not alone.</strong></p>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                The Real Question
+            </p>
+            <p>Do you help students use AI <strong>well</strong>? Or do they figure it out from TikTok tutorials?</p>
+        </div>
+
+        <!-- ── 1.2 Why "Demystifying AI" Must Come First ── -->
+        <h2 class="section-title">1.2 &mdash; Why &ldquo;Demystifying AI&rdquo; Must Come First</h2>
+
+        <p>Before discussing teaching strategies, assignment redesign, or AI policies, we need common ground. Many misconceptions about AI come from movies, news, or marketing hype. This training establishes three foundational pillars:</p>
+
+        <div class="pillar-grid">
+            <div class="pillar-card pillar-blue">
+                <div class="pillar-icon">1</div>
+                <div>
+                    <h4>Conceptual Clarity</h4>
+                    <p>Realistic understanding of what AI <strong>is</strong> and <strong>isn&rsquo;t</strong>. No Terminator, no robot uprising &mdash; just pattern-matching technology that generates text.</p>
+                </div>
+            </div>
+            <div class="pillar-card pillar-green">
+                <div class="pillar-icon">2</div>
+                <div>
+                    <h4>Shared Vocabulary</h4>
+                    <p>Common language to discuss AI in education. So when someone says &ldquo;large language model&rdquo; in a meeting, you&rsquo;re not just nodding along pretending.</p>
+                </div>
+            </div>
+            <div class="pillar-card pillar-purple">
+                <div class="pillar-icon">3</div>
+                <div>
+                    <h4>Psychological Safety</h4>
+                    <p>Addressing the questions you <em>actually</em> have: &ldquo;Will this make my expertise irrelevant?&rdquo; &ldquo;Am I already too far behind?&rdquo; &ldquo;What if I look stupid in front of students?&rdquo;</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 1.3 Your Role: Informed Guide ── -->
+        <h2 class="section-title">1.3 &mdash; Your Role: Informed Guide, Not AI Expert</h2>
+
+        <p>Good news: you don&rsquo;t need to become a computer scientist. The goal is to become an <strong>informed guide</strong> who can do five specific things:</p>
+
+        <div class="visual-example">
+            <p class="label" style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 1rem;">The Five Capabilities of an Informed Guide</p>
+
+            <div class="num-list">
+                <div class="num-item">
+                    <div class="num">1</div>
+                    <div class="num-text">
+                        <strong>Understand AI well enough for informed conversations</strong>
+                        <p>Not expert-level. Just informed enough to discuss with students.</p>
+                    </div>
+                </div>
+                <div class="num-item">
+                    <div class="num">2</div>
+                    <div class="num-text">
+                        <strong>Use AI to enhance teaching and research productivity</strong>
+                        <p>Drafting rubrics, generating practice problems, brainstorming discussion questions.</p>
+                    </div>
+                </div>
+                <div class="num-item">
+                    <div class="num">3</div>
+                    <div class="num-text">
+                        <strong>Design assignments that leverage AI appropriately</strong>
+                        <p>Not banning it, not ignoring it &mdash; <em>integrating</em> it thoughtfully.</p>
+                    </div>
+                </div>
+                <div class="num-item">
+                    <div class="num">4</div>
+                    <div class="num-text">
+                        <strong>Guide students on ethical and effective AI use</strong>
+                        <p>Teaching <em>judgment</em>, not just skills. When AI helps and when it hurts.</p>
+                    </div>
+                </div>
+                <div class="num-item">
+                    <div class="num">5</div>
+                    <div class="num-text">
+                        <strong>Critically evaluate AI outputs in your discipline</strong>
+                        <p>You know your field. You can spot when AI gets it wrong.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                The Driving Instructor Analogy
+            </p>
+            <p>Think of yourself as a driving instructor in the passenger seat. Students are learning to drive. Your job is to help them not crash &mdash; and occasionally grab the wheel when they&rsquo;re heading for a mailbox.</p>
+        </div>
+
+        <!-- ── 1.4 Three Cognitive Traps ── -->
+        <h2 class="section-title">1.4 &mdash; Three Cognitive Traps That Mislead Everyone About AI</h2>
+
+        <p>These are the mistakes <em>everyone</em> makes when thinking about AI &mdash; faculty, students, executives, and journalists alike. Understanding these traps is essential for critical AI literacy.</p>
+
+        <div class="trap-card trap-blue">
+            <p class="trap-label">Trap #1</p>
+            <h3>Anthropomorphism</h3>
+            <table class="trap-table">
+                <tr>
+                    <td>The Trap</td>
+                    <td>Because AI uses natural language, we assume it &ldquo;thinks&rdquo; or &ldquo;understands&rdquo; like humans do.</td>
+                </tr>
+                <tr>
+                    <td>What we think</td>
+                    <td><em>&ldquo;ChatGPT understood my question and gave me a thoughtful answer.&rdquo;</em></td>
+                </tr>
+                <tr>
+                    <td style="color: #991B1B;">Reality</td>
+                    <td>AI predicted the most likely word sequence based on patterns in training data. <strong>It has no comprehension. None.</strong></td>
+                </tr>
+                <tr>
+                    <td>Why it matters</td>
+                    <td>When we anthropomorphize AI, we trust it too much and fail to verify its outputs.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="trap-card trap-green">
+            <p class="trap-label">Trap #2</p>
+            <h3>Authority Bias</h3>
+            <table class="trap-table">
+                <tr>
+                    <td>The Trap</td>
+                    <td>AI sounds confident and articulate, so we assume it must be correct.</td>
+                </tr>
+                <tr>
+                    <td>What we think</td>
+                    <td><em>&ldquo;The AI cited specific studies with dates and authors, so it must be accurate.&rdquo;</em></td>
+                </tr>
+                <tr>
+                    <td style="color: #991B1B;">Reality</td>
+                    <td>AI is designed to sound confident <strong>even when making things up</strong>. Confidence &ne; Correctness.</td>
+                </tr>
+                <tr>
+                    <td>Why it matters</td>
+                    <td>Students (and faculty!) may trust AI citations without verification, leading to <strong>completely fabricated</strong> information in academic work.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="trap-card trap-purple">
+            <p class="trap-label">Trap #3</p>
+            <h3>Automation Bias</h3>
+            <table class="trap-table">
+                <tr>
+                    <td>The Trap</td>
+                    <td>We assume automated systems are neutral, objective, and more accurate than humans.</td>
+                </tr>
+                <tr>
+                    <td>What we think</td>
+                    <td><em>&ldquo;AI is a computer system, so it&rsquo;s unbiased and systematic.&rdquo;</em></td>
+                </tr>
+                <tr>
+                    <td style="color: #991B1B;">Reality</td>
+                    <td>AI reflects biases in its training data and can make <strong>systematic errors that humans wouldn&rsquo;t</strong>.</td>
+                </tr>
+                <tr>
+                    <td>Why it matters</td>
+                    <td>Automation bias can lead to over-reliance on AI recommendations in business decisions, hiring, grading, or research.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="callout important">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Bottom Line
+            </p>
+            <p>Don&rsquo;t trust AI blindly, don&rsquo;t assume it thinks, and don&rsquo;t assume it&rsquo;s objective. As one faculty member put it: &ldquo;Aggressive summary. But technically accurate.&rdquo;</p>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>Students will use AI whether you engage with it or not &mdash; guide them to use it <strong>well</strong>.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>You don&rsquo;t need to be an AI expert &mdash; just an <strong>informed guide</strong>.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>AI doesn&rsquo;t understand &mdash; it <strong>predicts word sequences</strong> based on patterns.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>Confidence &ne; Correctness &mdash; <strong>always verify</strong> AI outputs.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>AI is not neutral &mdash; it reflects <strong>biases in its training data</strong>.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span>Your expertise matters &mdash; <strong>you can spot when AI gets your field wrong</strong>.</span></div>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 1: Why AI Literacy Matters NOW</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>
