@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Few-Shot Prompting: Show, Don't Tell | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Few-Shot Prompting. Show examples instead of describing style. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --accent-hover: #075985;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+            --red: #991B1B;
+            --red-light: #FEF2F2;
+            --red-border: #FECACA;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: var(--red-light); border-color: var(--red-border); }
+        .callout.important .callout-title { color: var(--red); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+
+        .visual-example {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0;
+        }
+        .visual-example .label {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 1rem;
+        }
+
+        /* Bad phrases pills */
+        .bad-pills {
+            display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0;
+        }
+        .bad-pill {
+            font-size: 0.82rem; font-weight: 500; padding: 0.35rem 0.85rem;
+            border-radius: 20px; border: 1px solid var(--red-border);
+            background: var(--bg-card); color: var(--red);
+        }
+
+        /* Match pills */
+        .match-pills {
+            display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0;
+        }
+        .match-pill {
+            font-size: 0.82rem; font-weight: 500; padding: 0.35rem: 0.85rem;
+            border-radius: 20px; background: var(--accent-light); color: var(--accent);
+            padding: 0.35rem 0.85rem;
+        }
+
+        /* Flow visual */
+        .flow-visual {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.75rem; flex-wrap: wrap; margin: 1.5rem 0;
+        }
+        .flow-box {
+            border-radius: var(--radius); padding: 1rem 1.15rem;
+            text-align: center; min-width: 120px;
+        }
+        .flow-box .flow-icon { font-size: 1.5rem; margin-bottom: 0.35rem; }
+        .flow-box .flow-label { font-size: 0.82rem; font-weight: 600; }
+        .flow-box .flow-sub { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
+        .flow-arrow { color: var(--accent); font-size: 1.1rem; }
+
+        /* Faculty example cards */
+        .example-grid { display: grid; gap: 1rem; margin: 1.5rem 0; }
+        .example-card {
+            background: var(--bg-card); border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.15rem 1.25rem;
+        }
+        .example-card h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .example-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .example-card p:last-child { margin-bottom: 0; }
+        .example-card .result { font-style: italic; }
+
+        /* Rule cards */
+        .rule-card {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.25rem 0;
+        }
+        .rule-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .rule-card p { font-size: 0.88rem; margin-bottom: 0; }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { color: #6EE7B7; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+        .takeaway-quote {
+            margin-top: 1.5rem; padding-top: 1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center; font-style: italic;
+            font-size: 0.88rem; color: rgba(255,255,255,0.7);
+        }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 2: Few-Shot Prompting &mdash; Show, Don&rsquo;t Tell</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 9
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/r6pDdQP_CTA"
+                title="AI Literacy for Education: Few-Shot Prompting — Show, Don't Tell"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── 2.11 The Problem ── -->
+        <h2 class="section-title">2.11 &mdash; The Problem: When Words Aren&rsquo;t Enough</h2>
+
+        <p>Sometimes the content AI produces is right, but the <strong>tone is wrong</strong>. Too formal, too generic, or it just doesn&rsquo;t sound like you. You try to describe what you want, but it&rsquo;s hard to put into words.</p>
+
+        <h3 class="sub">Phrases That Don&rsquo;t Work</h3>
+
+        <div class="bad-pills">
+            <span class="bad-pill">&ldquo;Make it more engaging&rdquo;</span>
+            <span class="bad-pill">&ldquo;Sound more professorial&rdquo;</span>
+            <span class="bad-pill">&ldquo;Be more conversational&rdquo;</span>
+            <span class="bad-pill">&ldquo;Match my style&rdquo;</span>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); font-style: italic;">These are like telling a chef &ldquo;make it taste better&rdquo; &mdash; technically feedback, practically meaningless.</p>
+
+        <div class="callout tip">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                The Solution: Show, Don&rsquo;t Tell
+            </p>
+            <p>Instead of <strong>describing</strong> what you want, <strong>show examples</strong>. AI pattern-matches to your examples instead of guessing from vague descriptions. Much more precise.</p>
+        </div>
+
+        <!-- ── 2.12 The Few-Shot Pattern ── -->
+        <h2 class="section-title">2.12 &mdash; The Few-Shot Pattern</h2>
+
+        <p><strong>Few-shot prompting</strong> means giving AI 1&ndash;3 examples of good output, then asking for more &ldquo;like these.&rdquo; It&rsquo;s absurdly effective.</p>
+
+        <div class="visual-example">
+            <p class="label">The Basic Pattern</p>
+            <div class="flow-visual">
+                <div class="flow-box" style="background: var(--accent-light); border: 2px solid #BAE6FD;">
+                    <div class="flow-icon">
+                        <svg width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="flow-label" style="color: var(--accent);">Your Examples</div>
+                    <div class="flow-sub">(1&ndash;3 good ones)</div>
+                </div>
+                <span class="flow-arrow">&rarr;</span>
+                <div class="flow-box" style="background: var(--purple-light); border: 2px solid var(--purple-border);">
+                    <div class="flow-icon">
+                        <svg width="24" height="24" fill="none" stroke="var(--purple)" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <div class="flow-label" style="color: var(--purple);">AI Pattern-Matches</div>
+                    <div class="flow-sub">(tone, length, style)</div>
+                </div>
+                <span class="flow-arrow">&rarr;</span>
+                <div class="flow-box" style="background: var(--tip-bg); border: 2px solid var(--tip-border);">
+                    <div class="flow-icon">
+                        <svg width="24" height="24" fill="none" stroke="var(--tip-text)" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="flow-label" style="color: var(--tip-text);">Similar Output</div>
+                    <div class="flow-sub">(matches your style)</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.25rem; padding: 1rem; background: var(--tag-bg); border-radius: 6px;">
+                <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">The Steps:</p>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">
+                    <strong>1.</strong> Give context about the task &rarr;
+                    <strong>2.</strong> Provide 1&ndash;3 examples of what you want &rarr;
+                    <strong>3.</strong> Say &ldquo;Create [number] more like these&rdquo; &rarr;
+                    <strong>4.</strong> Watch the magic happen
+                </p>
+            </div>
+        </div>
+
+        <h3 class="sub">What AI Matches From Your Examples</h3>
+
+        <div class="match-pills">
+            <span class="match-pill">Length</span>
+            <span class="match-pill">Tone</span>
+            <span class="match-pill">Complexity</span>
+            <span class="match-pill">Sentence structure</span>
+            <span class="match-pill">Format</span>
+            <span class="match-pill">Vocabulary level</span>
+            <span class="match-pill">Question style</span>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); font-style: italic;">You&rsquo;re not describing &ldquo;your style&rdquo; &mdash; you&rsquo;re <strong>showing</strong> your style.</p>
+
+        <!-- ── When to Use ── -->
+        <h2 class="section-title">When Should You Use Few-Shot Prompting?</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situation</th>
+                        <th>Why Few-Shot Works Better</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Specific format or template</strong></td>
+                        <td>Examples show the exact structure, so AI reliably copies the pattern.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Particular tone or voice</strong></td>
+                        <td>Sample texts teach AI the desired style more clearly than &ldquo;be professional but friendly.&rdquo;</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Subtle rubrics or grading levels</strong></td>
+                        <td>Graded examples demonstrate how you apply Excellent / Good / Needs Improvement.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Generating many similar items</strong></td>
+                        <td>&ldquo;More like these&rdquo; examples help AI create matching questions with similar difficulty and style.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vague tasks with multiple interpretations</strong></td>
+                        <td>Input&ndash;output examples clarify what you really mean.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Structured data from messy text</strong></td>
+                        <td>Example conversions teach AI the target fields and format.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom teaching or course style</strong></td>
+                        <td>A few of your own samples act as &ldquo;mini-training&rdquo; without formal model training.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── 2.13 Practical Examples ── -->
+        <h2 class="section-title">2.13 &mdash; Practical Examples for Faculty</h2>
+
+        <div class="example-grid">
+            <div class="example-card" style="border-left: 5px solid #16A34A;">
+                <h4 style="color: var(--tip-text);">Discussion Questions</h4>
+                <p><strong>You have:</strong> 3 discussion questions that generate great student engagement (refined over years).</p>
+                <p><strong>Few-shot prompt:</strong> &ldquo;Here are three discussion questions that work well in my class: [paste examples]. Create 5 more in this style.&rdquo;</p>
+                <p class="result" style="color: var(--tip-text);"><strong>Result:</strong> 5 new questions matching the tone, complexity, and engagement style of your proven winners.</p>
+            </div>
+
+            <div class="example-card" style="border-left: 5px solid var(--accent);">
+                <h4 style="color: var(--accent);">Exam Questions</h4>
+                <p><strong>You have:</strong> Your best multiple-choice questions from 15 years of exams.</p>
+                <p><strong>Few-shot prompt:</strong> &ldquo;These are examples of strong exam questions from my finance course: [paste 2&ndash;3 examples]. Generate 10 more questions at this level.&rdquo;</p>
+                <p class="result" style="color: var(--accent);"><strong>Result:</strong> 10 new questions matching the difficulty, format, and analytical depth of your best questions.</p>
+            </div>
+
+            <div class="example-card" style="border-left: 5px solid var(--purple);">
+                <h4 style="color: var(--purple);">Case Study Questions</h4>
+                <p><strong>You have:</strong> 3 case study questions that always spark great discussions.</p>
+                <p><strong>Few-shot prompt:</strong> &ldquo;Here are case study discussion questions that work well: [paste examples]. Create 7 more following this pattern for [new case topic].&rdquo;</p>
+                <p class="result" style="color: var(--purple);"><strong>Result:</strong> 7 new case questions with the same structure and depth &mdash; finally more than just 3!</p>
+            </div>
+
+            <div class="example-card" style="border-left: 5px solid #D97706;">
+                <h4 style="color: var(--warn);">Feedback Comments</h4>
+                <p><strong>You have:</strong> Examples of constructive feedback you&rsquo;ve given students.</p>
+                <p><strong>Few-shot prompt:</strong> &ldquo;Here&rsquo;s how I typically give feedback on student papers: [paste 2&ndash;3 examples]. Write feedback for this student&rsquo;s work in my style: [paste student work].&rdquo;</p>
+                <p class="result" style="color: var(--warn);"><strong>Result:</strong> Feedback that sounds like you wrote it, maintaining your supportive-but-rigorous voice.</p>
+            </div>
+        </div>
+
+        <!-- ── 2.14 Critical Rules ── -->
+        <h2 class="section-title">2.14 &mdash; Critical Rules for Few-Shot Prompting</h2>
+
+        <div class="rule-card" style="background: var(--warn-bg); border: 2px solid var(--warn-border);">
+            <h4 style="color: var(--warn);">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -2px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Quick Rule of Thumb
+            </h4>
+            <p style="color: var(--text-secondary);">Don&rsquo;t create examples from scratch just for this! The power of few-shot is using examples you <strong>ALREADY HAVE</strong>. If you don&rsquo;t have good examples, it&rsquo;s actually faster to just describe what you want in detail.</p>
+        </div>
+
+        <div class="rule-card" style="background: var(--red-light); border: 2px solid var(--red-border);">
+            <h4 style="color: var(--red);">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                Only Show the Great Ones!
+            </h4>
+            <p style="color: var(--text-secondary);"><strong>Q: What happens if I show AI my bad examples too?</strong><br>
+            <strong>A:</strong> AI will average them together. You&rsquo;ll get <strong>&ldquo;aggressively medium&rdquo;</strong> questions.<br><br>
+            <em>Curate your examples. Quality in = quality out.</em></p>
+        </div>
+
+        <div class="visual-example">
+            <p class="label">Few-Shot Is For Replication, Not Creation</p>
+            <table style="width: 100%; font-size: 0.88rem; border-collapse: collapse;">
+                <tr style="border-bottom: 1px solid var(--border-light);">
+                    <td style="padding: 0.7rem 0; color: var(--tip-text); font-weight: 600; width: 200px;">&#10003; USE Few-Shot When:</td>
+                    <td style="padding: 0.7rem 0;">&ldquo;I have this thing that works &mdash; make more.&rdquo;</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.7rem 0; color: var(--red); font-weight: 600;">&#10007; SKIP Few-Shot When:</td>
+                    <td style="padding: 0.7rem 0;">You&rsquo;re creating something new from scratch with no existing examples.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Show, don&rsquo;t tell:</strong> Examples communicate style better than descriptions like &ldquo;make it engaging.&rdquo;</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>The pattern:</strong> 1&ndash;3 examples + &ldquo;create more like these&rdquo; = AI matches length, tone, complexity, and style.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Use existing examples:</strong> Don&rsquo;t create examples from scratch &mdash; use what you already have that works.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Quality matters:</strong> Only show your best examples &mdash; AI averages what you give it.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Replication, not creation:</strong> Few-shot is for &ldquo;make more of this good thing,&rdquo; not starting from scratch.</span></div>
+            <p class="takeaway-quote">&ldquo;Show me those three great questions, and I&rsquo;ll give you ten more.&rdquo;</p>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 2: Few-Shot Prompting &mdash; Show, Don&rsquo;t Tell</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

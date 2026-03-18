@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — The Four Pillars of Effective Prompts | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Chapter 2 — The Four Pillars of Effective Prompts. Role, Context, Task, Constraints framework. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --accent-hover: #075985;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+            --red: #991B1B;
+            --red-light: #FEF2F2;
+            --red-border: #FECACA;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: var(--red-light); border-color: var(--red-border); }
+        .callout.important .callout-title { color: var(--red); }
+        .callout.purple { background: var(--purple-light); border-color: var(--purple-border); }
+        .callout.purple .callout-title { color: var(--purple); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+        td code, p code {
+            font-family: var(--mono); font-size: 0.82rem;
+            background: var(--tag-bg); padding: 0.15rem 0.4rem; border-radius: 4px;
+        }
+
+        .visual-example {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0;
+        }
+        .visual-example .label {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 1rem;
+        }
+
+        /* Pillar cards */
+        .pillar-grid { display: grid; gap: 1.25rem; margin: 1.5rem 0; }
+        .pillar-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+        }
+        .pillar-card .pillar-header {
+            padding: 0.85rem 1.25rem; color: #fff;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .pillar-card .pillar-header .pillar-num {
+            width: 30px; height: 30px; border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 700;
+        }
+        .pillar-card .pillar-header h4 { font-size: 0.95rem; font-weight: 600; }
+        .pillar-card .pillar-body { padding: 1.15rem 1.25rem; }
+        .pillar-card .pillar-body p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.6rem; }
+        .pillar-card .pillar-body p:last-child { margin-bottom: 0; }
+        .pillar-card .pillar-example {
+            font-size: 0.85rem; padding: 0.75rem 1rem; border-radius: 6px;
+            margin-top: 0.6rem; font-style: italic; line-height: 1.6;
+        }
+
+        /* Before/After prompt */
+        .prompt-compare {
+            background: var(--bg-card); border: 2px solid var(--border);
+            border-radius: var(--radius); overflow: hidden; margin: 1.5rem 0;
+        }
+        .prompt-block { padding: 1.15rem 1.25rem; }
+        .prompt-block.bad {
+            background: var(--red-light); border-bottom: 2px solid var(--red-border);
+        }
+        .prompt-block.good { background: var(--tip-bg); }
+        .prompt-block .prompt-label {
+            font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.5rem;
+        }
+        .prompt-block.bad .prompt-label { color: var(--red); }
+        .prompt-block.good .prompt-label { color: var(--tip-text); }
+        .prompt-block p { font-size: 0.88rem; color: var(--text-primary); margin: 0; }
+        .prompt-block .pillar-tag {
+            font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+            padding: 0.1rem 0.4rem; border-radius: 3px;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { color: #6EE7B7; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+        .takeaway-quote {
+            margin-top: 1.5rem; padding-top: 1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center; font-style: italic;
+            font-size: 0.88rem; color: rgba(255,255,255,0.7);
+        }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 2: The Four Pillars of Effective Prompts</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 6
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/KTZIU2JXE4s"
+                title="AI Literacy for Education: The Four Pillars of Effective Prompts"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── 2.1 The Problem ── -->
+        <h2 class="section-title">2.1 &mdash; The Problem: Same Tool, Different Results</h2>
+
+        <p>Have you ever used ChatGPT or Claude and received disappointing results, while a colleague using the <strong>exact same tool</strong> gets impressive, professional outputs? The difference isn&rsquo;t intelligence or technical skill &mdash; it&rsquo;s knowing <strong>how to communicate</strong> with AI.</p>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                The Key Insight
+            </p>
+            <p>Telling a teaching assistant <em>&ldquo;make me some questions&rdquo;</em> gets you garbage. Explaining <strong>exactly what you need</strong> &mdash; course level, topics, difficulty, format &mdash; gets you something useful. AI works the same way.</p>
+        </div>
+
+        <div class="callout tip">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                The Good News
+            </p>
+            <p>There&rsquo;s a framework. Once you learn it, you&rsquo;ll get consistent results too.</p>
+        </div>
+
+        <!-- ── 2.2 The Four Pillars ── -->
+        <h2 class="section-title">2.2 &mdash; The Four Pillars of Effective Prompts</h2>
+
+        <p>Think of a good prompt like a <strong>well-designed assignment</strong> you&rsquo;d give students. It has clear expectations, context, constraints, and a defined output. Here are the four essential components:</p>
+
+        <div class="pillar-grid">
+            <div class="pillar-card" style="border: 2px solid var(--purple-border);">
+                <div class="pillar-header" style="background: var(--purple);">
+                    <div class="pillar-num" style="color: var(--purple);">1</div>
+                    <h4>Role / Persona</h4>
+                </div>
+                <div class="pillar-body">
+                    <p><strong>What it is:</strong> Tell the AI who it should &ldquo;be&rdquo; or what perspective to take.</p>
+                    <p><strong>Why it matters:</strong> This frames the AI&rsquo;s knowledge and tone. Like giving an actor a character before they perform.</p>
+                    <div class="pillar-example" style="background: var(--purple-light); color: var(--purple);">
+                        <strong>Example:</strong> &ldquo;You are an experienced finance professor teaching undergraduates&hellip;&rdquo;
+                    </div>
+                </div>
+            </div>
+
+            <div class="pillar-card" style="border: 2px solid #BAE6FD;">
+                <div class="pillar-header" style="background: var(--accent);">
+                    <div class="pillar-num" style="color: var(--accent);">2</div>
+                    <h4>Context</h4>
+                </div>
+                <div class="pillar-body">
+                    <p><strong>What it is:</strong> Background information the AI needs to understand your situation.</p>
+                    <p><strong>Why it matters:</strong> Context sets the boundaries of what AI can assume about your students&rsquo; knowledge level.</p>
+                    <div class="pillar-example" style="background: var(--accent-light); color: var(--accent);">
+                        <strong>Example:</strong> &ldquo;I&rsquo;m teaching a 300-level corporate finance course. Students have covered time value of money and basic valuation.&rdquo;
+                    </div>
+                </div>
+            </div>
+
+            <div class="pillar-card" style="border: 2px solid var(--tip-border);">
+                <div class="pillar-header" style="background: #16A34A;">
+                    <div class="pillar-num" style="color: #16A34A;">3</div>
+                    <h4>Task / Instruction</h4>
+                </div>
+                <div class="pillar-body">
+                    <p><strong>What it is:</strong> What you actually want done &mdash; your core request.</p>
+                    <p><strong>Why it matters:</strong> The more specific your task, the less AI has to guess. And AI guesses are confident but often wrong.</p>
+                    <div class="pillar-example" style="background: var(--tip-bg); color: var(--tip-text);">
+                        <strong>Vague:</strong> &ldquo;Create three practice problems.&rdquo;<br><br>
+                        <strong>Better:</strong> &ldquo;Create three practice problems on capital budgeting using NPV analysis, each requiring students to compare two investment alternatives.&rdquo;
+                    </div>
+                </div>
+            </div>
+
+            <div class="pillar-card" style="border: 2px solid var(--warn-border);">
+                <div class="pillar-header" style="background: #D97706;">
+                    <div class="pillar-num" style="color: #D97706;">4</div>
+                    <h4>Constraints / Format</h4>
+                </div>
+                <div class="pillar-body">
+                    <p><strong>What it is:</strong> Length, style, structure, and what to avoid.</p>
+                    <p><strong>Why it matters:</strong> Constraints work both ways &mdash; what you want AND what you don&rsquo;t want.</p>
+                    <div class="pillar-example" style="background: var(--warn-bg); color: var(--warn);">
+                        <strong>Example:</strong> &ldquo;Each problem should be 150&ndash;200 words. Include realistic company names. Provide answer keys separately. Avoid problems requiring calculus.&rdquo;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Quick Reference Table ── -->
+        <h2 class="section-title">The Four Pillars at a Glance</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pillar</th>
+                        <th>Question It Answers</th>
+                        <th>What to Include</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Role</strong></td>
+                        <td>&ldquo;Who should I be?&rdquo;</td>
+                        <td>Expert persona, professional role, perspective to take</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Context</strong></td>
+                        <td>&ldquo;What&rsquo;s the situation?&rdquo;</td>
+                        <td>Course level, student background, topics covered, learning objectives</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Task</strong></td>
+                        <td>&ldquo;What should I do?&rdquo;</td>
+                        <td>Specific action, number of items, type of output, specific topics</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Constraints</strong></td>
+                        <td>&ldquo;What are the limits?&rdquo;</td>
+                        <td>Word count, format, difficulty level, what to avoid, answer key needs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── 2.3 The TA Analogy ── -->
+        <h2 class="section-title">2.3 &mdash; Think of AI Like a Teaching Assistant</h2>
+
+        <div class="callout warning">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                The Teaching Assistant Analogy
+            </p>
+            <p>AI is like a <strong>highly capable but extremely literal assistant</strong>. It has vast knowledge but needs clear direction to apply it appropriately.</p>
+        </div>
+
+        <div class="visual-example">
+            <p class="label">Vague vs. Clear Requests</p>
+            <table style="width: 100%; font-size: 0.88rem; border-collapse: collapse;">
+                <tr style="border-bottom: 1px solid var(--border-light);">
+                    <td style="padding: 0.7rem 0; color: var(--red); font-weight: 600; width: 140px; vertical-align: top;">&#10007; Vague to TA:</td>
+                    <td style="padding: 0.7rem 0; font-style: italic;">&ldquo;Make me some questions.&rdquo;</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.7rem 0; color: var(--tip-text); font-weight: 600; vertical-align: top;">&#10003; Clear to TA:</td>
+                    <td style="padding: 0.7rem 0; font-style: italic;">&ldquo;Create 5 multiple-choice questions on capital budgeting for my junior-level finance students who have covered NPV. Medium difficulty, 4 answer choices each, include answer key.&rdquo;</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ── 2.4 Try It Yourself ── -->
+        <h2 class="section-title">2.4 &mdash; Try It Yourself: Before and After</h2>
+
+        <p>Use this template to transform your prompts. Fill in each pillar with details specific to your need:</p>
+
+        <div class="prompt-compare">
+            <div class="prompt-block bad">
+                <p class="prompt-label">&#10007; Before (Weak Prompt)</p>
+                <p style="font-style: italic;">&ldquo;Make me a multiple choice finance question.&rdquo;</p>
+            </div>
+            <div class="prompt-block good">
+                <p class="prompt-label">&#10003; After (Strong Prompt Using Four Pillars)</p>
+                <p>
+                    <span class="pillar-tag" style="background: var(--purple-light); color: var(--purple);">Role</span>
+                    You are an experienced finance professor creating exam materials.<br><br>
+                    <span class="pillar-tag" style="background: var(--accent-light); color: var(--accent);">Context</span>
+                    I teach FINA 3317 (Financial Institutions and Markets) to undergraduate juniors. Students have completed modules on interest rate determination, bond markets, and financial intermediaries.<br><br>
+                    <span class="pillar-tag" style="background: var(--tip-bg); color: var(--tip-text);">Task</span>
+                    Create 5 multiple-choice questions that test application-level understanding of how financial institutions operate and how interest rates respond to economic conditions.<br><br>
+                    <span class="pillar-tag" style="background: var(--warn-bg); color: var(--warn);">Constraints</span>
+                    Each question must have 4 answer choices. Include realistic financial market numbers. Difficulty: Medium. Provide answer keys separately.
+                </p>
+            </div>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Same tool, different results</strong> &mdash; the difference is how you ask, not the AI itself.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Four Pillars:</strong> Role, Context, Task, Constraints &mdash; get these right for dramatic improvement.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Be specific:</strong> The more detail you provide, the less AI has to guess.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Constraints include exclusions:</strong> Tell AI what NOT to do, not just what to do.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>It&rsquo;s a learnable skill:</strong> Prompt engineering isn&rsquo;t about intelligence &mdash; it&rsquo;s about knowing the formula.</span></div>
+            <p class="takeaway-quote">&ldquo;Your colleague isn&rsquo;t smarter &mdash; they just know the formula. Now you know it too.&rdquo;</p>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 2: The Four Pillars of Effective Prompts</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

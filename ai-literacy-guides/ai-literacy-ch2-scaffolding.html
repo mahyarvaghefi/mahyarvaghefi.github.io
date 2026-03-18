@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Scaffolding: Don't Ask for Everything at Once | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Scaffolding approaches for AI prompts. Chain-of-Thought, Template-Based, Role-Playing, and Iterative Refinement. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --accent-hover: #075985;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+            --red: #991B1B;
+            --red-light: #FEF2F2;
+            --red-border: #FECACA;
+            --burnt: #9C4300;
+            --burnt-light: #FFF7ED;
+            --burnt-border: #FDBA74;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: var(--red-light); border-color: var(--red-border); }
+        .callout.important .callout-title { color: var(--red); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+
+        .visual-example {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0;
+        }
+
+        /* Approach cards */
+        .approach-grid { display: grid; gap: 1.25rem; margin: 1.5rem 0; }
+        .approach-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+        }
+        .approach-card .approach-header {
+            padding: 0.85rem 1.25rem; color: #fff;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .approach-card .approach-header h4 { font-size: 0.95rem; font-weight: 600; }
+        .approach-card .approach-body { padding: 1.15rem 1.25rem; }
+        .approach-card .approach-body p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.6rem; }
+        .approach-card .approach-body p:last-child { margin-bottom: 0; }
+        .approach-card .approach-example {
+            font-size: 0.85rem; padding: 0.75rem 1rem; border-radius: 6px;
+            margin-top: 0.6rem; font-style: italic; line-height: 1.6;
+        }
+        .approach-card .approach-why {
+            font-size: 0.82rem; color: var(--text-muted); margin-top: 0.6rem;
+        }
+        .star-badge {
+            font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+            background: rgba(255,255,255,0.25); padding: 0.15rem 0.5rem; border-radius: 10px;
+            margin-left: 0.4rem;
+        }
+
+        /* Step flow */
+        .step-flow {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0;
+        }
+        .step-pill {
+            font-size: 0.78rem; font-weight: 600; color: #fff;
+            padding: 0.4rem 0.85rem; border-radius: 20px;
+        }
+        .step-arrow { color: var(--accent); font-size: 1rem; }
+
+        /* Iteration steps */
+        .iter-grid { display: grid; gap: 1rem; margin: 1.5rem 0; }
+        .iter-step {
+            background: var(--bg-card); border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.15rem 1.25rem;
+        }
+        .iter-step .iter-head {
+            display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;
+        }
+        .iter-step .iter-num {
+            width: 28px; height: 28px; border-radius: 50%; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem; font-weight: 600; flex-shrink: 0;
+        }
+        .iter-step .iter-head h4 { font-size: 0.92rem; font-weight: 600; }
+        .iter-step .iter-prompt {
+            font-size: 0.85rem; padding: 0.75rem 1rem; border-radius: 6px;
+            line-height: 1.65; margin-bottom: 0.6rem;
+        }
+        .iter-step .iter-purpose {
+            font-size: 0.82rem; color: var(--text-muted);
+        }
+
+        /* Comparison */
+        .compare-header-bad { background: var(--red); }
+        .compare-header-good { background: var(--tip-text); }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { color: #6EE7B7; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+        .takeaway-quote {
+            margin-top: 1.5rem; padding-top: 1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center; font-style: italic;
+            font-size: 0.88rem; color: rgba(255,255,255,0.7);
+        }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 2: Scaffolding &mdash; Don&rsquo;t Ask for Everything at Once</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 7
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/y2FDf9tchSU"
+                title="AI Literacy for Education: Scaffolding — Don't Ask for Everything at Once"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── 2.5 The Problem ── -->
+        <h2 class="section-title">2.5 &mdash; The Problem: Asking for Everything at Once</h2>
+
+        <p>When you need something complex &mdash; a full assignment with instructions, rubric, and sample solutions &mdash; it&rsquo;s tempting to ask for it all in one giant prompt. <strong>This is a common mistake.</strong></p>
+
+        <div class="callout important">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Why &ldquo;Everything at Once&rdquo; Fails
+            </p>
+            <p>If you ask AI for everything at once, it tries to do it all &mdash; <strong>and does none of it well</strong>.<br><br>It&rsquo;s like asking someone to write a novel, design the cover, and plan the marketing campaign all in one breath.</p>
+        </div>
+
+        <div class="callout tip">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                The Solution: Scaffolding
+            </p>
+            <p>Break complex tasks into a <strong>conversation</strong>. Build step by step, refining as you go. Think of it like construction scaffolding &mdash; you build up to the final product layer by layer.</p>
+        </div>
+
+        <!-- ── 2.6 Four Approaches ── -->
+        <h2 class="section-title">2.6 &mdash; Four Scaffolding Approaches</h2>
+
+        <p>Different tasks call for different scaffolding strategies. Here are four powerful approaches:</p>
+
+        <div class="approach-grid">
+            <div class="approach-card" style="border: 2px solid #BAE6FD;">
+                <div class="approach-header" style="background: var(--accent);">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <h4>Chain-of-Thought Prompting</h4>
+                </div>
+                <div class="approach-body">
+                    <p><strong>What it is:</strong> Ask AI to &ldquo;think step-by-step&rdquo; or &ldquo;show your reasoning&rdquo; at each stage.</p>
+                    <p><strong>Best for:</strong> Complex analytical tasks, problem-solving, multi-step calculations.</p>
+                    <div class="approach-example" style="background: var(--accent-light); color: var(--accent);">
+                        <strong>Example:</strong> &ldquo;Explain how to calculate WACC. Think step-by-step and show your reasoning at each stage.&rdquo;
+                    </div>
+                    <p class="approach-why"><strong>Why it works:</strong> AI slows down, works through each component, and you can catch errors along the way.</p>
+                </div>
+            </div>
+
+            <div class="approach-card" style="border: 2px solid var(--tip-border);">
+                <div class="approach-header" style="background: #16A34A;">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <h4>Template-Based Prompting</h4>
+                </div>
+                <div class="approach-body">
+                    <p><strong>What it is:</strong> Provide a structure or template you already like and have AI fill it in.</p>
+                    <p><strong>Best for:</strong> Standardized documents, consistent formatting, reusable structures.</p>
+                    <div class="approach-example" style="background: var(--tip-bg); color: var(--tip-text);">
+                        <strong>Example:</strong> &ldquo;Use this rubric template and create criteria for a finance presentation: [paste your template]&rdquo;
+                    </div>
+                    <p class="approach-why"><strong>Why it works:</strong> You can reuse formats that already work for you and your institution.</p>
+                </div>
+            </div>
+
+            <div class="approach-card" style="border: 2px solid var(--purple-border);">
+                <div class="approach-header" style="background: var(--purple);">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    <h4>Role-Playing Scenarios</h4>
+                </div>
+                <div class="approach-body">
+                    <p><strong>What it is:</strong> Have AI simulate different perspectives or argue from specific viewpoints.</p>
+                    <p><strong>Best for:</strong> Case discussions, ethical dilemmas, seeing multiple angles, debate prep.</p>
+                    <div class="approach-example" style="background: var(--purple-light); color: var(--purple);">
+                        <strong>Example:</strong> &ldquo;Take the role of a skeptical CFO. How would you challenge this investment proposal?&rdquo;
+                    </div>
+                    <p class="approach-why"><strong>Why it works:</strong> Helps students see multiple angles. You can have AI argue both sides of a business decision.</p>
+                </div>
+            </div>
+
+            <div class="approach-card" style="border: 3px solid var(--burnt-border);">
+                <div class="approach-header" style="background: #C2410C;">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                    <h4>Iterative Refinement <span class="star-badge">&#9733; Most Powerful</span></h4>
+                </div>
+                <div class="approach-body">
+                    <p><strong>What it is:</strong> Start broad, then refine with follow-up prompts. Build the final product through a series of focused exchanges.</p>
+                    <p><strong>Best for:</strong> Creative tasks, content development, complex multi-part assignments.</p>
+                    <div class="approach-example" style="background: var(--burnt-light); color: var(--burnt);">
+                        <strong>Example Process:</strong> First get outline &rarr; Then develop each section &rarr; Then refine tone &rarr; Then create rubric
+                    </div>
+                    <p class="approach-why"><strong>Why it works:</strong> You catch problems early &mdash; before they compound. AI&rsquo;s first answer is rarely its best answer.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2.7 Real Example ── -->
+        <h2 class="section-title">2.7 &mdash; Real Example: Building a Marketing Campaign Project</h2>
+
+        <p>Let&rsquo;s see iterative refinement in action. Goal: Create a complete marketing campaign project for students with instructions, rubric, and detailed criteria.</p>
+
+        <div class="step-flow">
+            <div class="step-pill" style="background: var(--accent);">1. Structure</div>
+            <span class="step-arrow">&rarr;</span>
+            <div class="step-pill" style="background: #16A34A;">2. Instructions</div>
+            <span class="step-arrow">&rarr;</span>
+            <div class="step-pill" style="background: var(--purple);">3. Rubric</div>
+            <span class="step-arrow">&rarr;</span>
+            <div class="step-pill" style="background: #C2410C;">4. Refine</div>
+        </div>
+
+        <div class="iter-grid">
+            <div class="iter-step" style="border-left: 5px solid var(--accent);">
+                <div class="iter-head">
+                    <div class="iter-num" style="background: var(--accent);">1</div>
+                    <h4 style="color: var(--accent);">Getting the Structure</h4>
+                </div>
+                <div class="iter-prompt" style="background: var(--accent-light); color: var(--text-primary);">
+                    <strong>Prompt:</strong> &ldquo;You are a marketing professor. I need to create a group project where students develop a complete marketing campaign for a new product launch. The project should take 3&ndash;4 weeks and involve market research, target audience analysis, and campaign strategy. <strong>First, help me outline the major components this project should include.</strong> What are the key sections students should complete?&rdquo;
+                </div>
+                <p class="iter-purpose"><strong>Purpose:</strong> Get the skeleton first. Review it, make sure you like the direction, then go deeper.</p>
+            </div>
+
+            <div class="iter-step" style="border-left: 5px solid #16A34A;">
+                <div class="iter-head">
+                    <div class="iter-num" style="background: #16A34A;">2</div>
+                    <h4 style="color: var(--tip-text);">Developing Instructions</h4>
+                </div>
+                <div class="iter-prompt" style="background: var(--tip-bg); color: var(--text-primary);">
+                    <strong>Prompt:</strong> &ldquo;Great! Now let&rsquo;s develop detailed instructions for the &lsquo;Target Audience Analysis&rsquo; section. Students should identify and profile their target customers using demographic, psychographic, and behavioral data. Write clear instructions that specify: <strong>What data points to include</strong> (age, income, lifestyle, values, buying behavior) &mdash; <strong>Where to find this data</strong> (industry reports, surveys, census data) &mdash; <strong>How to create a detailed customer persona</strong> (with example format) &mdash; <strong>Expected length</strong> (about 2&ndash;3 pages). Write this as if you&rsquo;re speaking directly to students.&rdquo;
+                </div>
+                <p class="iter-purpose"><strong>Purpose:</strong> Build one piece at a time. If you don&rsquo;t like this section, fix it now &mdash; before building more on a flawed foundation.</p>
+            </div>
+
+            <div class="iter-step" style="border-left: 5px solid var(--purple);">
+                <div class="iter-head">
+                    <div class="iter-num" style="background: var(--purple);">3</div>
+                    <h4 style="color: var(--purple);">Creating the Rubric</h4>
+                </div>
+                <div class="iter-prompt" style="background: var(--purple-light); color: var(--text-primary);">
+                    <strong>Prompt:</strong> &ldquo;Now create a grading rubric for the entire project. Use a <strong>100-point scale</strong> distributed as: Market Analysis: 20 points &mdash; Target Audience Analysis: 20 points &mdash; Campaign Strategy: 25 points &mdash; Creative Execution: 20 points &mdash; Budget &amp; Metrics: 15 points. For each section, define criteria for <strong>Excellent</strong> (90&ndash;100%), <strong>Good</strong> (80&ndash;89%), <strong>Satisfactory</strong> (70&ndash;79%), and <strong>Needs Improvement</strong> (below 70%).&rdquo;
+                </div>
+                <p class="iter-purpose"><strong>Purpose:</strong> Still guiding, still specific. You&rsquo;re telling AI the categories and point distribution.</p>
+            </div>
+
+            <div class="iter-step" style="border-left: 5px solid #C2410C;">
+                <div class="iter-head">
+                    <div class="iter-num" style="background: #C2410C;">4</div>
+                    <h4 style="color: var(--burnt);">Refining Based on Feedback</h4>
+                </div>
+                <div class="iter-prompt" style="background: var(--burnt-light); color: var(--text-primary);">
+                    <strong>Prompt:</strong> &ldquo;The rubric looks good, but I want the &lsquo;Excellent&rsquo; criteria for Campaign Strategy to be more specific. Students should not just describe a strategy &mdash; they need to: 1. <strong>Clearly define campaign objectives</strong> (SMART goals) 2. <strong>Explain the strategic rationale</strong> (why this approach?) 3. <strong>Connect strategy to target audience insights</strong> 4. <strong>Differentiate from competitor campaigns</strong>. Rewrite just the &lsquo;Campaign Strategy &mdash; Excellent&rsquo; criteria to reflect these expectations.&rdquo;
+                </div>
+                <p class="iter-purpose"><strong>Purpose:</strong> Surgical edit. Instead of scrapping everything and starting over, you refine just the part that needs work.</p>
+            </div>
+        </div>
+
+        <!-- ── 2.8 The Key Insight ── -->
+        <h2 class="section-title">2.8 &mdash; The Key Insight</h2>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Remember
+            </p>
+            <p><strong>&ldquo;AI&rsquo;s first answer is rarely its best answer.&rdquo;</strong> Iteration gets you to quality.</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: var(--red);">&#10007; &ldquo;Everything at Once&rdquo;</th>
+                        <th style="background: #16A34A;">&#10003; Scaffolding Approach</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Feels faster initially</td>
+                        <td>Feels slower initially</td>
+                    </tr>
+                    <tr>
+                        <td>Usually leads to 3+ rounds of &ldquo;no, that&rsquo;s not what I wanted&rdquo;</td>
+                        <td>Problems caught early, before they compound</td>
+                    </tr>
+                    <tr>
+                        <td>Errors build on errors</td>
+                        <td>Each piece reviewed before the next is built</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--red); font-weight: 600;">Actually slower overall</td>
+                        <td style="color: var(--tip-text); font-weight: 600;">Actually faster overall</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── Quick Reference ── -->
+        <h2 class="section-title">Which Approach When?</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Approach</th>
+                        <th>Best For</th>
+                        <th>Example Use Cases</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: var(--accent); font-weight: 600;">Chain-of-Thought</td>
+                        <td>Complex analytical tasks, problem-solving</td>
+                        <td>WACC calculations, financial analysis, multi-step problems</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--tip-text); font-weight: 600;">Template-Based</td>
+                        <td>Standardized documents, consistent formatting</td>
+                        <td>Syllabi, rubrics, assessment templates</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--purple); font-weight: 600;">Role-Playing</td>
+                        <td>Case discussions, ethical dilemmas</td>
+                        <td>CFO perspective, regulator viewpoint, debate prep</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #C2410C; font-weight: 600;">Iterative Refinement</td>
+                        <td>Creative tasks, content development</td>
+                        <td>Full assignments, projects, comprehensive materials</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Don&rsquo;t ask for everything at once</strong> &mdash; AI tries to do it all and does none of it well.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Four scaffolding approaches:</strong> Chain-of-Thought, Template-Based, Role-Playing, and Iterative Refinement.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Iterative Refinement is most powerful</strong> &mdash; get the skeleton first, then build and refine piece by piece.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Catch problems early</strong> &mdash; fix a section before building more on a flawed foundation.</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Scaffolding feels slower but is faster</strong> &mdash; it avoids multiple rounds of &ldquo;that&rsquo;s not what I wanted.&rdquo;</span></div>
+            <p class="takeaway-quote">&ldquo;Four focused prompts instead of one messy one &mdash; and you end up with exactly what you need.&rdquo;</p>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 2: Scaffolding &mdash; Don&rsquo;t Ask for Everything at Once</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>
