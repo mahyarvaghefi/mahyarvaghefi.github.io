@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Five Prompting Mistakes (And How to Avoid Them) | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Five common prompting mistakes and how to fix them. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+            --red: #991B1B;
+            --red-light: #FEF2F2;
+            --red-border: #FECACA;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+
+        /* Mistake cards */
+        .mistake-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+            margin: 1.5rem 0;
+        }
+        .mistake-card .mistake-header {
+            padding: 0.95rem 1.25rem; color: #fff;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .mistake-card .mistake-header .mistake-num {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; font-weight: 700; flex-shrink: 0;
+        }
+        .mistake-card .mistake-header h4 { font-size: 0.98rem; font-weight: 600; }
+        .mistake-card .mistake-header .mistake-sub { font-size: 0.78rem; opacity: 0.85; margin-top: 0.1rem; }
+        .mistake-card .mistake-body { padding: 1.25rem; }
+
+        .mistake-block {
+            border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 0.85rem;
+            font-size: 0.88rem; line-height: 1.65;
+        }
+        .mistake-block:last-child { margin-bottom: 0; }
+        .mistake-block .block-label {
+            font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.03em; margin-bottom: 0.35rem;
+        }
+
+        /* Most important badge */
+        .important-badge {
+            font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+            background: rgba(255,255,255,0.25); padding: 0.15rem 0.5rem; border-radius: 10px;
+            margin-left: 0.4rem; text-transform: uppercase; letter-spacing: 0.03em;
+        }
+
+        /* Use-for pills */
+        .pill-grid {
+            display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.5rem 0;
+        }
+        .pill-good {
+            font-size: 0.78rem; font-weight: 500; padding: 0.25rem 0.65rem;
+            border-radius: 15px; background: var(--tip-bg); color: var(--tip-text);
+        }
+        .pill-bad {
+            font-size: 0.78rem; font-weight: 500; padding: 0.25rem 0.65rem;
+            border-radius: 15px; background: var(--red-light); color: var(--red);
+        }
+
+        /* Step flow inline */
+        .step-flow-inline {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.4rem; flex-wrap: wrap; margin: 0.75rem 0;
+        }
+        .step-pill-sm {
+            font-size: 0.75rem; font-weight: 600; color: var(--tip-text);
+            padding: 0.3rem 0.65rem; border-radius: 15px; background: var(--tip-bg);
+        }
+        .step-arrow-sm { color: var(--accent); font-size: 0.85rem; }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+        .takeaway-item .check.yes { color: #6EE7B7; }
+        .takeaway-item .check.alert { color: #FCA5A5; }
+        .takeaway-quote {
+            margin-top: 1.5rem; padding-top: 1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center; font-style: italic;
+            font-size: 0.88rem; color: rgba(255,255,255,0.7);
+        }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 2: Five Prompting Mistakes (And How to Avoid Them)</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 10
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/40qbf6Hbd-A"
+                title="AI Literacy for Education: Five Prompting Mistakes (And How to Avoid Them)"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── Intro ── -->
+        <h2 class="section-title">Five Mistakes to Avoid</h2>
+
+        <p>Even with the Four Pillars framework, there are common pitfalls that trip up even experienced AI users. Here are five mistakes we&rsquo;ve all made &mdash; and how to avoid them.</p>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Good News
+            </p>
+            <p>About 80% of first-time prompts make at least one of these mistakes. Once you know what to watch for, you&rsquo;ll avoid them naturally.</p>
+        </div>
+
+        <!-- ── Mistake 1 ── -->
+        <div class="mistake-card" style="border: 2px solid #DC2626;">
+            <div class="mistake-header" style="background: #DC2626;">
+                <div class="mistake-num" style="color: #DC2626;">1</div>
+                <div>
+                    <h4>The &ldquo;Vague Assignment&rdquo; Prompt</h4>
+                    <p class="mistake-sub">Using vague statements to describe your task</p>
+                </div>
+            </div>
+            <div class="mistake-body">
+                <div class="mistake-block" style="background: var(--red-light);">
+                    <p class="block-label" style="color: var(--red);">&#10007; The Mistake</p>
+                    <p style="font-style: italic; margin-bottom: 0.4rem;">&ldquo;Create a case study for my finance class.&rdquo;</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">No course level. No topic. No length. No learning objectives. Nothing about what makes this YOUR class.</p>
+                </div>
+                <div class="mistake-block" style="background: var(--tag-bg);">
+                    <p style="font-size: 0.85rem; margin: 0;">It&rsquo;s like ordering &ldquo;food&rdquo; at a restaurant. You&rsquo;ll get something &mdash; might be a salad, might be a whole roast chicken. Probably not what you had in mind.</p>
+                </div>
+                <div class="mistake-block" style="background: var(--tip-bg);">
+                    <p class="block-label" style="color: var(--tip-text);">&#10003; The Fix</p>
+                    <p style="margin: 0;">&ldquo;Create a case study for my <strong>undergraduate corporate finance course</strong>, focused on <strong>capital budgeting decisions</strong>, approximately <strong>800 words</strong>, with <strong>three discussion questions</strong> that require students to apply <strong>NPV analysis</strong>.&rdquo;</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Mistake 2 ── -->
+        <div class="mistake-card" style="border: 2px solid #D97706;">
+            <div class="mistake-header" style="background: #D97706;">
+                <div class="mistake-num" style="color: #D97706;">2</div>
+                <div>
+                    <h4>The &ldquo;One-and-Done&rdquo; Approach</h4>
+                    <p class="mistake-sub">Accepting the first output without iteration</p>
+                </div>
+            </div>
+            <div class="mistake-body">
+                <div class="mistake-block" style="background: var(--warn-bg);">
+                    <p class="block-label" style="color: var(--warn);">&#10007; The Mistake</p>
+                    <p style="margin: 0;">You get a response and just&hellip; accept it. No feedback, no refinement, no back-and-forth.</p>
+                </div>
+                <div class="mistake-block" style="background: var(--tag-bg);">
+                    <p style="margin-bottom: 0.4rem;">AI&rsquo;s first draft is like a paper from an enthusiastic graduate student who wrote it at 2 AM. It&rsquo;s <em>fine</em> &mdash; but it&rsquo;s rarely the best work.</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin: 0;">You wouldn&rsquo;t just slap an A on that paper and move on. You&rsquo;d give feedback.</p>
+                </div>
+                <div class="mistake-block" style="background: var(--tip-bg);">
+                    <p class="block-label" style="color: var(--tip-text);">&#10003; The Fix: Give Feedback!</p>
+                    <p style="margin-bottom: 0.4rem;">&bull; &ldquo;This is close, but make the scenarios more challenging.&rdquo;<br>&bull; &ldquo;Good structure, but can you tighten up the second section?&rdquo;<br>&bull; &ldquo;I like the direction &mdash; now make it harder to game.&rdquo;</p>
+                    <p style="font-style: italic; color: var(--tip-text); margin: 0;"><strong>Remember:</strong> AI is a collaborator, not a vending machine. Second and third versions are almost always stronger.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Mistake 3 ── -->
+        <div class="mistake-card" style="border: 2px solid var(--purple-border);">
+            <div class="mistake-header" style="background: var(--purple);">
+                <div class="mistake-num" style="color: var(--purple);">3</div>
+                <div>
+                    <h4>The &ldquo;Missing Guardrails&rdquo;</h4>
+                    <p class="mistake-sub">Only telling AI what you want, not what you DON&rsquo;T want</p>
+                </div>
+            </div>
+            <div class="mistake-body">
+                <div class="mistake-block" style="background: var(--purple-light);">
+                    <p class="block-label" style="color: var(--purple);">&#10007; The Mistake</p>
+                    <p style="margin-bottom: 0.4rem;">&ldquo;Create practice problems for statistics.&rdquo;</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">But: Do you want calculus-based problems? Should AI avoid simplified textbook examples? Are there topics you haven&rsquo;t covered yet?</p>
+                </div>
+                <div class="mistake-block" style="background: var(--red-light);">
+                    <p class="block-label" style="color: var(--red);">&#9888; Real Example</p>
+                    <p style="margin: 0;">Someone asked for exam questions &mdash; great prompt, very detailed. AI generated questions. <strong>Half of them used a method they explicitly weren&rsquo;t teaching that semester.</strong></p>
+                </div>
+                <div class="mistake-block" style="background: var(--tip-bg);">
+                    <p class="block-label" style="color: var(--tip-text);">&#10003; The Fix: Add Exclusions</p>
+                    <p style="margin-bottom: 0.4rem;">&ldquo;Take Main Street&rdquo; is helpful. &ldquo;Take Main Street, <strong>but not during rush hour and avoid the construction on 5th</strong>&rdquo; is better.</p>
+                    <p style="margin: 0;"><strong>Include things like:</strong> &ldquo;Avoid calculus-based approaches.&rdquo; &ldquo;Don&rsquo;t use topics from Chapter 8 onwards.&rdquo; &ldquo;No problems that require software.&rdquo;</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Mistake 4 ── -->
+        <div class="mistake-card" style="border: 2px solid #BAE6FD;">
+            <div class="mistake-header" style="background: var(--accent);">
+                <div class="mistake-num" style="color: var(--accent);">4</div>
+                <div>
+                    <h4>The &ldquo;Kitchen Sink&rdquo;</h4>
+                    <p class="mistake-sub">Asking for everything at once</p>
+                </div>
+            </div>
+            <div class="mistake-body">
+                <div class="mistake-block" style="background: var(--accent-light);">
+                    <p class="block-label" style="color: var(--accent);">&#10007; The Mistake</p>
+                    <p style="margin-bottom: 0.4rem;">&ldquo;Create an assignment with detailed instructions, a grading rubric, a sample solution, aligned learning objectives, discussion questions, and maybe a participation component.&rdquo;</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">That&rsquo;s <strong>six deliverables</strong> in one prompt. AI will attempt all of them. AI will nail none of them.</p>
+                </div>
+                <div class="mistake-block" style="background: var(--tip-bg);">
+                    <p class="block-label" style="color: var(--tip-text);">&#10003; The Fix: Use Scaffolding</p>
+                    <p style="margin-bottom: 0.5rem;">Break it into steps. Each piece builds on the last, and you can catch problems before they cascade.</p>
+                    <div class="step-flow-inline">
+                        <span class="step-pill-sm">1. Assignment draft</span>
+                        <span class="step-arrow-sm">&rarr;</span>
+                        <span class="step-pill-sm">2. Refine it</span>
+                        <span class="step-arrow-sm">&rarr;</span>
+                        <span class="step-pill-sm">3. Create rubric</span>
+                        <span class="step-arrow-sm">&rarr;</span>
+                        <span class="step-pill-sm">4. Sample solution</span>
+                    </div>
+                    <p style="font-style: italic; color: var(--tip-text); font-size: 0.85rem; margin: 0.5rem 0 0 0;">It&rsquo;s slower upfront, but faster overall. Like building anything &mdash; foundation first.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Mistake 5 ── -->
+        <div class="mistake-card" style="border: 3px solid #7F1D1D;">
+            <div class="mistake-header" style="background: #7F1D1D;">
+                <div class="mistake-num" style="color: #7F1D1D;">5</div>
+                <div>
+                    <h4>The &ldquo;Trust Fall&rdquo; <span class="important-badge">&#9888; Most Important</span></h4>
+                    <p class="mistake-sub">Not verifying factual claims</p>
+                </div>
+            </div>
+            <div class="mistake-body">
+                <div class="mistake-block" style="background: var(--red-light); border: 1px solid var(--red-border);">
+                    <p class="block-label" style="color: var(--red);">AI&rsquo;s Honest Confession</p>
+                    <p style="margin-bottom: 0.5rem;">&ldquo;I generate plausible-sounding information. Citations. Statistics. Historical claims. Names. Dates. <strong>Sometimes they&rsquo;re accurate. Sometimes they are entirely made up.</strong>&rdquo;</p>
+                    <p style="color: var(--red); margin: 0;">&ldquo;And here&rsquo;s the uncomfortable part: I genuinely cannot tell the difference.&rdquo;</p>
+                </div>
+
+                <div class="mistake-block" style="background: var(--warn-bg);">
+                    <p class="block-label" style="color: var(--warn);">How Hallucinations Work</p>
+                    <p style="margin-bottom: 0.4rem;">AI doesn&rsquo;t hallucinate <em>obviously</em>. It doesn&rsquo;t say &ldquo;the moon is made of cheese.&rdquo; Instead, it says things like:</p>
+                    <p style="font-style: italic; padding: 0.5rem 0.75rem; background: var(--bg-card); border-left: 3px solid var(--red-border); border-radius: 0 4px 4px 0; margin-bottom: 0.4rem;">&ldquo;According to a 2019 study in the Journal of Applied Economics&hellip;&rdquo;</p>
+                    <p style="font-size: 0.85rem; color: var(--warn); margin: 0;">The journal is real. The claim sounds reasonable. But the citation? <strong>Potentially fabricated.</strong></p>
+                </div>
+
+                <div style="background: var(--accent); border-radius: 6px; padding: 1rem; text-align: center; margin-bottom: 0.85rem;">
+                    <p style="font-size: 0.82rem; color: #FCA5A5; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.35rem;">Non-Negotiable Rule</p>
+                    <p style="color: #fff; font-size: 0.95rem; margin: 0;">Every citation. Every statistic. Every specific factual claim.<br><strong>Verify it. Every. Single. Time.</strong></p>
+                </div>
+
+                <div class="mistake-block" style="background: var(--tip-bg);">
+                    <p class="block-label" style="color: var(--tip-text);">&#10003; Use AI For:</p>
+                    <div class="pill-grid">
+                        <span class="pill-good">Drafting</span>
+                        <span class="pill-good">Brainstorming</span>
+                        <span class="pill-good">Structuring</span>
+                        <span class="pill-good">Iterating</span>
+                        <span class="pill-good">Creative work</span>
+                    </div>
+                    <p class="block-label" style="color: var(--red); margin-top: 0.75rem;">&#10007; Use YOUR Expertise + Google Scholar For:</p>
+                    <div class="pill-grid">
+                        <span class="pill-bad">Fact-checking</span>
+                        <span class="pill-bad">Citation verification</span>
+                        <span class="pill-bad">Statistical accuracy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Quick Recap Table ── -->
+        <h2 class="section-title">Quick Recap: The Five Mistakes</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Mistake</th>
+                        <th>The Problem</th>
+                        <th>The Fix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: #DC2626; font-weight: 600;">1</td>
+                        <td>Vague Prompts</td>
+                        <td>&ldquo;Create a case study.&rdquo;</td>
+                        <td>Add context, constraints, and specifics</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #D97706; font-weight: 600;">2</td>
+                        <td>One-and-Done</td>
+                        <td>Accepting first output</td>
+                        <td>Iterate &mdash; give feedback, refine</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--purple); font-weight: 600;">3</td>
+                        <td>Missing Guardrails</td>
+                        <td>No exclusions specified</td>
+                        <td>Tell AI what NOT to do</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--accent); font-weight: 600;">4</td>
+                        <td>Kitchen Sink</td>
+                        <td>Asking for everything at once</td>
+                        <td>Break into steps (scaffolding)</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #7F1D1D; font-weight: 600;">5</td>
+                        <td>Trust Fall &#9888;</td>
+                        <td>Not verifying facts/citations</td>
+                        <td><strong>ALWAYS verify</strong> factual claims</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check yes">&#10003;</span><span><strong>Be specific, not vague</strong> &mdash; context, constraints, and details make all the difference.</span></div>
+            <div class="takeaway-item"><span class="check yes">&#10003;</span><span><strong>Iterate, don&rsquo;t one-and-done</strong> &mdash; AI is a collaborator, not a vending machine.</span></div>
+            <div class="takeaway-item"><span class="check yes">&#10003;</span><span><strong>Tell AI what to avoid</strong> &mdash; exclusions matter as much as inclusions.</span></div>
+            <div class="takeaway-item"><span class="check yes">&#10003;</span><span><strong>Break big asks into steps</strong> &mdash; scaffolding is slower upfront but faster overall.</span></div>
+            <div class="takeaway-item"><span class="check alert">!</span><span><strong>ALWAYS verify the facts</strong> &mdash; AI generates plausible-sounding information that may be fabricated.</span></div>
+            <p class="takeaway-quote">&ldquo;Do those five things, and we&rsquo;re going to work very well together.&rdquo;</p>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 2: Five Prompting Mistakes (And How to Avoid Them)</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>
