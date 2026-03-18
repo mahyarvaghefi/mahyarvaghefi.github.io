@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Session Summaries | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Zone 2 — Creating Session Summaries with AI from lecture transcripts. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#FAFAF8;--bg-card:#FFF;--text-primary:#1A1A1A;--text-secondary:#555;--text-muted:#888;--accent:#0C4A6E;--accent-light:#E0F2FE;--border:#E5E5E3;--border-light:#F0F0EE;--tag-bg:#F3F4F6;--tag-text:#374151;--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:10px;--serif:'Source Serif 4',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;--warn:#92400E;--warn-bg:#FFFBEB;--warn-border:#FDE68A;--tip-bg:#F0FDF4;--tip-border:#86EFAC;--tip-text:#166534;--purple:#6B21A8;--purple-light:#F3E8FF;--purple-border:#D8B4FE;--red:#991B1B;--red-light:#FEF2F2;--red-border:#FECACA}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--sans);background:var(--bg);color:var(--text-primary);line-height:1.7;-webkit-font-smoothing:antialiased}.container{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}.back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:500;margin-bottom:2.5rem;transition:gap .2s}.back-link:hover{gap:.6rem}.guide-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.guide-header .breadcrumb{font-size:.78rem;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}.guide-header h1{font-family:var(--serif);font-size:2.2rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:.5rem}.guide-header .subtitle{font-size:1.05rem;color:var(--text-secondary);margin-bottom:1rem}.guide-header .meta{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.82rem;color:var(--text-muted)}.guide-header .meta span{display:inline-flex;align-items:center;gap:.35rem}.video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);margin-bottom:3rem;box-shadow:var(--shadow-md)}.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}.section-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin:3rem 0 1.25rem;padding-bottom:.6rem;border-bottom:2px solid var(--border)}.section-title:first-of-type{margin-top:0}p{margin-bottom:1rem;font-size:.95rem}p:last-child{margin-bottom:0}h3.sub{font-size:1rem;font-weight:600;margin:1.5rem 0 1rem}
+        .callout{border-radius:var(--radius);padding:1.25rem 1.5rem;margin:1.5rem 0;border:1px solid var(--border)}.callout-title{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}.callout p{font-size:.9rem;color:var(--text-secondary)}.callout.concept{background:var(--accent-light);border-color:#BAE6FD}.callout.concept .callout-title{color:var(--accent)}.callout.tip{background:var(--tip-bg);border-color:var(--tip-border)}.callout.tip .callout-title{color:var(--tip-text)}.callout.warning{background:var(--warn-bg);border-color:var(--warn-border)}.callout.warning .callout-title{color:var(--warn)}.callout.important{background:var(--red-light);border-color:var(--red-border)}.callout.important .callout-title{color:var(--red)}.callout.purple{background:var(--purple-light);border-color:var(--purple-border)}.callout.purple .callout-title{color:var(--purple)}
+
+        /* Detect cards */
+        .detect-grid{display:grid;gap:.75rem;margin:1.5rem 0}.detect-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:.95rem 1.15rem;display:flex;align-items:flex-start;gap:.75rem}.detect-card .detect-icon{flex-shrink:0;margin-top:.1rem}.detect-card h4{font-size:.88rem;font-weight:600;margin-bottom:.15rem}.detect-card p{font-size:.82rem;color:var(--text-secondary);margin:0}
+
+        /* Workflow step cards */
+        .wf-grid{display:grid;gap:.85rem;margin:1.5rem 0}.wf-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden}.wf-card .wf-header{padding:.7rem 1.15rem;color:#fff;display:flex;align-items:center;gap:.6rem}.wf-card .wf-header .wf-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}.wf-card .wf-header h4{font-size:.88rem;font-weight:600}.wf-card .wf-body{padding:.85rem 1.15rem}.wf-card .wf-body p{font-size:.85rem;color:var(--text-secondary);margin:0}
+
+        /* Benefit cards */
+        .benefit-grid{display:grid;gap:1rem;margin:1.5rem 0}.benefit-card{border-radius:var(--radius);padding:1.15rem 1.25rem}.benefit-card h4{font-size:.92rem;font-weight:600;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}.benefit-card p{font-size:.85rem;color:var(--text-secondary);margin-bottom:.3rem}.benefit-card p:last-child{margin-bottom:0}
+
+        /* Hidden benefit cards */
+        .hidden-grid{display:grid;gap:1rem;margin:1.5rem 0}.hidden-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:.75rem}.hidden-card .hidden-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}.hidden-card h4{font-size:.92rem;font-weight:600;margin-bottom:.25rem}.hidden-card p{font-size:.85rem;color:var(--text-secondary);margin-bottom:.35rem}.hidden-card p:last-child{margin-bottom:0}
+
+        /* Template prompt */
+        .template-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden;margin:1.25rem 0}.template-card .template-header{padding:.75rem 1.25rem;color:#fff;font-size:.88rem;font-weight:600;display:flex;align-items:center;gap:.5rem}.template-card .template-body{padding:1.15rem 1.25rem;background:var(--tag-bg);font-size:.88rem;line-height:1.75}.template-card .template-body .t-label{font-weight:600;color:var(--red)}.template-card .template-body .t-placeholder{background:var(--warn-bg);color:var(--warn);padding:.1rem .35rem;border-radius:3px;font-size:.82rem}.template-card .template-body .t-items{background:var(--bg-card);border-radius:6px;padding:.75rem 1rem;margin:.5rem 0;font-size:.85rem}
+
+        .takeaways{background:var(--accent);border-radius:var(--radius);padding:2rem;margin:2.5rem 0;color:#fff}.takeaways h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin-bottom:1.25rem}.tk-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.85rem;font-size:.9rem;line-height:1.6}.tk-item:last-child{margin-bottom:0}.tk-item .tk-icon{flex-shrink:0}.takeaway-footer{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.15);text-align:center}.takeaway-footer p{font-size:.88rem;margin-bottom:.35rem}.takeaway-footer p:last-child{margin-bottom:0;font-size:.82rem;opacity:.7}
+
+        .guide-footer{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;font-size:.82rem;color:var(--text-muted)}.guide-footer a{color:var(--accent);text-decoration:none}.guide-footer a:hover{text-decoration:underline}
+        @media(max-width:640px){.container{padding:1.25rem 1rem 3rem}.guide-header h1{font-size:1.65rem}.section-title{font-size:1.25rem}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Home</a>
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 3, Zone 2: Session Summaries</p>
+            <div class="meta">
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Lecture 17</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Dr. Mahyar Sharif Vaghefi</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> UT Arlington</span>
+            </div>
+        </div>
+        <div class="video-container"><iframe src="https://www.youtube.com/embed/KF0ViTZnE2s" title="AI Literacy for Education: Session Summaries" loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+
+        <!-- The Overlooked Opportunity -->
+        <h2 class="section-title">The Overlooked Opportunity</h2>
+
+        <div class="callout tip">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> You Already Have Transcripts</p>
+            <p>Most institutions provide tools like Teams, Zoom, or Panopto that can record sessions and <strong>automatically generate transcripts</strong>. Your entire lecture, converted to searchable text &mdash; probably sitting there unused.</p>
+        </div>
+
+        <h3 class="sub">What AI Can Detect from Transcripts</h3>
+        <p>The quality of AI-generated summaries from transcripts is remarkably good. When you explain content verbally &mdash; reading formulas aloud, walking through code, describing diagrams &mdash; AI recognizes and formats these elements properly.</p>
+
+        <div class="detect-grid">
+            <div class="detect-card" style="border-left:3px solid var(--accent)">
+                <div class="detect-icon"><svg width="18" height="18" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div>
+                <div><h4 style="color:var(--accent)">Formulas &amp; Equations</h4><p>When you read a formula aloud, AI formats it properly in the summary</p></div>
+            </div>
+            <div class="detect-card" style="border-left:3px solid #16A34A">
+                <div class="detect-icon"><svg width="18" height="18" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                <div><h4 style="color:var(--tip-text)">Code Snippets</h4><p>Verbal walkthroughs of syntax appear as actual code, not run-on sentences</p></div>
+            </div>
+            <div class="detect-card" style="border-left:3px solid var(--purple)">
+                <div class="detect-icon"><svg width="18" height="18" fill="none" stroke="var(--purple)" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <div><h4 style="color:var(--purple)">Key Takeaways</h4><p>Things you emphasize, repeat, or circle back to become bolded highlights</p></div>
+            </div>
+        </div>
+
+        <!-- The Workflow -->
+        <h2 class="section-title">The Session Summary Workflow</h2>
+        <p>Four simple steps, about <strong>10 minutes of work per session</strong>. Benefits compound all semester.</p>
+
+        <div class="wf-grid">
+            <div class="wf-card" style="border:2px solid #BAE6FD">
+                <div class="wf-header" style="background:var(--accent)"><div class="wf-num" style="color:var(--accent)">1</div><h4>Record Your Session</h4></div>
+                <div class="wf-body"><p>Use institutional tools (Teams, Zoom, Panopto) to record and auto-generate a transcript. <strong>One click when class starts.</strong></p></div>
+            </div>
+            <div class="wf-card" style="border:2px solid var(--tip-border)">
+                <div class="wf-header" style="background:#16A34A"><div class="wf-num" style="color:#16A34A">2</div><h4>AI Summarizes</h4></div>
+                <div class="wf-body"><p>Feed the transcript to AI with a summary prompt requesting structured output with clear sections and key takeaways. <strong>Takes a couple minutes.</strong></p></div>
+            </div>
+            <div class="wf-card" style="border:2px solid var(--purple-border)">
+                <div class="wf-header" style="background:var(--purple)"><div class="wf-num" style="color:var(--purple)">3</div><h4>You Verify</h4></div>
+                <div class="wf-body"><p>Review for accuracy. AI may miss nuances or misinterpret discussion points. Add anything important that was missed. <strong>Five-minute review.</strong></p></div>
+            </div>
+            <div class="wf-card" style="border:2px solid var(--warn-border)">
+                <div class="wf-header" style="background:#D97706"><div class="wf-num" style="color:#D97706">4</div><h4>Share with Students</h4></div>
+                <div class="wf-body"><p>Post the verified summary to your LMS. Use HTML formatting for clear organization and easy scanning.</p></div>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> Pro Tip: Request HTML Output</p>
+            <p>Ask AI to generate the summary as <strong>HTML</strong> instead of plain text. This means formatted text with headers, bullet points, and color-coding. The file uploads directly to Canvas and <strong>looks polished and professional</strong> instead of like a wall of text. Remember: Students skip things that look like &ldquo;more reading.&rdquo;</p>
+        </div>
+
+        <!-- Triple Benefits -->
+        <h2 class="section-title">Triple Benefits of Session Summaries</h2>
+        <p>Three audiences benefit from session summaries &mdash; and you&rsquo;re one of them.</p>
+
+        <div class="benefit-grid">
+            <div class="benefit-card" style="background:var(--accent-light);border:2px solid #BAE6FD">
+                <h4 style="color:var(--accent)"><svg width="18" height="18" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> For Students</h4>
+                <p>&#10003; <strong>Reinforces learning</strong> after each session</p>
+                <p>&#10003; <strong>Helps absent students</strong> catch up quickly</p>
+                <p>&#10003; <strong>Creates searchable study reference</strong> for exams</p>
+            </div>
+            <div class="benefit-card" style="background:var(--tip-bg);border:2px solid var(--tip-border)">
+                <h4 style="color:var(--tip-text)"><svg width="18" height="18" fill="none" stroke="var(--tip-text)" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> For You This Semester</h4>
+                <p>&#10003; <strong>Remember what you covered</strong> before planning next class</p>
+                <p>&#10003; <strong>Ensure continuity</strong> &mdash; no more &ldquo;did I already explain that?&rdquo;</p>
+                <p>&#10003; <strong>Track connections</strong> to upcoming topics</p>
+            </div>
+            <div class="benefit-card" style="background:var(--purple-light);border:2px solid var(--purple-border)">
+                <h4 style="color:var(--purple)"><svg width="18" height="18" fill="none" stroke="var(--purple)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg> For Future Semesters</h4>
+                <p>&#10003; <strong>Archive of what worked</strong> and what fell flat</p>
+                <p>&#10003; <strong>Questions students asked</strong> to address proactively next time</p>
+                <p>&#10003; <strong>Documentation as you go</strong> instead of trying to remember later</p>
+            </div>
+        </div>
+
+        <div style="background:var(--accent);border-radius:var(--radius);padding:1.15rem;text-align:center;margin:1.5rem 0">
+            <p style="color:#fff;font-size:.92rem;margin:0"><strong>Your September self leaves notes for your January self.</strong><br><span style="font-size:.85rem;opacity:.8">By December, you have a complete archive of everything you taught.</span></p>
+        </div>
+
+        <!-- Hidden Benefits -->
+        <h2 class="section-title">Hidden Benefits You Might Not Expect</h2>
+
+        <div class="hidden-grid">
+            <div class="hidden-card" style="border-left:3px solid var(--accent)">
+                <div class="hidden-icon"><svg width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+                <div>
+                    <h4 style="color:var(--accent)">Engagement Tracking</h4>
+                    <p>When summaries live in your LMS, you can track who&rsquo;s opening them and how often. Which summaries get the most views before exams?</p>
+                    <p style="color:var(--accent)"><strong>Insight:</strong> If nobody opens Week 5 but everyone opens Week 7, that tells you something about what students find valuable &mdash; or confusing.</p>
+                </div>
+            </div>
+            <div class="hidden-card" style="border-left:3px solid #16A34A">
+                <div class="hidden-icon"><svg width="22" height="22" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                <div>
+                    <h4 style="color:var(--tip-text)">Assessment Source Material</h4>
+                    <p>Your summaries become source material for exams and assignments. You have a record of exactly what topics you covered and how deeply.</p>
+                    <p style="color:var(--tip-text)"><strong>Benefit:</strong> No more testing students on something you only mentioned in passing while thinking you covered it thoroughly. You have receipts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Template Prompt -->
+        <h2 class="section-title">Template Prompt: Session Summary</h2>
+
+        <div class="template-card" style="border:2px solid #C2410C">
+            <div class="template-header" style="background:#C2410C"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Template: Session Summary</div>
+            <div class="template-body">
+                <span class="t-label">Role:</span> You are helping me create a session summary to share with students and keep for my own records.<br><br>
+                <span class="t-label">Context:</span> Here is the transcript from my <span class="t-placeholder">[Course Name]</span> class on <span class="t-placeholder">[Date]</span>.<br><br>
+                <span class="t-label">Task:</span> Create a clear, organized summary that captures what happened in this session. Include whatever is relevant:
+                <div class="t-items">
+                    &bull; Key concepts covered<br>
+                    &bull; Examples discussed<br>
+                    &bull; Important questions raised<br>
+                    &bull; Connections to other topics<br>
+                    &bull; Action items for students<br>
+                    &bull; Whatever else emerged from this particular class
+                </div>
+                <span class="t-label">Format [Optional]:</span> Use HTML formatting (headers, bullet points, bold) so it displays cleanly.<br><br>
+                <span class="t-label">Constraint:</span> Keep it scannable &mdash; students should get the essentials in 3&ndash;4 minutes. Adapt the structure to fit what actually happened.
+            </div>
+        </div>
+
+        <div class="callout important">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> Verification Caveat</p>
+            <p>AI transcription and summarization can miss context, misattribute comments, or oversimplify nuanced discussions. Transcripts aren&rsquo;t perfect &mdash; especially if audio quality is poor or multiple people talk at once. <strong>Your 5 minutes of verification prevents confusion and maintains trust.</strong></p>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="takeaways">
+            <h3>Session Summary Workflow</h3>
+            <div class="tk-item"><span class="tk-icon" style="color:#7DD3FC">&#9670;</span><span><strong>Record:</strong> Hit record when class starts &mdash; one click</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#6EE7B7">&#9670;</span><span><strong>Summarize:</strong> Feed transcript to AI with summary prompt &mdash; 2 minutes</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#D8B4FE">&#9670;</span><span><strong>Verify:</strong> Review for accuracy, add what&rsquo;s missing &mdash; 5 minutes</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#FDE68A">&#9670;</span><span><strong>Share:</strong> Post to LMS with HTML formatting &mdash; 1 minute</span></div>
+            <div class="takeaway-footer">
+                <p><strong>Total time:</strong> ~10 minutes per session</p>
+                <p>Benefits compound all semester &bull; Complete archive by December</p>
+            </div>
+        </div>
+
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 3, Zone 2: Session Summaries</p>
+            <p style="margin-top:.4rem">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top:.75rem"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

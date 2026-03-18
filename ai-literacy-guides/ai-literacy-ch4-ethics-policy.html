@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Ethics and Policy | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Chapter 4 — Ethics and Policy. The EDUCAUSE Framework, data privacy, accountability, and six practical principles. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#FAFAF8;--bg-card:#FFF;--text-primary:#1A1A1A;--text-secondary:#555;--text-muted:#888;--accent:#0C4A6E;--accent-light:#E0F2FE;--border:#E5E5E3;--border-light:#F0F0EE;--tag-bg:#F3F4F6;--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:10px;--serif:'Source Serif 4',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;--warn:#92400E;--warn-bg:#FFFBEB;--warn-border:#FDE68A;--tip-bg:#F0FDF4;--tip-border:#86EFAC;--tip-text:#166534;--purple:#6B21A8;--purple-light:#F3E8FF;--purple-border:#D8B4FE;--red:#991B1B;--red-light:#FEF2F2;--red-border:#FECACA}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--sans);background:var(--bg);color:var(--text-primary);line-height:1.7;-webkit-font-smoothing:antialiased}.container{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}.back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:500;margin-bottom:2.5rem;transition:gap .2s}.back-link:hover{gap:.6rem}.guide-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.guide-header .breadcrumb{font-size:.78rem;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}.guide-header h1{font-family:var(--serif);font-size:2.2rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:.5rem}.guide-header .subtitle{font-size:1.05rem;color:var(--text-secondary);margin-bottom:1rem}.guide-header .meta{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.82rem;color:var(--text-muted)}.guide-header .meta span{display:inline-flex;align-items:center;gap:.35rem}.video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);margin-bottom:3rem;box-shadow:var(--shadow-md)}.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}.section-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin:3rem 0 1.25rem;padding-bottom:.6rem;border-bottom:2px solid var(--border)}.section-title:first-of-type{margin-top:0}p{margin-bottom:1rem;font-size:.95rem}p:last-child{margin-bottom:0}h3.sub{font-size:1rem;font-weight:600;margin:1.5rem 0 1rem}
+        .callout{border-radius:var(--radius);padding:1.25rem 1.5rem;margin:1.5rem 0;border:1px solid var(--border)}.callout-title{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}.callout p{font-size:.9rem;color:var(--text-secondary)}.callout.concept{background:var(--accent-light);border-color:#BAE6FD}.callout.concept .callout-title{color:var(--accent)}.callout.tip{background:var(--tip-bg);border-color:var(--tip-border)}.callout.tip .callout-title{color:var(--tip-text)}.callout.warning{background:var(--warn-bg);border-color:var(--warn-border)}.callout.warning .callout-title{color:var(--warn)}.callout.important{background:var(--red-light);border-color:var(--red-border)}.callout.important .callout-title{color:var(--red)}.callout.purple{background:var(--purple-light);border-color:var(--purple-border)}.callout.purple .callout-title{color:var(--purple)}
+
+        /* Transparency principles */
+        .trans-grid{display:grid;gap:.75rem;margin:1.5rem 0}.trans-item{background:var(--bg-card);border:2px solid #C2410C;border-radius:var(--radius);padding:.95rem 1.15rem;display:flex;align-items:center;gap:.75rem}.trans-item .trans-icon{flex-shrink:0;font-size:1rem}.trans-item h4{font-size:.88rem;font-weight:600;margin-bottom:.1rem}.trans-item p{font-size:.82rem;color:var(--text-secondary);margin:0}
+
+        /* EDUCAUSE principles */
+        .edu-grid{display:grid;gap:.65rem;margin:1.5rem 0}.edu-item{border-radius:var(--radius);padding:.85rem 1.15rem;display:flex;align-items:flex-start;gap:.75rem}.edu-item .edu-icon{flex-shrink:0;font-size:1rem;margin-top:.1rem}.edu-item h4{font-size:.88rem;font-weight:600;margin-bottom:.1rem}.edu-item p{font-size:.82rem;color:var(--text-secondary);margin:0}
+
+        /* Tricky principle cards */
+        .tricky-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden;margin:1.25rem 0}.tricky-card .tricky-header{padding:.85rem 1.25rem;color:#fff;font-size:.92rem;font-weight:600}.tricky-card .tricky-body{padding:1.1rem 1.25rem}.tricky-card .tricky-body p{font-size:.88rem;color:var(--text-secondary);margin-bottom:.4rem}.tricky-card .tricky-body p:last-child{margin-bottom:0}.tricky-detail{border-radius:6px;padding:.65rem .85rem;margin:.5rem 0;font-size:.85rem}
+
+        /* Six practical principles */
+        .prac-grid{display:grid;gap:.85rem;margin:1.5rem 0}.prac-item{background:var(--bg-card);border:2px solid #C2410C;border-radius:var(--radius);padding:1rem 1.15rem;display:flex;align-items:flex-start;gap:.75rem}.prac-item .prac-num{width:30px;height:30px;border-radius:50%;background:#C2410C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:600;flex-shrink:0}.prac-item h4{font-size:.88rem;font-weight:600;margin-bottom:.2rem}.prac-item p{font-size:.85rem;color:var(--text-secondary);margin:0}
+        .prac-item.privacy{border-color:var(--red-border);background:var(--red-light)}.prac-item.privacy .prac-num{background:var(--red)}
+        .prac-item.collab{border-color:var(--tip-border);background:var(--tip-bg)}.prac-item.collab .prac-num{background:#16A34A}
+
+        .takeaways{background:var(--accent);border-radius:var(--radius);padding:2rem;margin:2.5rem 0;color:#fff}.takeaways h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin-bottom:1.25rem}.tk-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.75rem;font-size:.88rem;line-height:1.6}.tk-item:last-child{margin-bottom:0}.tk-item .tk-icon{color:#6EE7B7;flex-shrink:0}.takeaway-footer{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.15);text-align:center}.takeaway-footer p{font-size:.92rem;margin-bottom:.35rem}.takeaway-footer p:last-child{margin-bottom:0;font-size:.85rem;opacity:.7}
+
+        .guide-footer{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;font-size:.82rem;color:var(--text-muted)}.guide-footer a{color:var(--accent);text-decoration:none}.guide-footer a:hover{text-decoration:underline}
+        @media(max-width:640px){.container{padding:1.25rem 1rem 3rem}.guide-header h1{font-size:1.65rem}.section-title{font-size:1.25rem}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Home</a>
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 4: Ethics and Policy</p>
+            <div class="meta">
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Lecture 21</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Dr. Mahyar Sharif Vaghefi</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> UT Arlington</span>
+            </div>
+        </div>
+        <div class="video-container"><iframe src="https://www.youtube.com/embed/zYziwwbZoMU" title="AI Literacy for Education: Ethics and Policy" loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+
+        <!-- The Policy Landscape -->
+        <h2 class="section-title">The Policy Landscape: Guardrails, Not Walls</h2>
+        <p>You might want someone to just tell you the rules. The reality? Most institutions have guidance, recommendations, and frameworks &mdash; <strong>but not binding policies</strong>. You&rsquo;re navigating ethical terrain with guardrails, not walls.</p>
+
+        <div class="callout concept">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> UTA&rsquo;s Approach: Guidance Over Mandates</p>
+            <p>UTA&rsquo;s GenAI Guidelines for Instruction frame AI integration around <strong>student learning outcomes</strong> rather than blanket permissions or prohibitions. Faculty are asked to think about <strong>what serves their students</strong>, not just follow rules.</p>
+        </div>
+
+        <div class="callout tip">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> The Key Shift</p>
+            <p>You&rsquo;re being asked to think about <strong>what serves your students</strong>, not just follow rules. <strong>Professional judgment, not compliance checklists.</strong></p>
+        </div>
+
+        <h3 class="sub">Three Transparency Principles</h3>
+        <div class="trans-grid">
+            <div class="trans-item"><div class="trans-icon">&#10003;</div><div><h4>Fact-Check Everything</h4><p>Verify AI-generated content before using or sharing it</p></div></div>
+            <div class="trans-item"><div class="trans-icon">&#10003;</div><div><h4>Disclose AI Use</h4><p>Be transparent about when and how you&rsquo;re using AI in your teaching</p></div></div>
+            <div class="trans-item"><div class="trans-icon">&#10003;</div><div><h4>Communicate Expectations in Your Syllabus</h4><p>Clear AI policies for both your use and student use from day one</p></div></div>
+        </div>
+
+        <!-- Data Privacy -->
+        <h2 class="section-title">Data Privacy: The Hard Line</h2>
+        <p>While most policy areas offer flexibility, <strong>data privacy is where institutions draw a hard line</strong>.</p>
+
+        <div class="callout important">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> UTA&rsquo;s Data Classification Requirement</p>
+            <p>GenAI tools may only be used with data classified as <strong>&ldquo;Public.&rdquo;</strong> All content entered into, or generated by, a public GenAI tool are available to the public.</p>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> Understanding AI Tool Types</p>
+            <p>Understanding the distinction between <strong>public AI tools</strong> and <strong>institutionally-approved platforms</strong> is essential for data privacy and protection. Your choice of tool has direct implications for data security.</p>
+        </div>
+
+        <!-- EDUCAUSE Framework -->
+        <h2 class="section-title">The EDUCAUSE Framework: Eight Foundational Principles</h2>
+        <p>The EDUCAUSE working group developed a comprehensive framework that provides the ethical foundation for AI in education.</p>
+
+        <div class="edu-grid">
+            <div class="edu-item" style="background:var(--tip-bg);border:1px solid var(--tip-border)"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="var(--tip-text)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><h4 style="color:var(--tip-text)">1. Beneficence</h4><p>Enhance learning, minimize harm</p></div></div>
+            <div class="edu-item" style="background:var(--accent-light);border:1px solid #BAE6FD"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg></div><div><h4 style="color:var(--accent)">2. Justice</h4><p>Equitable access, fair outcomes</p></div></div>
+            <div class="edu-item" style="background:var(--purple-light);border:1px solid var(--purple-border)"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="var(--purple)" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><h4 style="color:var(--purple)">3. Respect for Autonomy</h4><p>Informed choice for faculty and students</p></div></div>
+            <div class="edu-item" style="background:var(--warn-bg);border:1px solid var(--warn-border)"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="#D97706" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><h4 style="color:var(--warn)">4. Transparency</h4><p>Clear information about how AI operates</p></div></div>
+            <div class="edu-item" style="background:var(--red-light);border:1px solid var(--red-border)"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="var(--red)" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><h4 style="color:var(--red)">5. Accountability</h4><p>Humans retain responsibility for outcomes</p></div></div>
+            <div class="edu-item" style="background:#ECFDF5;border:1px solid #6EE7B7"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div><h4 style="color:#059669">6. Privacy Protection</h4><p>Safeguard personal information</p></div></div>
+            <div class="edu-item" style="background:var(--accent-light);border:1px solid #BAE6FD"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><h4 style="color:var(--accent)">7. Nondiscrimination</h4><p>Prevent algorithmic bias</p></div></div>
+            <div class="edu-item" style="background:var(--purple-light);border:1px solid var(--purple-border)"><div class="edu-icon"><svg width="16" height="16" fill="none" stroke="var(--purple)" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg></div><div><h4 style="color:var(--purple)">8. Continuous Evaluation</h4><p>Monitor and refine practices</p></div></div>
+        </div>
+
+        <!-- Three That Trip Faculty Up -->
+        <h2 class="section-title">Three Principles That Trip Faculty Up Most</h2>
+        <p>While all eight principles matter, three tend to cause the most problems in practice:</p>
+
+        <div class="tricky-card" style="border:2px solid var(--red-border)">
+            <div class="tricky-header" style="background:#DC2626">1. Accountability: If AI Messes Up, It&rsquo;s Still Your Fault</div>
+            <div class="tricky-body">
+                <p>AI can&rsquo;t be held responsible &mdash; it&rsquo;s a tool. If AI-generated content contains errors, if AI-assisted grading is unfair, if AI feedback harms a student &mdash; <strong>you&rsquo;re accountable</strong>.</p>
+                <div class="tricky-detail" style="background:var(--red-light);color:var(--red);text-align:center;font-weight:600">The responsibility never transfers to the technology.</div>
+            </div>
+        </div>
+
+        <div class="tricky-card" style="border:2px solid #BAE6FD">
+            <div class="tricky-header" style="background:var(--accent)">2. Justice: Your Tool Choices Have Equity Implications</div>
+            <div class="tricky-body">
+                <p>If you require AI tools, are you creating access barriers?</p>
+                <div class="tricky-detail" style="background:var(--accent-light)"><strong>Access Gap:</strong> Premium AI tools are behind paywalls. Students from lower-income backgrounds may only access inferior free versions.</div>
+                <div class="tricky-detail" style="background:var(--accent-light)"><strong>Detection Bias:</strong> Evidence shows AI detection tools disproportionately flag non-native English speakers.</div>
+                <div class="tricky-detail" style="background:var(--warn-bg);color:var(--warn);text-align:center">Always ask: Who benefits? Who might be disadvantaged?</div>
+            </div>
+        </div>
+
+        <div class="tricky-card" style="border:2px solid var(--tip-border)">
+            <div class="tricky-header" style="background:#16A34A">3. Privacy: Student Work = Student Intellectual Property</div>
+            <div class="tricky-body">
+                <p>Students own the texts they produce. Entering their work into AI systems potentially transfers their intellectual property to commercial entities.</p>
+                <p><strong>Essential Safeguards:</strong> Never enter sensitive data into public AI tools. Use institutionally-approved platforms. Anonymize student work if you must use public tools.</p>
+                <div class="tricky-detail" style="background:var(--red-light);color:var(--red)"><strong>High-Risk Data (Never Upload to Public AI):</strong> Personal narratives &bull; Recommendations &bull; Accommodation information &bull; Grading data &bull; Student names/identifiers</div>
+            </div>
+        </div>
+
+        <!-- Six Practical Principles -->
+        <h2 class="section-title">Six Practical Principles You Can Apply Today</h2>
+
+        <div class="prac-grid">
+            <div class="prac-item"><div class="prac-num">1</div><div><h4>Ethical Frameworks Require Practical Wisdom</h4><p>The rules won&rsquo;t cover everything &mdash; you&rsquo;ll have to think through novel situations using your professional judgment.</p></div></div>
+            <div class="prac-item"><div class="prac-num">2</div><div><h4>Transparency Should Be Bidirectional</h4><p>Don&rsquo;t demand what you won&rsquo;t practice yourself. If you expect students to disclose AI use, you should disclose yours.</p></div></div>
+            <div class="prac-item"><div class="prac-num">3</div><div><h4>Grading Use Demands Caution</h4><p>Objective metrics only; human judgment for subjective evaluation. <strong>Always disclose to students</strong> when AI assists in grading.</p></div></div>
+            <div class="prac-item"><div class="prac-num">4</div><div><h4>Equity Requires Proactive Design</h4><p>Consider access barriers <strong>before</strong> requiring tools. Don&rsquo;t discover equity issues after they&rsquo;ve harmed students.</p></div></div>
+            <div class="prac-item privacy"><div class="prac-num">5</div><div><h4 style="color:var(--red)">Privacy Is Non-Negotiable</h4><p><strong>No student data in public AI tools. Ever.</strong> This is not a guideline &mdash; it&rsquo;s a hard line.</p></div></div>
+            <div class="prac-item collab"><div class="prac-num">6</div><div><h4 style="color:var(--tip-text)">The Goal Is Human-AI Collaboration</h4><p>AI augments your judgment; it never replaces it. <strong>You remain the final interpreter of meaning.</strong></p></div></div>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="takeaways">
+            <h3>Ethics &amp; Policy Checklist</h3>
+            <div class="tk-item"><span class="tk-icon">&#10003;</span><span><strong>Transparency:</strong> Fact-check everything, disclose AI use, communicate syllabus expectations</span></div>
+            <div class="tk-item"><span class="tk-icon">&#10003;</span><span><strong>Privacy:</strong> Public data only in public tools; no student identifiers ever</span></div>
+            <div class="tk-item"><span class="tk-icon">&#10003;</span><span><strong>Accountability:</strong> You&rsquo;re responsible for AI outputs &mdash; review everything</span></div>
+            <div class="tk-item"><span class="tk-icon">&#10003;</span><span><strong>Equity:</strong> Consider access barriers before requiring tools</span></div>
+            <div class="tk-item"><span class="tk-icon">&#10003;</span><span><strong>Grading:</strong> Human judgment for subjective evaluation; disclose AI assistance</span></div>
+            <div class="takeaway-footer">
+                <p>AI augments your judgment; it never replaces it.</p>
+                <p>You remain the final interpreter of meaning.</p>
+            </div>
+        </div>
+
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 4: Ethics and Policy</p>
+            <p style="margin-top:.4rem">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top:.75rem"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

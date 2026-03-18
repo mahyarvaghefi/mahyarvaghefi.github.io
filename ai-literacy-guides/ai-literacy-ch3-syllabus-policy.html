@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Syllabus Development &amp; AI Policy | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Zone 1 — Syllabus Development and AI Policy. Template prompts, policy writing, and the acknowledgment strategy. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+            --red: #991B1B;
+            --red-light: #FEF2F2;
+            --red-border: #FECACA;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: var(--red-light); border-color: var(--red-border); }
+        .callout.important .callout-title { color: var(--red); }
+        .callout.purple { background: var(--purple-light); border-color: var(--purple-border); }
+        .callout.purple .callout-title { color: var(--purple); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+
+        /* Zone overview items */
+        .zone-overview { display: grid; gap: 0.75rem; margin: 1.5rem 0; }
+        .zone-ov-item {
+            border-radius: 0 var(--radius) var(--radius) 0; padding: 0.85rem 1.15rem;
+            display: flex; align-items: center; gap: 0.85rem;
+        }
+        .zone-ov-item .zone-ov-icon { font-size: 1.2rem; flex-shrink: 0; }
+        .zone-ov-item h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.15rem; }
+        .zone-ov-item p { font-size: 0.82rem; color: var(--text-secondary); margin: 0; }
+
+        /* Two-area cards */
+        .area-grid { display: grid; gap: 1.25rem; margin: 1.5rem 0; }
+        .area-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+        }
+        .area-card .area-header {
+            padding: 0.85rem 1.25rem; color: #fff;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .area-card .area-header .area-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem; font-weight: 700; flex-shrink: 0;
+        }
+        .area-card .area-header h4 { font-size: 0.95rem; font-weight: 600; }
+        .area-card .area-body { padding: 1.1rem 1.25rem; }
+        .area-card .area-body p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .area-card .area-body p:last-child { margin-bottom: 0; }
+
+        /* Template prompt blocks */
+        .template-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0;
+        }
+        .template-card .template-header {
+            padding: 0.75rem 1.25rem; color: #fff; font-size: 0.88rem; font-weight: 600;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .template-card .template-body {
+            padding: 1.15rem 1.25rem; background: var(--tag-bg);
+            font-size: 0.88rem; line-height: 1.75;
+        }
+        .template-card .template-body .t-label {
+            font-weight: 600; color: var(--red);
+        }
+        .template-card .template-body .t-placeholder {
+            background: var(--warn-bg); color: var(--warn); padding: 0.1rem 0.35rem; border-radius: 3px;
+            font-size: 0.82rem;
+        }
+
+        /* 3-Question Check */
+        .check-grid { display: grid; gap: 0.75rem; margin: 1.5rem 0; }
+        .check-item {
+            background: var(--bg-card); border: 2px solid #C2410C; border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            display: flex; align-items: center; gap: 0.85rem;
+        }
+        .check-item .check-num {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: #C2410C; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.88rem; font-weight: 600; flex-shrink: 0;
+        }
+        .check-item p { font-size: 0.92rem; font-weight: 600; margin: 0; }
+
+        /* Policy section cards */
+        .policy-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0;
+        }
+        .policy-card .policy-header {
+            padding: 0.85rem 1.25rem; color: #fff; font-size: 0.92rem; font-weight: 600;
+        }
+        .policy-card .policy-body { padding: 1.1rem 1.25rem; }
+        .policy-card .policy-body p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .policy-card .policy-body p:last-child { margin-bottom: 0; }
+
+        /* Full policy template */
+        .full-policy {
+            background: var(--bg-card); border: 2px solid var(--border);
+            border-radius: var(--radius); overflow: hidden; margin: 1.5rem 0;
+        }
+        .full-policy .fp-header {
+            background: var(--accent); color: #fff; padding: 0.95rem 1.25rem;
+            font-size: 0.95rem; font-weight: 600;
+        }
+        .full-policy .fp-body { padding: 1.5rem 1.25rem; }
+        .full-policy .fp-body p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .full-policy .fp-section {
+            margin-bottom: 1.25rem;
+        }
+        .full-policy .fp-section h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .full-policy .fp-section p { padding-left: 1rem; }
+        .full-policy .fp-why {
+            background: var(--warn-bg); border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.25rem;
+        }
+        .full-policy .fp-footer {
+            background: var(--accent); border-radius: 6px; padding: 0.85rem 1rem; text-align: center;
+        }
+        .full-policy .fp-footer p { color: #fff; margin: 0; font-size: 0.88rem; }
+
+        /* Acknowledgment steps */
+        .ack-grid { display: grid; gap: 0.6rem; margin: 1rem 0; }
+        .ack-item {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            font-size: 0.88rem;
+        }
+        .ack-item .ack-num {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: #16A34A; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem; font-weight: 600; flex-shrink: 0; margin-top: 0.2rem;
+        }
+
+        /* Objection cards */
+        .obj-grid { display: grid; gap: 0.85rem; margin: 1.5rem 0; }
+        .obj-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.1rem 1.25rem;
+        }
+        .obj-card h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.35rem; }
+        .obj-card p { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { color: #6EE7B7; font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+        .takeaway-quote {
+            margin-top: 1.5rem; padding-top: 1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center; font-style: italic;
+            font-size: 0.88rem; color: rgba(255,255,255,0.7);
+        }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 3, Zone 1: Syllabus Development &amp; AI Policy</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 12
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/WW94KQKmNmo"
+                title="AI Literacy for Education: Syllabus Development &amp; AI Policy"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── Zone 1 Overview ── -->
+        <h2 class="section-title">Zone 1: Course Preparation Overview</h2>
+
+        <p>Course preparation is where you&rsquo;ll see the <strong>biggest immediate payoff</strong> from AI. This zone covers everything you do <em>before</em> class begins.</p>
+
+        <div class="zone-overview">
+            <div class="zone-ov-item" style="background: var(--accent-light); border-left: 5px solid var(--accent);">
+                <div class="zone-ov-icon">
+                    <svg width="20" height="20" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent);">Syllabus Development</h4>
+                    <p>Structure, learning objectives, pacing, AI policy statements</p>
+                </div>
+            </div>
+            <div class="zone-ov-item" style="background: var(--tip-bg); border-left: 5px solid var(--tip-text);">
+                <div class="zone-ov-icon">
+                    <svg width="20" height="20" fill="none" stroke="var(--tip-text)" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                </div>
+                <div>
+                    <h4 style="color: var(--tip-text);">Course Materials</h4>
+                    <p>Slides, examples, chapter notes, study guides</p>
+                </div>
+            </div>
+            <div class="zone-ov-item" style="background: var(--purple-light); border-left: 5px solid var(--purple);">
+                <div class="zone-ov-icon">
+                    <svg width="20" height="20" fill="none" stroke="var(--purple)" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div>
+                    <h4 style="color: var(--purple);">Extra Materials</h4>
+                    <p>Discussion questions, debate prompts, case studies, advanced materials</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Syllabus: Two Key Areas ── -->
+        <h2 class="section-title">Syllabus Development: Two Key Areas</h2>
+
+        <p>AI can help with your syllabus in two distinct ways:</p>
+
+        <div class="area-grid">
+            <div class="area-card" style="border: 2px solid #BAE6FD;">
+                <div class="area-header" style="background: var(--accent);">
+                    <div class="area-num" style="color: var(--accent);">1</div>
+                    <h4>Reviewing &amp; Improving Your Syllabus</h4>
+                </div>
+                <div class="area-body">
+                    <p>Upload your existing syllabus and ask AI to check specific elements:</p>
+                    <p>&#10003; Are learning objectives clear and measurable?</p>
+                    <p>&#10003; Is the topic sequencing logical?</p>
+                    <p>&#10003; Are any sections confusing to students?</p>
+                    <p>&#10003; Do assessments align with objectives?</p>
+                </div>
+            </div>
+            <div class="area-card" style="border: 2px solid var(--tip-border);">
+                <div class="area-header" style="background: #16A34A;">
+                    <div class="area-num" style="color: #16A34A;">2</div>
+                    <h4>Writing Your AI Policy</h4>
+                </div>
+                <div class="area-body">
+                    <p>The part you&rsquo;ve been avoiding &mdash; creating clear guidelines for:</p>
+                    <p>&#10003; How YOU (faculty) will use AI in the course</p>
+                    <p>&#10003; How STUDENTS may use AI</p>
+                    <p>&#10003; Documentation requirements</p>
+                    <p>&#10003; Consequences for violations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Template Prompts ── -->
+        <h3 class="sub">Template Prompts</h3>
+
+        <div class="template-card" style="border: 2px solid #BAE6FD;">
+            <div class="template-header" style="background: var(--accent);">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Template 1: Syllabus Improvement Focus
+            </div>
+            <div class="template-body">
+                <span class="t-label">Role:</span> You are an instructional design expert helping me improve my course syllabus.<br><br>
+                <span class="t-label">Context:</span> I teach a <span class="t-placeholder">[undergraduate/graduate]</span> <span class="t-placeholder">[Course Name]</span> course with <span class="t-placeholder">[number]</span> students. The course meets <span class="t-placeholder">[frequency]</span> for <span class="t-placeholder">[duration]</span>. <span class="t-placeholder">[Describe any specific issues or goals]</span><br><br>
+                <span class="t-label">Task:</span> Review the attached syllabus. Please:<br>
+                &nbsp;&nbsp;1. Check if learning objectives are clear and measurable<br>
+                &nbsp;&nbsp;2. Identify any gaps in topic sequencing<br>
+                &nbsp;&nbsp;3. Flag any sections that might be confusing to students<br>
+                &nbsp;&nbsp;4. Suggest improvements to assignment descriptions<br><br>
+                <span class="t-label">Constraint:</span> Maintain my teaching voice and style. Suggest changes, don&rsquo;t rewrite entirely.
+            </div>
+        </div>
+
+        <div class="template-card" style="border: 2px solid var(--tip-border);">
+            <div class="template-header" style="background: #16A34A;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c6 3 12 0 12 0v-5"/></svg>
+                Template 2: AACSB Alignment Focus
+            </div>
+            <div class="template-body">
+                <span class="t-label">Role:</span> You are an AACSB accreditation specialist and instructional design expert.<br><br>
+                <span class="t-label">Context:</span> I teach a <span class="t-placeholder">[undergraduate/graduate]</span> <span class="t-placeholder">[Course Name]</span> course at an AACSB-accredited business school. Our program-level learning goals are: <span class="t-placeholder">[list your program&rsquo;s learning goals]</span>. We are preparing for <span class="t-placeholder">[upcoming review type]</span>.<br><br>
+                <span class="t-label">Task:</span> Review the attached syllabus for AACSB alignment. Please:<br>
+                &nbsp;&nbsp;1. Map course learning objectives to program-level learning goals<br>
+                &nbsp;&nbsp;2. Verify learning objectives use measurable language (Bloom&rsquo;s taxonomy)<br>
+                &nbsp;&nbsp;3. Check that assessments align with stated learning objectives<br>
+                &nbsp;&nbsp;4. Identify any gaps where learning goals are not addressed<br>
+                &nbsp;&nbsp;5. Suggest how to better document Assurance of Learning (AoL) measures<br><br>
+                <span class="t-label">Constraint:</span> Provide specific, actionable recommendations. Reference AACSB standards where applicable. Format output as a table mapping objectives &rarr; assessments &rarr; program goals.
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Critical Constraint
+            </p>
+            <p>&ldquo;Maintain my teaching voice and style. Suggest changes, don&rsquo;t rewrite entirely.&rdquo;<br><br><strong>AI audits. You decide what to change.</strong></p>
+        </div>
+
+        <!-- ── 3-Question Check ── -->
+        <h2 class="section-title">The 3-Question Check</h2>
+
+        <p>Real AI output provides a <strong>useful framework</strong> but often has <strong>questionable details</strong>. Before accepting any AI suggestion, ask yourself:</p>
+
+        <div class="check-grid">
+            <div class="check-item">
+                <div class="check-num">1</div>
+                <p>Does this align with what I actually teach?</p>
+            </div>
+            <div class="check-item">
+                <div class="check-num">2</div>
+                <p>Would this make sense to my specific students?</p>
+            </div>
+            <div class="check-item">
+                <div class="check-num">3</div>
+                <p>Does this match my discipline&rsquo;s conventions?</p>
+            </div>
+        </div>
+
+        <div style="background: var(--accent); border-radius: var(--radius); padding: 1.15rem; text-align: center; margin: 1.5rem 0;">
+            <p style="color: #fff; font-size: 0.92rem; margin: 0;"><strong>You&rsquo;re not just accepting output &mdash; you&rsquo;re filtering it.</strong><br><span style="font-size: 0.85rem; opacity: 0.8;">Think of AI as an eager teaching assistant who&rsquo;s smart but has never taken your class.</span></p>
+        </div>
+
+        <!-- ── AI Policy ── -->
+        <h2 class="section-title">Your AI Policy: Two Essential Components</h2>
+
+        <p>Your AI policy must address <strong>both sides</strong> of the classroom &mdash; your use AND student use.</p>
+
+        <div class="policy-card" style="border: 2px solid #BAE6FD;">
+            <div class="policy-header" style="background: var(--accent);">Part 1: Faculty Disclosure (Your Use)</div>
+            <div class="policy-body">
+                <p><strong>Why disclose?</strong> Transparency builds trust. When students know you use AI thoughtfully to improve their learning &mdash; not just to save yourself time &mdash; they respect it. It also <strong>models the behavior you want from them</strong>.</p>
+                <div style="background: var(--accent-light); border-radius: 6px; padding: 0.75rem 1rem; margin-top: 0.5rem;">
+                    <p style="font-size: 0.85rem; color: var(--accent); margin-bottom: 0.25rem;"><strong>Sample Disclosure:</strong></p>
+                    <p style="font-size: 0.85rem; font-style: italic; margin: 0;">&ldquo;I use AI to generate additional practice problems and varied examples. Some in-class content is AI-generated for critical analysis. All materials are reviewed for accuracy.&rdquo;</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="policy-card" style="border: 2px solid var(--tip-border);">
+            <div class="policy-header" style="background: #16A34A;">Part 2: Student Policy (Their Use)</div>
+            <div class="policy-body">
+                <p>Be <strong>specific</strong>. Students need actual rules, not vibes.</p>
+                <p>&#10003; Which assignments <strong>allow</strong> AI assistance?</p>
+                <p>&#10003; Which assignments <strong>prohibit</strong> AI entirely?</p>
+                <p>&#10003; What <strong>documentation</strong> is required when AI is used?</p>
+                <p>&#10003; What are the <strong>consequences</strong> for violations?</p>
+            </div>
+        </div>
+
+        <div class="callout important">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Not a Policy
+            </p>
+            <p>&ldquo;Use AI responsibly&rdquo; is NOT a policy. That&rsquo;s a vibe. Students need actual rules.</p>
+        </div>
+
+        <!-- ── Full Policy Template ── -->
+        <h2 class="section-title">Sample AI Policy (Complete Template)</h2>
+
+        <p>Here&rsquo;s a comprehensive AI policy template you can adapt for your course. Notice how it&rsquo;s structured: <strong>specific, clear, and explains the &ldquo;why.&rdquo;</strong></p>
+
+        <div class="full-policy">
+            <div class="fp-header">Course Policy on AI Use</div>
+            <div class="fp-body">
+                <p style="font-style: italic;">At [Your Institution], we recognize that AI tools are becoming part of professional and academic life. This policy establishes clear expectations for how AI may &mdash; and may not &mdash; be used in this course.</p>
+
+                <div class="fp-section">
+                    <h4 style="color: var(--tip-text);">&#10003; Permitted AI Use:</h4>
+                    <p>&bull; AI tools may be used for <strong>brainstorming</strong>, generating initial ideas, or understanding concepts</p>
+                    <p>&bull; AI may be used to <strong>check grammar</strong>, clarity, or formatting of your own original work</p>
+                    <p>&bull; AI may be used for <strong>research assistance</strong>, such as finding sources or summarizing background info</p>
+                    <p>&bull; Any permitted use must be <strong>documented</strong> (see Documentation Requirements below)</p>
+                </div>
+
+                <div class="fp-section">
+                    <h4 style="color: var(--red);">&#10007; Prohibited AI Use:</h4>
+                    <p>&bull; AI may <strong>not generate substantial portions</strong> of submitted work</p>
+                    <p>&bull; AI may <strong>not be used during exams or quizzes</strong> unless explicitly authorized</p>
+                    <p>&bull; AI-generated content may <strong>not be submitted as your own</strong> original thinking</p>
+                    <p>&bull; Using AI to complete work meant to assess your individual learning <strong>defeats the purpose</strong></p>
+                </div>
+
+                <div class="fp-section">
+                    <h4 style="color: var(--accent);">Documentation Requirements:</h4>
+                    <p>&bull; When AI is used in any permitted capacity, you <strong>must disclose this</strong> in your submission</p>
+                    <p>&bull; Include: <strong>which tool</strong> you used, <strong>how</strong> you used it, and <strong>what portion</strong> reflects AI assistance</p>
+                    <p>&bull; Example: <em>&ldquo;I used ChatGPT to brainstorm initial outline ideas. The analysis and writing are my own.&rdquo;</em></p>
+                </div>
+
+                <div class="fp-why">
+                    <h4 style="color: var(--warn); font-size: 0.88rem;">Why This Matters:</h4>
+                    <p>&bull; Assignments are designed to <strong>build your skills</strong> and assess your understanding</p>
+                    <p>&bull; <strong>AI can help you learn, but it cannot learn for you</strong></p>
+                    <p>&bull; Employers expect you to have the skills this course develops</p>
+                </div>
+
+                <div class="fp-section">
+                    <h4 style="color: var(--red);">Consequences for Policy Violations:</h4>
+                    <p>&bull; Undisclosed or prohibited AI use will be treated as <strong>academic misconduct</strong></p>
+                    <p>&bull; Even a first instance can result in a <strong>zero on the assignment or failure</strong></p>
+                    <p>&bull; Severe or repeated violations may be referred to the <strong>Office of Student Conduct</strong></p>
+                </div>
+
+                <div class="fp-footer">
+                    <p><strong>The Principle:</strong> AI tools may be used to <strong>enhance your learning process</strong>, not replace it.<br><span style="font-size: 0.82rem; opacity: 0.8;">When in doubt, ask before submitting.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Acknowledgment Strategy ── -->
+        <h2 class="section-title">Making Your Policy Stick: The Acknowledgment Strategy</h2>
+
+        <p>Here&rsquo;s the problem: <strong>Students won&rsquo;t read it.</strong> Page three of a document they skimmed for the refund deadline isn&rsquo;t enough.</p>
+
+        <div class="callout tip">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                The Acknowledgment Strategy
+            </p>
+            <p>Create a <strong>graded discussion post</strong> in the first week of class that requires students to confirm they&rsquo;ve read and understood your AI policy specifically.</p>
+        </div>
+
+        <div class="ack-grid">
+            <div class="ack-item"><div class="ack-num">1</div><p>Create a <strong>graded discussion</strong> in Canvas (worth minimal points &mdash; 1%, but required)</p></div>
+            <div class="ack-item"><div class="ack-num">2</div><p>Include the <strong>full AI policy text</strong> right in the discussion post &mdash; not linked, not in a PDF</p></div>
+            <div class="ack-item"><div class="ack-num">3</div><p>Require students to post: <em>&ldquo;I read and understand the course AI policy and requirements.&rdquo;</em></p></div>
+            <div class="ack-item"><div class="ack-num">4</div><p>Set due date: <strong>End of Week 1. No exceptions.</strong></p></div>
+        </div>
+
+        <h3 class="sub">Why This Works</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Benefit</th>
+                        <th>How It Helps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Active Engagement</strong></td>
+                        <td>Students must actively confirm &mdash; not passively scroll past</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documentation</strong></td>
+                        <td>You have written evidence they acknowledged the policy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unavoidable</strong></td>
+                        <td>Policy is right there in the post &mdash; not buried in a PDF</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Protection</strong></td>
+                        <td>If misconduct occurs, you can point to their own acknowledgment</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="callout purple">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Detection Mechanism
+            </p>
+            <p>The documentation requirement is also a detection mechanism. If writing quality is suspiciously high and there&rsquo;s no AI disclosure&hellip; that&rsquo;s a conversation starter.</p>
+        </div>
+
+        <!-- ── Handling Objections ── -->
+        <h2 class="section-title">Handling Student Objections</h2>
+
+        <p><strong>&ldquo;Other professors let us use AI for everything.&rdquo;</strong> &mdash; You&rsquo;ll hear this. Here&rsquo;s how to respond:</p>
+
+        <div class="obj-grid">
+            <div class="obj-card" style="border-left: 4px solid var(--accent);">
+                <h4 style="color: var(--accent);">1. You&rsquo;re Not Anti-AI &mdash; You&rsquo;re Pro-Learning</h4>
+                <p>Your policy reflects pedagogical choice, not technological fear. The &ldquo;why&rdquo; in your policy demonstrates this.</p>
+            </div>
+            <div class="obj-card" style="border-left: 4px solid var(--tip-text);">
+                <h4 style="color: var(--tip-text);">2. Different Courses Have Different Needs</h4>
+                <p>An AI ethics course might encourage heavy AI use for analysis. A foundational writing course might restrict it more. Both are valid &mdash; as long as they&rsquo;re clear.</p>
+            </div>
+            <div class="obj-card" style="border-left: 4px solid var(--purple);">
+                <h4 style="color: var(--purple);">3. You&rsquo;re Explaining Pedagogical Choice</h4>
+                <p>You&rsquo;re not defending a universal rule. You&rsquo;re explaining why THIS course has THESE expectations &mdash; and you made that transparent on day one.</p>
+            </div>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Syllabus Prep Checklist</h3>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>AI audits syllabus structure</strong> &mdash; you decide what to change</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Use the 3-Question Check</strong> before accepting any AI suggestion</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Disclose your AI use</strong> to build trust with students</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Write specific AI policies</strong> &mdash; permitted uses, prohibited uses, documentation, consequences</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Require week-one discussion post</strong> acknowledging AI policy</span></div>
+            <div class="takeaway-item"><span class="check">&#10003;</span><span><strong>Explain why the policy exists</strong> &mdash; not just what the rules are</span></div>
+            <p class="takeaway-quote">&ldquo;An hour of policy work now saves hours of &lsquo;I didn&rsquo;t know AI wasn&rsquo;t allowed&rsquo; conversations in week ten.&rdquo;</p>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 3, Zone 1: Syllabus Development &amp; AI Policy</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

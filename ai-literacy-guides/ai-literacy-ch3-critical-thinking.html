@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — Critical Thinking Through Flawed Content | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Zone 2 — Teaching Critical Thinking and Evaluation through AI-generated flawed content. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#FAFAF8;--bg-card:#FFF;--text-primary:#1A1A1A;--text-secondary:#555;--text-muted:#888;--accent:#0C4A6E;--accent-light:#E0F2FE;--border:#E5E5E3;--border-light:#F0F0EE;--tag-bg:#F3F4F6;--tag-text:#374151;--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:10px;--serif:'Source Serif 4',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;--warn:#92400E;--warn-bg:#FFFBEB;--warn-border:#FDE68A;--tip-bg:#F0FDF4;--tip-border:#86EFAC;--tip-text:#166534;--purple:#6B21A8;--purple-light:#F3E8FF;--purple-border:#D8B4FE;--red:#991B1B;--red-light:#FEF2F2;--red-border:#FECACA}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--sans);background:var(--bg);color:var(--text-primary);line-height:1.7;-webkit-font-smoothing:antialiased}.container{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}.back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:500;margin-bottom:2.5rem;transition:gap .2s}.back-link:hover{gap:.6rem}.guide-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.guide-header .breadcrumb{font-size:.78rem;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}.guide-header h1{font-family:var(--serif);font-size:2.2rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:.5rem}.guide-header .subtitle{font-size:1.05rem;color:var(--text-secondary);margin-bottom:1rem}.guide-header .meta{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.82rem;color:var(--text-muted)}.guide-header .meta span{display:inline-flex;align-items:center;gap:.35rem}.video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);margin-bottom:3rem;box-shadow:var(--shadow-md)}.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}.section-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin:3rem 0 1.25rem;padding-bottom:.6rem;border-bottom:2px solid var(--border)}.section-title:first-of-type{margin-top:0}p{margin-bottom:1rem;font-size:.95rem}p:last-child{margin-bottom:0}h3.sub{font-size:1rem;font-weight:600;margin:1.5rem 0 1rem}
+        .callout{border-radius:var(--radius);padding:1.25rem 1.5rem;margin:1.5rem 0;border:1px solid var(--border)}.callout-title{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}.callout p{font-size:.9rem;color:var(--text-secondary)}.callout.concept{background:var(--accent-light);border-color:#BAE6FD}.callout.concept .callout-title{color:var(--accent)}.callout.tip{background:var(--tip-bg);border-color:var(--tip-border)}.callout.tip .callout-title{color:var(--tip-text)}.callout.warning{background:var(--warn-bg);border-color:var(--warn-border)}.callout.warning .callout-title{color:var(--warn)}.callout.important{background:var(--red-light);border-color:var(--red-border)}.callout.important .callout-title{color:var(--red)}.callout.purple{background:var(--purple-light);border-color:var(--purple-border)}.callout.purple .callout-title{color:var(--purple)}
+        .table-wrapper{overflow-x:auto;margin:1.5rem 0;border:1px solid var(--border);border-radius:var(--radius)}table{width:100%;border-collapse:collapse;font-size:.88rem}thead{background:var(--accent)}th{padding:.75rem 1rem;text-align:left;font-weight:600;color:#fff;font-size:.82rem;letter-spacing:.02em}td{padding:.7rem 1rem;border-top:1px solid var(--border-light);color:var(--text-primary)}tbody tr:nth-child(even){background:#FAFAF8}
+
+        /* Compare blocks */
+        .compare-grid{display:grid;gap:1rem;margin:1.5rem 0}.compare-block{border-radius:var(--radius);padding:1.15rem 1.25rem}.compare-block h4{font-size:.92rem;font-weight:600;margin-bottom:.5rem}.compare-block p{font-size:.85rem;color:var(--text-secondary);margin-bottom:.3rem}.compare-block p:last-child{margin-bottom:0}.compare-block .verdict{font-size:.85rem;margin-top:.4rem}
+
+        /* Flaw type cards */
+        .flaw-grid{display:grid;gap:.75rem;margin:1.5rem 0}.flaw-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:.95rem 1.15rem;display:flex;align-items:flex-start;gap:.75rem}.flaw-card .flaw-icon{flex-shrink:0;margin-top:.1rem}.flaw-card h4{font-size:.88rem;font-weight:600;margin-bottom:.15rem}.flaw-card p{font-size:.82rem;color:var(--text-secondary);margin:0}
+
+        /* Activity step cards */
+        .step-grid{display:grid;gap:.85rem;margin:1.5rem 0}.step-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden}.step-card .step-header{padding:.7rem 1.15rem;color:#fff;display:flex;align-items:center;gap:.6rem}.step-card .step-header .step-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}.step-card .step-header h4{font-size:.88rem;font-weight:600}.step-card .step-body{padding:.85rem 1.15rem}.step-card .step-body p{font-size:.85rem;color:var(--text-secondary);margin:0}
+
+        /* Phase cards */
+        .phase-grid{display:grid;gap:1rem;margin:1.5rem 0}.phase-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden}.phase-card .phase-header{padding:.85rem 1.25rem;color:#fff;font-size:.92rem;font-weight:600}.phase-card .phase-body{padding:1rem 1.25rem}.phase-card .phase-body p{font-size:.88rem;color:var(--text-secondary);margin-bottom:.35rem}.phase-card .phase-body p:last-child{margin-bottom:0}
+
+        /* Template prompt */
+        .template-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden;margin:1.25rem 0}.template-card .template-header{padding:.75rem 1.25rem;color:#fff;font-size:.88rem;font-weight:600;display:flex;align-items:center;gap:.5rem}.template-card .template-body{padding:1.15rem 1.25rem;background:var(--tag-bg);font-size:.88rem;line-height:1.75}.template-card .template-body .t-label{font-weight:600;color:var(--red)}.template-card .template-body .t-placeholder{background:var(--warn-bg);color:var(--warn);padding:.1rem .35rem;border-radius:3px;font-size:.82rem}.template-card .template-body .t-note{background:var(--tip-bg);border:1px solid var(--tip-border);border-radius:6px;padding:.65rem .85rem;margin-top:.75rem;font-size:.85rem;color:var(--tip-text)}
+
+        .takeaways{background:var(--accent);border-radius:var(--radius);padding:2rem;margin:2.5rem 0;color:#fff}.takeaways h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin-bottom:1.25rem}.tk-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.85rem;font-size:.9rem;line-height:1.6}.tk-item:last-child{margin-bottom:0}.tk-item .tk-icon{flex-shrink:0;font-size:.9rem}.takeaway-footer{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.15);text-align:center;font-size:.92rem}
+
+        /* Bottom line banner */
+        .bottom-line{background:linear-gradient(135deg,var(--tip-bg) 0%,#D1FAE5 100%);border:3px solid var(--tip-border);border-radius:var(--radius);padding:1.75rem;text-align:center;margin:2rem 0}
+        .bottom-line h3{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--tip-text);margin-bottom:.5rem}
+        .bottom-line p{font-size:.92rem;color:var(--text-primary);margin-bottom:.5rem}
+        .bottom-line p:last-child{margin-bottom:0;font-size:.88rem;color:var(--tip-text)}
+
+        .guide-footer{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;font-size:.82rem;color:var(--text-muted)}.guide-footer a{color:var(--accent);text-decoration:none}.guide-footer a:hover{text-decoration:underline}
+        @media(max-width:640px){.container{padding:1.25rem 1rem 3rem}.guide-header h1{font-size:1.65rem}.section-title{font-size:1.25rem}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Home</a>
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 3, Zone 2: Critical Thinking Through Flawed Content</p>
+            <div class="meta">
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Lecture 16</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Dr. Mahyar Sharif Vaghefi</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> UT Arlington</span>
+            </div>
+        </div>
+        <div class="video-container"><iframe src="https://www.youtube.com/embed/V_D87vWmE-U" title="AI Literacy for Education: Critical Thinking Through Flawed Content" loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+
+        <!-- The Pedagogical Shift -->
+        <h2 class="section-title">The Pedagogical Shift AI Enables</h2>
+        <p>One of AI&rsquo;s most powerful educational uses is teaching critical thinking &mdash; but not in the way you might expect.</p>
+
+        <div class="compare-grid">
+            <div class="compare-block" style="background:var(--red-light);border:2px solid var(--red-border)">
+                <h4 style="color:var(--red)">Traditional Approach</h4>
+                <p><strong>Focus:</strong> Teach the right way to do things</p>
+                <p>Correct methods &rarr; Proper analyses &rarr; Best practices</p>
+                <p class="verdict" style="color:var(--red)">Result: Students learn to <em>produce</em> correct work</p>
+            </div>
+            <div class="compare-block" style="background:var(--tip-bg);border:2px solid var(--tip-border)">
+                <h4 style="color:var(--tip-text)">AI-Enabled Addition</h4>
+                <p><strong>Focus:</strong> Show what can go wrong</p>
+                <p>Professional-looking flaws &rarr; Hidden errors &rarr; Subtle problems</p>
+                <p class="verdict" style="color:var(--tip-text)">Result: Students learn to <em>evaluate</em> content critically</p>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> Why This Matters for Professional Life</p>
+            <p>In professional settings, people spend enormous time <strong>evaluating others&rsquo; work</strong> &mdash; reviewing reports, assessing vendor analyses, questioning consultant recommendations, and evaluating AI-generated content. This requires a different skill than producing correct work: <strong>recognizing when something is wrong</strong>.</p>
+        </div>
+
+        <!-- What AI Can Generate -->
+        <h2 class="section-title">What AI Can Generate for Critical Analysis</h2>
+        <p>Before AI, creating realistic flawed content was incredibly time-consuming. Now, AI can instantly generate professional-looking content with subtle problems &mdash; exactly what students will encounter in their careers.</p>
+
+        <h3 class="sub">Types of Flaws AI Can Embed</h3>
+        <div class="flaw-grid">
+            <div class="flaw-card" style="border-left:3px solid var(--accent)">
+                <div class="flaw-icon"><svg width="18" height="18" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+                <div><h4 style="color:var(--accent)">Misrepresented Data</h4><p>Cherry-picked statistics, misleading visualizations, outdated figures presented as current</p></div>
+            </div>
+            <div class="flaw-card" style="border-left:3px solid #16A34A">
+                <div class="flaw-icon"><svg width="18" height="18" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+                <div><h4 style="color:var(--tip-text)">Logical Gaps</h4><p>Missing steps in reasoning, correlation presented as causation, unstated assumptions</p></div>
+            </div>
+            <div class="flaw-card" style="border-left:3px solid var(--purple)">
+                <div class="flaw-icon"><svg width="18" height="18" fill="none" stroke="var(--purple)" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg></div>
+                <div><h4 style="color:var(--purple)">Unsupported Conclusions</h4><p>Claims that don&rsquo;t follow from evidence, overreaching recommendations, unjustified certainty</p></div>
+            </div>
+            <div class="flaw-card" style="border-left:3px solid #D97706">
+                <div class="flaw-icon"><svg width="18" height="18" fill="none" stroke="#D97706" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+                <div><h4 style="color:var(--warn)">Missing Considerations</h4><p>Ignored risks, overlooked stakeholders, absent alternative explanations</p></div>
+            </div>
+        </div>
+
+        <div class="callout concept">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Example: Finance Course</p>
+            <p><strong>Request:</strong> A company valuation (DCF analysis) with hidden problems.<br><br><strong>AI generates:</strong> A polished, professional-looking analysis containing an unrealistic growth assumption buried in year seven, an outdated risk-free rate, and cherry-picked comparable companies that inflate the valuation.<br><br>Everything else looks correct. Students must find the problems.</p>
+        </div>
+
+        <!-- Designing the In-Class Experience -->
+        <h2 class="section-title">Designing the In-Class Experience</h2>
+        <p>The key to making this work: <strong>this is an in-class activity</strong> where students can&rsquo;t simply feed the content back to AI to find errors for them.</p>
+
+        <div class="callout important">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> Critical Design Element</p>
+            <p>The constraint &mdash; <strong>no AI assistance during the initial exercise</strong> &mdash; is what makes it valuable. Real learning happens in the <em>struggle</em> to articulate what doesn&rsquo;t add up.</p>
+        </div>
+
+        <h3 class="sub">Activity Structure</h3>
+        <div class="step-grid">
+            <div class="step-card" style="border:2px solid #BAE6FD">
+                <div class="step-header" style="background:var(--accent)"><div class="step-num" style="color:var(--accent)">1</div><h4>Distribute Flawed Content</h4></div>
+                <div class="step-body"><p>Give students the AI-generated analysis. Put them in groups. Their task: identify what&rsquo;s wrong.</p></div>
+            </div>
+            <div class="step-card" style="border:2px solid var(--tip-border)">
+                <div class="step-header" style="background:#16A34A"><div class="step-num" style="color:#16A34A">2</div><h4>Group Discussion (AI-Free)</h4></div>
+                <div class="step-body"><p>Students discuss, argue, and convince each other why something looks wrong. You walk the room and observe. <strong>No AI tools allowed during this phase.</strong></p></div>
+            </div>
+            <div class="step-card" style="border:2px solid var(--purple-border)">
+                <div class="step-header" style="background:var(--purple)"><div class="step-num" style="color:var(--purple)">3</div><h4>Class Debrief</h4></div>
+                <div class="step-body"><p>Bring everyone together. Compare what groups caught and what they missed. Use AI-provided discussion questions to guide the conversation.</p></div>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> What AI Provides You</p>
+            <p>When you generate flawed content, AI also gives you an <strong>answer key</strong> with every flaw identified, plus <strong>discussion questions</strong> to guide the debrief afterward. You&rsquo;re fully prepared to facilitate.</p>
+        </div>
+
+        <!-- Staged AI Integration -->
+        <h2 class="section-title">Staged AI Integration: A More Advanced Approach</h2>
+        <p>AI doesn&rsquo;t have to be completely off-limits. The key is <strong>when and how</strong> it enters the activity.</p>
+
+        <div class="phase-grid">
+            <div class="phase-card" style="border:2px solid var(--red-border)">
+                <div class="phase-header" style="background:#DC2626">Phase 1: AI-Free (First 10&ndash;15 minutes)</div>
+                <div class="phase-body">
+                    <p><strong>Purpose:</strong> Students wrestle with the material using their own knowledge</p>
+                    <p style="color:var(--red)"><strong>Why:</strong> The struggle is where critical thinking develops. They must articulate concerns without AI assistance.</p>
+                </div>
+            </div>
+            <div class="phase-card" style="border:2px solid var(--tip-border)">
+                <div class="phase-header" style="background:#16A34A">Phase 2: AI-Assisted (After Initial Discussion)</div>
+                <div class="phase-body">
+                    <p><strong>Purpose:</strong> Groups can now consult AI to check their reasoning or explore angles they missed</p>
+                    <p style="color:var(--tip-text)"><strong>Why:</strong> Different groups will prompt AI differently based on what they discussed &mdash; and different prompts lead to different insights.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout concept">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> What Happens in the Debrief</p>
+            <p>The conversation becomes much richer. You&rsquo;re not just comparing what groups found &mdash; you&rsquo;re comparing <strong>how they approached the problem</strong>, <strong>what questions they asked AI</strong>, and <strong>how those prompts shaped their conclusions</strong>.</p>
+        </div>
+
+        <div style="background:var(--accent);border-radius:var(--radius);padding:1.15rem;text-align:center;margin:1.5rem 0">
+            <p style="color:#fff;font-size:.92rem;margin:0">Students aren&rsquo;t just learning to produce analyses &mdash; they&rsquo;re learning to <strong>think critically about analyses</strong>. Process Over Product in action.</p>
+        </div>
+
+        <!-- Template Prompt -->
+        <h2 class="section-title">Template Prompt: Flawed Content Generation</h2>
+
+        <div class="template-card" style="border:2px solid #C2410C">
+            <div class="template-header" style="background:#C2410C"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Template: Flawed Content Generation</div>
+            <div class="template-body">
+                <span class="t-label">Role:</span> Generate a business analysis that looks professional but contains flaws for my students to identify.<br><br>
+                <span class="t-label">Context:</span> Topic is about <span class="t-placeholder">[Topic]</span>, consider the attached <span class="t-placeholder">[Files/Slides/Cases]</span>. I want students to practice critical evaluation, recognizing errors, gaps, and misrepresentations.<br><br>
+                <span class="t-label">Task:</span> Create <span class="t-placeholder">[number of pages]</span> pages of <span class="t-placeholder">[analysis/report/recommendation]</span> that:<br>
+                &nbsp;&nbsp;1. Uses professional language and confident tone<br>
+                &nbsp;&nbsp;2. Contains <span class="t-placeholder">[number of flaws]</span> subtle issues: <span class="t-placeholder">[misrepresented data, logical gaps, unsupported conclusions, or missing considerations]</span><br>
+                &nbsp;&nbsp;3. Reaches a clear recommendation<br><br>
+                <span class="t-label">Constraint:</span> Limit the issues to the core topic and the content provided as supplementary material.
+                <div class="t-note">After generating: Provide me with a list of the flaws and discussion questions to guide students.</div>
+            </div>
+        </div>
+
+        <div class="callout purple">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Customization Tips</p>
+            <p><strong>Adjust difficulty:</strong> For introductory courses, use 2&ndash;3 obvious flaws. For advanced courses, use 4&ndash;5 subtle issues that require deep domain knowledge to spot.<br><br><strong>Match your content:</strong> Attach your actual course materials so the flaws relate directly to concepts you&rsquo;ve taught.</p>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="takeaways">
+            <h3>Critical Analysis Activity Checklist</h3>
+            <div class="tk-item"><span class="tk-icon" style="color:#7DD3FC">&#9670;</span><span><strong>Generate:</strong> AI creates professional-looking content with subtle flaws (data, logic, conclusions, gaps)</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#FCA5A5">&#9670;</span><span><strong>Phase 1:</strong> Students analyze AI-free for 10&ndash;15 minutes &mdash; struggle builds critical thinking</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#6EE7B7">&#9670;</span><span><strong>Phase 2 (optional):</strong> Open AI access &mdash; different prompts reveal different thinking</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#FDE68A">&#9670;</span><span><strong>Debrief:</strong> Compare findings, approaches, and AI prompts across groups</span></div>
+            <p class="takeaway-footer">When anyone can produce, those who can <strong>evaluate</strong> become invaluable.</p>
+        </div>
+
+        <!-- Bottom Line -->
+        <div class="bottom-line">
+            <h3>The Bottom Line</h3>
+            <p>Traditional education taught students to <strong>produce correct work</strong>. The AI era requires them to also <strong>evaluate content critically</strong>.</p>
+            <p>By using AI to show what can go wrong, you&rsquo;re building a skill that will define professional competence across every industry.</p>
+        </div>
+
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 3, Zone 2: Critical Thinking Through Flawed Content</p>
+            <p style="margin-top:.4rem">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top:.75rem"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — AI for Exam Development | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: Zone 3 — Using AI to Create Better Exams with Bloom's Taxonomy tagging and session summaries. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#FAFAF8;--bg-card:#FFF;--text-primary:#1A1A1A;--text-secondary:#555;--text-muted:#888;--accent:#0C4A6E;--accent-light:#E0F2FE;--border:#E5E5E3;--border-light:#F0F0EE;--tag-bg:#F3F4F6;--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:10px;--serif:'Source Serif 4',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;--warn:#92400E;--warn-bg:#FFFBEB;--warn-border:#FDE68A;--tip-bg:#F0FDF4;--tip-border:#86EFAC;--tip-text:#166534;--purple:#6B21A8;--purple-light:#F3E8FF;--purple-border:#D8B4FE;--red:#991B1B;--red-light:#FEF2F2;--red-border:#FECACA}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--sans);background:var(--bg);color:var(--text-primary);line-height:1.7;-webkit-font-smoothing:antialiased}.container{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}.back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:500;margin-bottom:2.5rem;transition:gap .2s}.back-link:hover{gap:.6rem}.guide-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.guide-header .breadcrumb{font-size:.78rem;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}.guide-header h1{font-family:var(--serif);font-size:2.2rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:.5rem}.guide-header .subtitle{font-size:1.05rem;color:var(--text-secondary);margin-bottom:1rem}.guide-header .meta{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.82rem;color:var(--text-muted)}.guide-header .meta span{display:inline-flex;align-items:center;gap:.35rem}.video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);margin-bottom:3rem;box-shadow:var(--shadow-md)}.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}.section-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin:3rem 0 1.25rem;padding-bottom:.6rem;border-bottom:2px solid var(--border)}.section-title:first-of-type{margin-top:0}p{margin-bottom:1rem;font-size:.95rem}p:last-child{margin-bottom:0}h3.sub{font-size:1rem;font-weight:600;margin:1.5rem 0 1rem}
+        .callout{border-radius:var(--radius);padding:1.25rem 1.5rem;margin:1.5rem 0;border:1px solid var(--border)}.callout-title{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}.callout p{font-size:.9rem;color:var(--text-secondary)}.callout.concept{background:var(--accent-light);border-color:#BAE6FD}.callout.concept .callout-title{color:var(--accent)}.callout.tip{background:var(--tip-bg);border-color:var(--tip-border)}.callout.tip .callout-title{color:var(--tip-text)}.callout.warning{background:var(--warn-bg);border-color:var(--warn-border)}.callout.warning .callout-title{color:var(--warn)}.callout.important{background:var(--red-light);border-color:var(--red-border)}.callout.important .callout-title{color:var(--red)}.callout.purple{background:var(--purple-light);border-color:var(--purple-border)}.callout.purple .callout-title{color:var(--purple)}
+
+        /* Input cards */
+        .input-grid{display:grid;gap:.85rem;margin:1.5rem 0}.input-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden}.input-card .input-header{padding:.7rem 1.15rem;color:#fff;display:flex;align-items:center;gap:.6rem}.input-card .input-header .input-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}.input-card .input-header h4{font-size:.88rem;font-weight:600}.input-card .input-body{padding:.85rem 1.15rem}.input-card .input-body p{font-size:.85rem;color:var(--text-secondary);margin:0}
+
+        /* Bloom's pyramid */
+        .bloom-pyramid{margin:1.5rem auto;max-width:100%}.bloom-level{color:#fff;padding:.7rem 1rem;text-align:center;margin-bottom:3px}.bloom-level h4{font-size:.85rem;font-weight:600;margin-bottom:.15rem}.bloom-level p{font-size:.75rem;margin:0;opacity:.9}.bloom-level .bloom-ex{font-size:.72rem;font-style:italic;margin-top:.2rem;opacity:.8}
+
+        /* Stats cards */
+        .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}.stat-card{border-radius:var(--radius);padding:1.25rem;text-align:center}.stat-card .stat-num{font-family:var(--serif);font-size:2rem;font-weight:700;margin-bottom:.25rem}.stat-card p{font-size:.85rem;color:var(--text-secondary);margin:0}
+
+        /* Template prompt */
+        .template-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden;margin:1.25rem 0}.template-card .template-header{padding:.75rem 1.25rem;color:#fff;font-size:.88rem;font-weight:600;display:flex;align-items:center;gap:.5rem}.template-card .template-body{padding:1.15rem 1.25rem;background:var(--tag-bg);font-size:.88rem;line-height:1.75}.template-card .template-body .t-label{font-weight:600;color:var(--red)}.template-card .template-body .t-placeholder{background:var(--warn-bg);color:var(--warn);padding:.1rem .35rem;border-radius:3px;font-size:.82rem}.template-card .template-body .t-items{background:var(--bg-card);border-radius:6px;padding:.75rem 1rem;margin:.5rem 0;font-size:.85rem}.template-card .template-body .t-constraint{background:var(--red-light);border:1px solid var(--red-border);border-radius:6px;padding:.65rem .85rem;margin-top:.75rem;font-size:.85rem;color:var(--red)}
+
+        .takeaways{background:var(--accent);border-radius:var(--radius);padding:2rem;margin:2.5rem 0;color:#fff}.takeaways h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin-bottom:1.25rem}.tk-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.85rem;font-size:.9rem;line-height:1.6}.tk-item:last-child{margin-bottom:0}.tk-item .tk-icon{flex-shrink:0}.takeaway-sub{margin-top:1rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.15);text-align:center;font-size:.88rem}.takeaway-sub p{margin-bottom:.35rem}.takeaway-sub p:last-child{margin-bottom:0}.takeaway-footer{margin-top:1rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.15);text-align:center;font-style:italic;font-size:.88rem;color:rgba(255,255,255,.7)}
+
+        .guide-footer{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;font-size:.82rem;color:var(--text-muted)}.guide-footer a{color:var(--accent);text-decoration:none}.guide-footer a:hover{text-decoration:underline}
+        @media(max-width:640px){.container{padding:1.25rem 1rem 3rem}.guide-header h1{font-size:1.65rem}.section-title{font-size:1.25rem}.stat-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Home</a>
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">Chapter 3, Zone 3: AI for Exam Development</p>
+            <div class="meta">
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Lecture 20</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Dr. Mahyar Sharif Vaghefi</span>
+                <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> UT Arlington</span>
+            </div>
+        </div>
+        <div class="video-container"><iframe src="https://www.youtube.com/embed/_T48oZC-em0" title="AI Literacy for Education: AI for Exam Development" loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+
+        <!-- The Exam Creation Problem -->
+        <h2 class="section-title">The Exam Creation Problem</h2>
+        <p>Creating a quality exam from scratch takes <strong>8&ndash;10 hours</strong> &mdash; matching difficulty levels, covering all objectives, writing decent distractors for multiple choice. Many faculty end up recycling questions for multiple semesters, knowing students pass them around.</p>
+
+        <div class="callout tip">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> The AI Shift: Writer &rarr; Editor</p>
+            <p>Instead of creating every question from scratch, AI gives you a <strong>strong first draft in minutes</strong>. You spend your time <strong>reviewing and refining</strong> &mdash; a fundamentally different use of your expertise.</p>
+        </div>
+
+        <!-- Your Inputs -->
+        <h2 class="section-title">Your Inputs &rarr; Fresh Exam Questions</h2>
+        <p>You&rsquo;ve already done the hardest part &mdash; you taught the material. If you followed the session summary workflow, you have everything AI needs to generate a targeted, relevant exam.</p>
+
+        <div class="input-grid">
+            <div class="input-card" style="border:2px solid #BAE6FD">
+                <div class="input-header" style="background:var(--accent)"><div class="input-num" style="color:var(--accent)">1</div><h4>Session Summaries</h4></div>
+                <div class="input-body"><p>Generates questions based on concepts and examples you <em>actually discussed in class</em> &mdash; not generic textbook content.</p></div>
+            </div>
+            <div class="input-card" style="border:2px solid var(--tip-border)">
+                <div class="input-header" style="background:#16A34A"><div class="input-num" style="color:#16A34A">2</div><h4>Student Questions &amp; Discussions</h4></div>
+                <div class="input-body"><p>Reflects the depth and focus of your actual teaching, including topics you spent extra time clarifying.</p></div>
+            </div>
+            <div class="input-card" style="border:2px solid var(--purple-border)">
+                <div class="input-header" style="background:var(--purple)"><div class="input-num" style="color:var(--purple)">3</div><h4>Your Previous Exam</h4></div>
+                <div class="input-body"><p>Matches your preferred style, difficulty distribution, and cognitive levels <em>without duplicating a single question</em>.</p></div>
+            </div>
+            <div class="input-card" style="border:2px solid var(--warn-border)">
+                <div class="input-header" style="background:#D97706"><div class="input-num" style="color:#D97706">4</div><h4>Learning Objectives</h4></div>
+                <div class="input-body"><p>Maps questions across Bloom&rsquo;s taxonomy levels, ensuring comprehensive coverage of all objectives.</p></div>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> The Session Summary Payoff</p>
+            <p>Those session summaries you created all semester? They now become your <strong>exam source material</strong>. This is why the session summary workflow compounds &mdash; it benefits students during the semester AND makes your exam development faster at the end.</p>
+        </div>
+
+        <!-- Bloom's Taxonomy -->
+        <h2 class="section-title">Bloom&rsquo;s Taxonomy: Six Levels of Thinking</h2>
+        <p>Bloom&rsquo;s taxonomy is a hierarchy of thinking skills, from simple to complex. Understanding these levels helps you design exams with a deliberate cognitive balance.</p>
+
+        <div class="bloom-pyramid">
+            <div class="bloom-level" style="background:#7F1D1D;border-radius:var(--radius) var(--radius) 0 0;max-width:340px;margin:0 auto 3px"><h4>6. Create</h4><p>Combine ideas to produce something new</p><p class="bloom-ex">&ldquo;Design a pricing strategy for this company&hellip;&rdquo;</p></div>
+            <div class="bloom-level" style="background:#DC2626;max-width:440px;margin:0 auto 3px"><h4>5. Evaluate</h4><p>Make a judgment and defend it</p><p class="bloom-ex">&ldquo;Which approach is better and why?&rdquo;</p></div>
+            <div class="bloom-level" style="background:#D97706;max-width:540px;margin:0 auto 3px"><h4>4. Analyze</h4><p>Break apart and examine relationships</p><p class="bloom-ex">&ldquo;What factors contributed to this outcome?&rdquo;</p></div>
+            <div class="bloom-level" style="background:#CA8A04;color:#1A1A1A;max-width:640px;margin:0 auto 3px"><h4>3. Apply</h4><p>Use the concept in a new situation</p><p class="bloom-ex">&ldquo;Calculate the NPV given these inputs&hellip;&rdquo;</p></div>
+            <div class="bloom-level" style="background:#16A34A;max-width:740px;margin:0 auto 3px"><h4>2. Understand</h4><p>Explain the concept in your own words</p><p class="bloom-ex">&ldquo;Explain how supply and demand interact&hellip;&rdquo;</p></div>
+            <div class="bloom-level" style="background:var(--accent);border-radius:0 0 var(--radius) var(--radius);max-width:820px;margin:0 auto"><h4>1. Remember</h4><p>Recall facts and definitions</p><p class="bloom-ex">&ldquo;Define supply and demand&hellip;&rdquo;</p></div>
+        </div>
+
+        <div class="callout important" style="margin-top:1.5rem">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> Balance Matters</p>
+            <p>If all questions are Remember &amp; Understand: you&rsquo;re only testing surface knowledge. If all questions are Evaluate &amp; Create: you might be testing beyond what you taught. <strong>A good exam has a deliberate mix</strong> &mdash; and AI can tag each question with its Bloom&rsquo;s level so you see your exam&rsquo;s cognitive profile at a glance.</p>
+        </div>
+
+        <div class="callout concept">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> What AI Does for You</p>
+            <p>When generating exam questions, AI can <strong>tag each question with its Bloom&rsquo;s level</strong>. You can see at a glance whether your exam is balanced. If you spot gaps, ask AI to generate additional questions at the levels you&rsquo;re missing.</p>
+        </div>
+
+        <!-- Quality Reality Check -->
+        <h2 class="section-title">The Quality Reality Check</h2>
+        <p>How good are AI-generated exam questions? Here&rsquo;s what the research says.</p>
+
+        <h3 class="sub">2025 BMC Medical Education Study</h3>
+        <div class="stat-grid">
+            <div class="stat-card" style="background:var(--tip-bg);border:2px solid var(--tip-border)">
+                <div class="stat-num" style="color:var(--tip-text)">69%</div>
+                <p>of AI-generated questions were <strong>usable with minor edits</strong></p>
+            </div>
+            <div class="stat-card" style="background:var(--red-light);border:2px solid var(--red-border)">
+                <div class="stat-num" style="color:var(--red)">31%</div>
+                <p>had issues: <strong>factual errors, misaligned difficulty, poor formatting, or ambiguous wording</strong></p>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> The Good News</p>
+            <p>AI gives you a strong first draft in minutes instead of hours. You spend your time reviewing and refining instead of creating from scratch. That&rsquo;s a fundamentally different &mdash; and better &mdash; use of your expertise.</p>
+        </div>
+
+        <div class="callout important">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg> The Reality</p>
+            <p>Roughly one in three questions needs more than minor tweaking. <strong>You still review every single question.</strong> Your expertise is the final filter. Always.</p>
+        </div>
+
+        <div style="background:var(--accent);border-radius:var(--radius);padding:1.15rem;text-align:center;margin:1.5rem 0">
+            <p style="color:#fff;font-size:.92rem;margin:0"><strong>You&rsquo;re shifting from writer to editor.</strong><br><span style="font-size:.85rem;opacity:.8">And you&rsquo;re a much better editor than AI is a writer &mdash; because you know what your students actually need to demonstrate.</span></p>
+        </div>
+
+        <!-- Template Prompt -->
+        <h2 class="section-title">Template Prompt: Exam Question Generation</h2>
+        <p>Use this template to generate fresh exam questions based on what you actually taught &mdash; not generic textbook content.</p>
+
+        <div class="template-card" style="border:2px solid #C2410C">
+            <div class="template-header" style="background:#C2410C"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Template: Exam Question Generation</div>
+            <div class="template-body">
+                <span class="t-label">Role:</span> You are an assessment expert creating exam questions from my course materials.<br><br>
+                <span class="t-label">Context:</span> Attached are my session summaries and my previous exam for <span class="t-placeholder">[Course Name]</span>. Learning objectives: <span class="t-placeholder">[list objectives]</span>.<br><br>
+                <span class="t-label">Task:</span> Generate a new exam that:
+                <div class="t-items">
+                    1. Uses session summaries to ensure questions reflect what was actually taught<br>
+                    2. Matches the previous exam&rsquo;s style, format, and difficulty distribution<br>
+                    3. Includes <span class="t-placeholder">[number]</span> MCQs, <span class="t-placeholder">[number]</span> short-answer, and <span class="t-placeholder">[number]</span> application questions<br>
+                    4. Varies cognitive levels using Bloom&rsquo;s taxonomy (tag each question with its level)<br>
+                    5. Has zero overlap with the previous exam<br>
+                    6. Includes an answer key with grading guidance
+                </div>
+                <div class="t-constraint"><strong>Constraint:</strong> Every question must be answerable only by someone who understood the material &mdash; not by someone who memorized the old exam.</div>
+            </div>
+        </div>
+
+        <div class="callout concept">
+            <p class="callout-title"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> What to Attach</p>
+            <p>&bull; <strong>Session summaries</strong> from throughout the semester<br>&bull; <strong>Your previous exam</strong> (for style and difficulty matching)<br>&bull; Optionally: <strong>Student Q&amp;A</strong> captured in session summaries to reflect areas where students needed extra clarification</p>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="takeaways">
+            <h3>AI Exam Development &mdash; Quick Reference</h3>
+            <div class="tk-item"><span class="tk-icon" style="color:#7DD3FC">&#9670;</span><span><strong>Four Inputs:</strong> Session summaries + Student Q&amp;A + Previous exam + Learning objectives</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#6EE7B7">&#9670;</span><span><strong>Bloom&rsquo;s Tags:</strong> AI labels each question&rsquo;s cognitive level so you see your exam&rsquo;s balance</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#FDE68A">&#9670;</span><span><strong>Quality:</strong> ~69% usable with minor edits; ~31% need more work</span></div>
+            <div class="tk-item"><span class="tk-icon" style="color:#FCA5A5">&#9670;</span><span><strong>Your Role:</strong> Review every question &mdash; you&rsquo;re the editor, AI is the first drafter</span></div>
+            <div class="takeaway-sub">
+                <p><strong>Traditional:</strong> 8&ndash;10 hours from scratch</p>
+                <p><strong>With AI:</strong> Minutes to generate + focused review and refinement time</p>
+            </div>
+            <p class="takeaway-footer">&ldquo;Your expertise is the final filter. Always.&rdquo;</p>
+        </div>
+
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; Chapter 3, Zone 3: AI for Exam Development</p>
+            <p style="margin-top:.4rem">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top:.75rem"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>
