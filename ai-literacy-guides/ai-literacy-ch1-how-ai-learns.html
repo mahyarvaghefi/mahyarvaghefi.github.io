@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy for Education — How AI Learns, Fails, and Gets It Wrong | Dr. Mahyar Vaghefi</title>
+    <meta name="description" content="Video companion guide for AI Literacy for Education: How AI Learns, Fails, and Gets It Wrong. Hallucinations, bias, knowledge cutoffs, and AI limitations. By Dr. Mahyar Sharif Vaghefi, UT Arlington.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --accent: #0C4A6E;
+            --accent-light: #E0F2FE;
+            --accent-hover: #075985;
+            --border: #E5E5E3;
+            --border-light: #F0F0EE;
+            --tag-bg: #F3F4F6;
+            --tag-text: #374151;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --warn: #92400E;
+            --warn-bg: #FFFBEB;
+            --warn-border: #FDE68A;
+            --tip-bg: #F0FDF4;
+            --tip-border: #86EFAC;
+            --tip-text: #166534;
+            --purple: #6B21A8;
+            --purple-light: #F3E8FF;
+            --purple-border: #D8B4FE;
+            --red: #991B1B;
+            --red-light: #FEF2F2;
+            --red-border: #FECACA;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 2.5rem; transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.6rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .guide-header .breadcrumb {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .guide-header h1 {
+            font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .guide-header .meta { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-muted); }
+        .guide-header .meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: var(--radius); margin-bottom: 3rem; box-shadow: var(--shadow-md);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .section-title {
+            font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+            letter-spacing: -0.02em; margin: 3rem 0 1.25rem;
+            padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+        h3.sub { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; }
+
+        .callout {
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border);
+        }
+        .callout-title {
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .callout p { font-size: 0.9rem; color: var(--text-secondary); }
+        .callout.concept { background: var(--accent-light); border-color: #BAE6FD; }
+        .callout.concept .callout-title { color: var(--accent); }
+        .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); }
+        .callout.tip .callout-title { color: var(--tip-text); }
+        .callout.warning { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout.warning .callout-title { color: var(--warn); }
+        .callout.important { background: var(--red-light); border-color: var(--red-border); }
+        .callout.important .callout-title { color: var(--red); }
+        .callout.purple { background: var(--purple-light); border-color: var(--purple-border); }
+        .callout.purple .callout-title { color: var(--purple); }
+
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        thead { background: var(--accent); }
+        th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; color: #fff; font-size: 0.82rem; letter-spacing: 0.02em; }
+        td { padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); color: var(--text-primary); }
+        tbody tr:nth-child(even) { background: #FAFAF8; }
+        td code, p code {
+            font-family: var(--mono); font-size: 0.82rem;
+            background: var(--tag-bg); padding: 0.15rem 0.4rem; border-radius: 4px;
+        }
+        td .yes { color: var(--tip-text); font-weight: 500; }
+        td .no { color: var(--red); font-weight: 500; }
+
+        .visual-example {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0;
+        }
+        .visual-example .label {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 1rem;
+        }
+
+        /* Training data pills */
+        .data-pills {
+            display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;
+        }
+        .data-pill {
+            font-size: 0.82rem; font-weight: 500; padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+        }
+        .data-pill.good { background: var(--tip-bg); color: var(--tip-text); }
+        .data-pill.mixed { background: var(--warn-bg); color: var(--warn); }
+
+        /* Hallucination cards */
+        .hall-grid { display: grid; gap: 1rem; margin: 1.5rem 0; }
+        .hall-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+        }
+        .hall-card .hall-header {
+            padding: 0.7rem 1.25rem; color: #fff;
+            font-size: 0.88rem; font-weight: 600;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .hall-card .hall-body { padding: 1rem 1.25rem; }
+        .hall-card .hall-example {
+            font-style: italic; font-size: 0.88rem; color: var(--text-primary);
+            background: var(--tag-bg); padding: 0.7rem 1rem; border-radius: 6px;
+            margin-bottom: 0.75rem; line-height: 1.6;
+        }
+        .hall-card .hall-reveal {
+            font-size: 0.82rem; line-height: 1.65;
+        }
+
+        /* Model type cards */
+        .model-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;
+        }
+        .model-card {
+            background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+        }
+        .model-card .model-header {
+            padding: 0.85rem 1.25rem; color: #fff;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .model-card .model-header h4 { font-size: 0.92rem; font-weight: 600; }
+        .model-card .model-body { padding: 1rem 1.25rem; }
+        .model-card .model-body p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+        .model-card .model-body p:last-child { margin-bottom: 0; }
+        .model-tag {
+            display: inline-block; font-size: 0.75rem; font-weight: 500;
+            padding: 0.2rem 0.5rem; border-radius: 4px; margin: 0.15rem 0.2rem 0.15rem 0;
+        }
+
+        /* Limitation cards */
+        .limit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+        .limit-card {
+            border-radius: var(--radius); padding: 1.15rem 1.25rem;
+            display: flex; align-items: flex-start; gap: 0.75rem;
+        }
+        .limit-card .limit-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .limit-card h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .limit-card p { font-size: 0.82rem; color: var(--text-secondary); margin: 0; }
+
+        .limit-red { background: var(--red-light); border: 1px solid var(--red-border); }
+        .limit-red h4 { color: var(--red); }
+        .limit-orange { background: var(--warn-bg); border: 1px solid var(--warn-border); }
+        .limit-orange h4 { color: var(--warn); }
+        .limit-green { background: var(--tip-bg); border: 1px solid var(--tip-border); }
+        .limit-green h4 { color: var(--tip-text); }
+        .limit-blue { background: var(--accent-light); border: 1px solid #BAE6FD; }
+        .limit-blue h4 { color: var(--accent); }
+        .limit-purple { background: var(--purple-light); border: 1px solid var(--purple-border); }
+        .limit-purple h4 { color: var(--purple); }
+        .limit-gray { background: var(--tag-bg); border: 1px solid var(--border); }
+        .limit-gray h4 { color: var(--text-primary); }
+
+        /* Case study */
+        .case-study {
+            background: var(--bg-card); border: 2px solid var(--red-border);
+            border-radius: var(--radius); overflow: hidden; margin: 1.5rem 0;
+        }
+        .case-study .case-header {
+            background: #DC2626; color: #fff; padding: 0.85rem 1.25rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.92rem; font-weight: 600;
+        }
+        .case-study .case-body { padding: 1.25rem; }
+        .case-study .case-body p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .case-study .case-body p:last-child { margin-bottom: 0; }
+        .case-study .case-verdict {
+            background: var(--red-light); border-radius: 6px; padding: 0.85rem 1rem;
+            margin-top: 0.75rem;
+        }
+        .case-study .case-verdict p { font-size: 0.88rem; color: var(--red); margin: 0; }
+
+        .takeaways {
+            background: var(--accent); border-radius: var(--radius); padding: 2rem; margin: 2.5rem 0; color: #fff;
+        }
+        .takeaways h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; }
+        .takeaway-item {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 0.85rem; font-size: 0.9rem; line-height: 1.6;
+        }
+        .takeaway-item:last-child { margin-bottom: 0; }
+        .takeaway-item .check { font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+        .takeaway-item .check.yes { color: #6EE7B7; }
+        .takeaway-item .check.no { color: #FCA5A5; }
+        .takeaway-quote {
+            margin-top: 1.5rem; padding-top: 1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center; font-style: italic;
+            font-size: 0.88rem; color: rgba(255,255,255,0.7);
+        }
+
+        .guide-footer {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .guide-footer a { color: var(--accent); text-decoration: none; }
+        .guide-footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.25rem 1rem 3rem; }
+            .guide-header h1 { font-size: 1.65rem; }
+            .section-title { font-size: 1.25rem; }
+            .model-grid, .limit-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <div class="guide-header">
+            <p class="breadcrumb">Video Companion Guide</p>
+            <h1>AI Literacy for Education</h1>
+            <p class="subtitle">How AI Learns, Fails, and Gets It Wrong</p>
+            <div class="meta">
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Lecture 4
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Dr. Mahyar Sharif Vaghefi
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    UT Arlington
+                </span>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/PrDeE16e8wo"
+                title="AI Literacy for Education: How AI Learns, Fails, and Gets It Wrong"
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+
+        <!-- ── 1.7 How AI "Learns" ── -->
+        <h2 class="section-title">1.7 &mdash; How AI &ldquo;Learns&rdquo;</h2>
+
+        <p>Instead of programming every rule, AI systems are shown thousands (or billions) of examples. They find patterns in this data and use those patterns to generate responses.</p>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                The Cat Recognition Analogy
+            </p>
+            <p>Think of teaching a child to recognize cats. You don&rsquo;t write down every rule (&ldquo;has whiskers, pointy ears, four legs&hellip;&rdquo;). Instead, you show them hundreds of cat pictures until they learn to recognize the pattern themselves. <strong>That&rsquo;s exactly how modern AI works.</strong></p>
+        </div>
+
+        <h3 class="sub">What Was AI Trained On?</h3>
+
+        <p>Large language models like ChatGPT and Claude were trained on massive amounts of text from the internet:</p>
+
+        <div class="data-pills">
+            <span class="data-pill good">Wikipedia</span>
+            <span class="data-pill good">News Articles</span>
+            <span class="data-pill good">Academic Papers</span>
+            <span class="data-pill mixed">Reddit Threads</span>
+            <span class="data-pill mixed">Web Pages</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">&ldquo;The good, the bad, and the questionable.&rdquo;</p>
+
+        <div class="callout important">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Garbage In = Garbage Out
+            </p>
+            <p>Training data quality matters enormously. If the data is <strong>biased</strong>, the AI is biased. If it&rsquo;s <strong>outdated</strong>, the AI is outdated. If it&rsquo;s <strong>wrong</strong>, the AI is wrong.</p>
+        </div>
+
+        <!-- ── 1.8 AI Hallucinations ── -->
+        <h2 class="section-title">1.8 &mdash; AI Hallucinations</h2>
+
+        <p>An AI &ldquo;hallucination&rdquo; is when the AI confidently generates information that sounds completely plausible &mdash; but is <strong>entirely false</strong>.</p>
+
+        <div class="callout purple">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                &ldquo;Is That Like Lying?&rdquo;
+            </p>
+            <p>Not exactly. Lying implies knowing the truth and choosing to say something else. AI doesn&rsquo;t know the difference between true and false &mdash; it just generates what <em>sounds right</em> based on patterns. <strong>Somehow, that&rsquo;s worse.</strong></p>
+        </div>
+
+        <h3 class="sub">Common Types of Hallucinations in Academia</h3>
+
+        <div class="hall-grid">
+            <div class="hall-card" style="border: 2px solid #DC2626;">
+                <div class="hall-header" style="background: #DC2626;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                    Fake Citations
+                </div>
+                <div class="hall-body">
+                    <div class="hall-example">&ldquo;According to Smith &amp; Johnson (2023) in the Journal of Business Strategy&hellip;&rdquo;</div>
+                    <p class="hall-reveal" style="color: var(--red);">&rarr; No such article exists<br>&rarr; Authors may not exist<br>&rarr; Journal might be real, but the article isn&rsquo;t<br>&rarr; <strong>The formatting is perfect</strong></p>
+                </div>
+            </div>
+
+            <div class="hall-card" style="border: 2px solid #D97706;">
+                <div class="hall-header" style="background: #D97706;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    Fabricated Statistics
+                </div>
+                <div class="hall-body">
+                    <div class="hall-example">&ldquo;Tesla&rsquo;s Q3 2024 revenue was $45.2 billion, a 23% increase&hellip;&rdquo;</div>
+                    <p class="hall-reveal" style="color: var(--warn);">&rarr; Numbers sound plausible<br>&rarr; Percentages seem reasonable<br>&rarr; <strong>But completely made up</strong></p>
+                </div>
+            </div>
+
+            <div class="hall-card" style="border: 2px solid var(--purple);">
+                <div class="hall-header" style="background: var(--purple);">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                    Invented Legal Cases
+                </div>
+                <div class="hall-body">
+                    <div class="hall-example">&ldquo;In Johnson v. Amazon Corp (2022), the court established that&hellip;&rdquo;</div>
+                    <p class="hall-reveal" style="color: var(--purple);">&rarr; Case doesn&rsquo;t exist<br>&rarr; Can create detailed precedent<br>&rarr; Sounds legally accurate<br>&rarr; <strong>Lawyers have been sanctioned for citing AI-generated cases in court</strong></p>
+                </div>
+            </div>
+
+            <div class="hall-card" style="border: 2px solid var(--accent);">
+                <div class="hall-header" style="background: var(--accent);">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+                    False Company Information
+                </div>
+                <div class="hall-body">
+                    <div class="hall-example">&ldquo;In 2021, Microsoft acquired Slack for $28 billion&hellip;&rdquo;</div>
+                    <p class="hall-reveal" style="color: var(--accent);">&rarr; Sounds plausible (Microsoft does acquisitions)<br>&rarr; Price seems reasonable<br>&rarr; <strong>Never happened (Salesforce bought Slack)</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Remember
+            </p>
+            <p>&ldquo;I do everything with complete confidence. That&rsquo;s part of the problem.&rdquo;</p>
+        </div>
+
+        <!-- ── 1.9 Two Types of AI ── -->
+        <h2 class="section-title">1.9 &mdash; Two Types of AI You Must Understand</h2>
+
+        <p>This is <strong>critical</strong> for business faculty. Not understanding this distinction can lead to confidently using hallucinated &ldquo;current&rdquo; data.</p>
+
+        <div class="model-grid">
+            <div class="model-card" style="border: 2px solid #9CA3AF;">
+                <div class="model-header" style="background: #6B7280;">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    <h4>Knowledge Cutoff Models</h4>
+                </div>
+                <div class="model-body">
+                    <p><strong>What it is:</strong> AI trained on data up to a specific date, then &ldquo;frozen.&rdquo; They literally <em>cannot know</em> anything after that date.</p>
+                    <p><strong>Examples:</strong></p>
+                    <div style="margin-bottom: 0.75rem;">
+                        <span class="model-tag" style="background: var(--tag-bg); color: var(--tag-text);">ChatGPT (base)</span>
+                        <span class="model-tag" style="background: var(--tag-bg); color: var(--tag-text);">Claude (base)</span>
+                        <span class="model-tag" style="background: var(--tag-bg); color: var(--tag-text);">Gemini (base)</span>
+                    </div>
+                    <p style="font-size: 0.82rem;"><strong>Cutoff dates:</strong><br>GPT-4: April 2023<br>GPT-4.5 / o1: Jan 2025<br>Claude: Varies by version</p>
+                </div>
+            </div>
+
+            <div class="model-card" style="border: 2px solid var(--tip-border);">
+                <div class="model-header" style="background: #16A34A;">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    <h4>Real-Time Search Models</h4>
+                </div>
+                <div class="model-body">
+                    <p><strong>What it is:</strong> AI that can search the internet for current information, retrieve real data, and cite sources with links.</p>
+                    <p><strong>Examples:</strong></p>
+                    <div style="margin-bottom: 0.75rem;">
+                        <span class="model-tag" style="background: var(--tip-bg); color: var(--tip-text);">ChatGPT + browsing</span>
+                        <span class="model-tag" style="background: var(--tip-bg); color: var(--tip-text);">Perplexity AI</span>
+                        <span class="model-tag" style="background: var(--tip-bg); color: var(--tip-text);">Gemini + search</span>
+                        <span class="model-tag" style="background: var(--tip-bg); color: var(--tip-text);">Claude + search</span>
+                    </div>
+                    <p style="font-size: 0.82rem; color: var(--tip-text);"><span class="yes">&#10003;</span> Retrieves current web data<br><span class="yes">&#10003;</span> Cites sources with links<br><span class="yes">&#10003;</span> Updates with latest info</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                Critical: Same AI = Both Types!
+            </p>
+            <p>The <strong>same AI</strong> can be both types depending on settings!<br><br>
+            <strong>ChatGPT with browsing OFF</strong> &rarr; Knowledge cutoff model (stuck in the past)<br>
+            <strong>ChatGPT with browsing ON</strong> &rarr; Real-time search model (can look things up)<br><br>
+            Same product. <strong>Completely different capabilities.</strong> Always check if search/browsing is enabled!</p>
+        </div>
+
+        <h3 class="sub">What Each Type Can Handle</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task Type</th>
+                        <th>Knowledge Cutoff</th>
+                        <th>Search-Enabled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Current Stock Prices</td>
+                        <td><span class="no">&#10007; Will hallucinate or use old data</span></td>
+                        <td><span class="yes">&#10003; Can retrieve real-time prices</span></td>
+                    </tr>
+                    <tr>
+                        <td>Recent Company Earnings</td>
+                        <td><span class="no">&#10007; Limited to cutoff date</span></td>
+                        <td><span class="yes">&#10003; Can access latest reports</span></td>
+                    </tr>
+                    <tr>
+                        <td>Current Regulations</td>
+                        <td><span class="no">&#10007; May be outdated</span></td>
+                        <td><span class="yes">&#10003; Can find recent changes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Today&rsquo;s News</td>
+                        <td><span class="no">&#10007; Cannot access</span></td>
+                        <td><span class="yes">&#10003; Can retrieve current news</span></td>
+                    </tr>
+                    <tr>
+                        <td>Explaining Theories</td>
+                        <td><span class="yes">&#10003; Excellent (Porter&rsquo;s 5, NPV, etc.)</span></td>
+                        <td><span class="yes">&#10003; Also good, may add sources</span></td>
+                    </tr>
+                    <tr>
+                        <td>Business Frameworks</td>
+                        <td><span class="yes">&#10003; Very good for established models</span></td>
+                        <td><span class="yes">&#10003; Same, with sources</span></td>
+                    </tr>
+                    <tr>
+                        <td>Creating Practice Problems</td>
+                        <td><span class="yes">&#10003; Excellent at generating scenarios</span></td>
+                        <td><span class="yes">&#10003; Equally good</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── 1.10 AI Bias ── -->
+        <h2 class="section-title">1.10 &mdash; AI Bias: Automated Discrimination</h2>
+
+        <p>AI learned from human-created content. Humans are biased. So AI inherited those biases &mdash; and sometimes <strong>amplified</strong> them.</p>
+
+        <div class="callout purple">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Examples of AI Bias
+            </p>
+            <p>Ask AI to describe a <strong>CEO</strong> &rarr; It might skew male<br>
+            Ask AI about <strong>nurses</strong> &rarr; It might skew female<br>
+            Ask AI for <strong>loan recommendations</strong> &rarr; It might favor certain demographics</p>
+        </div>
+
+        <div class="case-study">
+            <div class="case-header">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                Real Case Study: Apple Card
+            </div>
+            <div class="case-body">
+                <p><strong>The Issue:</strong> Apple Card faced investigation for giving men higher credit limits than women with <em>identical financial profiles</em>.</p>
+                <p><strong>What Happened:</strong> The algorithm wasn&rsquo;t programmed to discriminate. But it learned from historical data where men had higher limits &mdash; and reproduced that pattern. <strong>Automatically. At scale.</strong></p>
+                <div class="case-verdict">
+                    <p><strong>The Takeaway:</strong> &ldquo;So it automated the discrimination.&rdquo; &mdash; Efficiently and invisibly. This happens in hiring systems, loan approvals, market analyses&hellip;</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout concept">
+            <p class="callout-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                For Educators
+            </p>
+            <p>Your students will use these systems professionally. They need to know how to <strong>question</strong> them.</p>
+        </div>
+
+        <!-- ── 1.11 What AI Struggles With ── -->
+        <h2 class="section-title">1.11 &mdash; What ALL AI Struggles With</h2>
+
+        <p>Even when AI isn&rsquo;t hallucinating or showing bias, there are fundamental things it simply <strong>cannot do well</strong>.</p>
+
+        <div class="limit-grid">
+            <div class="limit-card limit-red">
+                <div class="limit-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+                </div>
+                <div>
+                    <h4>Complex Calculations</h4>
+                    <p>AI can make arithmetic errors, especially in multi-step problems. <strong>Always verify quantitative analysis.</strong></p>
+                </div>
+            </div>
+
+            <div class="limit-card limit-orange">
+                <div class="limit-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20"/></svg>
+                </div>
+                <div>
+                    <h4>Ethical Judgment</h4>
+                    <p>AI can explain ethical frameworks, but it <strong>cannot make ethical decisions</strong>. That&rsquo;s human work.</p>
+                </div>
+            </div>
+
+            <div class="limit-card limit-green">
+                <div class="limit-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div>
+                    <h4>Contextual Nuance</h4>
+                    <p>AI misses organizational politics, cultural subtleties, and industry-specific norms.</p>
+                </div>
+            </div>
+
+            <div class="limit-card limit-blue">
+                <div class="limit-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div>
+                    <h4>True Creativity</h4>
+                    <p>AI recombines existing patterns. <strong>Breakthrough innovation still comes from humans.</strong></p>
+                </div>
+            </div>
+
+            <div class="limit-card limit-purple">
+                <div class="limit-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+                <div>
+                    <h4>Personal Experience</h4>
+                    <p>AI has no lived experience, emotions, or intuition from practice.</p>
+                </div>
+            </div>
+
+            <div class="limit-card limit-gray">
+                <div class="limit-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                </div>
+                <div>
+                    <h4>Strategic Wisdom</h4>
+                    <p>AI provides frameworks, but <strong>cannot replace executive judgment and leadership experience</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Key Takeaways ── -->
+        <div class="takeaways">
+            <h3>Key Takeaways</h3>
+            <div class="takeaway-item"><span class="check no">&#10007;</span><span><strong>AI hallucinates</strong> &mdash; it confidently generates false citations, statistics, and facts.</span></div>
+            <div class="takeaway-item"><span class="check no">&#10007;</span><span><strong>Knowledge cutoff models</strong> can&rsquo;t access current information &mdash; they may hallucinate &ldquo;recent&rdquo; data.</span></div>
+            <div class="takeaway-item"><span class="check no">&#10007;</span><span><strong>AI inherits human biases</strong> &mdash; and can automate discrimination at scale.</span></div>
+            <div class="takeaway-item"><span class="check no">&#10007;</span><span><strong>AI can&rsquo;t do math reliably</strong> &mdash; always verify calculations.</span></div>
+            <div class="takeaway-item"><span class="check yes">&#10003;</span><span><strong>Always check</strong> if search/browsing is enabled before trusting &ldquo;current&rdquo; information.</span></div>
+            <div class="takeaway-item"><span class="check yes">&#10003;</span><span><strong>Always verify</strong> citations, statistics, and facts from AI outputs.</span></div>
+            <div class="takeaway-item"><span class="check yes">&#10003;</span><span><strong>Teach students</strong> to question AI outputs &mdash; they&rsquo;ll need this skill professionally.</span></div>
+            <p class="takeaway-quote">&ldquo;You can&rsquo;t guide students around the pitfalls if you don&rsquo;t know where they are. Now you know where they are.&rdquo;</p>
+        </div>
+
+        <!-- ── Footer ── -->
+        <div class="guide-footer">
+            <p><strong>AI Literacy for Education</strong> &middot; How AI Learns, Fails, and Gets It Wrong</p>
+            <p style="margin-top: 0.4rem;">Dr. Mahyar Sharif Vaghefi &middot; University of Texas at Arlington</p>
+            <p style="margin-top: 0.75rem;"><a href="../index.html">&larr; Back to mahyarvaghefi.github.io</a></p>
+        </div>
+    </div>
+</body>
+</html>
