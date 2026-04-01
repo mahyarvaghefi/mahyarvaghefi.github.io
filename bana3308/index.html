@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANA 3308 — Spring 2026 · Dr. Mahyar Sharif Vaghefi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --accent: #0C4A6E;
+    --accent-light: #E0F2FE;
+    --accent-hover: #075985;
+    --border: #E5E5E3;
+    --border-light: #F0F0EE;
+    --tag-bg: #F3F4F6;
+    --tag-text: #374151;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .top-bar {
+    background: var(--accent);
+    padding: 1rem 2rem;
+  }
+  .top-bar-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-bar a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color 0.2s;
+  }
+  .top-bar a:hover { color: #fff; }
+
+  /* ── Header ── */
+  .header {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 2.5rem;
+  }
+  .header .code {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 5px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.4rem;
+  }
+  .header .semester {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+  }
+  .header .instructor {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+  .header .instructor a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .header .instructor a:hover { text-decoration: underline; }
+  .header .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin-top: 2rem;
+  }
+
+  /* ── Content ── */
+  .content {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin: 2.5rem 0 1rem;
+  }
+
+  /* ── Resource cards ── */
+  .resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1rem;
+  }
+  .res-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+    transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .res-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #cfd5db;
+    transform: translateY(-2px);
+  }
+  .res-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .res-icon svg { display: block; }
+  .res-icon.blue { background: var(--accent-light); color: var(--accent); }
+  .res-icon.amber { background: #FEF3C7; color: #92400E; }
+  .res-icon.emerald { background: #D1FAE5; color: #065F46; }
+  .res-icon.violet { background: #EDE9FE; color: #5B21B6; }
+
+  .res-body h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .res-body h3 .arrow {
+    color: var(--text-muted);
+    transition: transform 0.2s, color 0.2s;
+  }
+  .res-card:hover .res-body h3 .arrow {
+    transform: translateX(3px);
+    color: var(--accent);
+  }
+  .res-body p {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .res-body .meta {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* ── Dates section ── */
+  .dates {
+    margin-top: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .date-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 1rem;
+    padding: 0.85rem 1.5rem;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+  .date-row + .date-row { border-top: 1px solid var(--border-light); }
+  .date-row .dt {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .date-row .desc { color: var(--text-secondary); }
+
+  /* ── Footer ── */
+  footer {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.7rem; }
+    .resources { grid-template-columns: 1fr; }
+    .date-row { grid-template-columns: 1fr; gap: 0.2rem; }
+    .top-bar-inner { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Top bar ── -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="../">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Main Page
+    </a>
+    <a href="https://www.uta.edu/academics/faculty/profile?user=mahyar.sharifvaghefi" target="_blank">
+      UTA Faculty Profile
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ── Header ── -->
+<div class="header">
+  <span class="code">BANA 3308</span>
+  <h1>Introduction to Business Analytics</h1>
+  <p class="semester">Spring 2026 · University of Texas at Arlington</p>
+  <p class="instructor">Instructor: <a href="../">Dr. Mahyar Sharif Vaghefi</a> · College of Business, Room 508</p>
+  <div class="divider"></div>
+</div>
+
+<!-- ── Content ── -->
+<div class="content">
+
+  <p class="section-label">Course Project</p>
+  <div class="resources">
+
+    <a href="project.html" class="res-card">
+      <div class="res-icon blue">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <div class="res-body">
+        <h3>Project Instructions <svg class="arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
+        <p>Handwritten Letter Classification — collect data, apply PCA, and build classification models using Orange Data Mining.</p>
+        <div class="meta">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+          Group project · 100 pts + bonus
+        </div>
+      </div>
+    </a>
+
+    <a href="letter-pixel-converter.html" class="res-card">
+      <div class="res-icon amber">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+      </div>
+      <div class="res-body">
+        <h3>Letter → Pixel Converter <svg class="arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
+        <p>Draw letters A–E on a canvas and convert them into 28×28 pixel grids (784 features) for your dataset.</p>
+        <div class="meta">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Interactive tool · Works on desktop &amp; mobile
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="section-label">Key Dates</p>
+  <div class="dates">
+    <div class="date-row">
+      <span class="dt">Apr 8, 11:59 PM</span>
+      <span class="desc">Group data CSV due on Canvas (min. 225 samples per group)</span>
+    </div>
+    <div class="date-row">
+      <span class="dt">Apr 26, 11:59 PM</span>
+      <span class="desc">Final report (PDF, 8–10 pages) + Orange workflow (.ows) due</span>
+    </div>
+    <div class="date-row">
+      <span class="dt">Apr 27</span>
+      <span class="desc">Presentation day &amp; live model competition (+2 bonus pts for highest accuracy)</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  &copy; 2026 <a href="../">Dr. Mahyar Sharif Vaghefi</a> · BANA 3308 · <a href="https://www.uta.edu" target="_blank">University of Texas at Arlington</a>
+</footer>
+
+</body>
+</html>
