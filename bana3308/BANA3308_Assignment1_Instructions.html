@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANA 3308 – Assignment #1 Instructions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002868;
+            --red: #BF0A30;
+            --white: #FFFFFF;
+            --cream: #FFF9F0;
+            --sand: #F5EDE0;
+            --dark: #1A1A2E;
+            --text: #2D2D3A;
+            --text-light: #5A5A6E;
+            --border: #D8D0C4;
+            --accent-gold: #C9A227;
+            --success: #2D6A4F;
+            --warning: #E07C24;
+            --info: #2563EB;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* === HEADER === */
+        .header {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+            padding: 50px 40px 45px;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                linear-gradient(135deg, rgba(0,40,104,1) 0%, rgba(0,40,104,0.85) 50%, rgba(191,10,48,0.3) 100%);
+        }
+
+        .header-content {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .header .course-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.9);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.15em;
+            font-weight: 400;
+        }
+
+        .header .meta-bar {
+            display: flex;
+            gap: 28px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .header .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.92em;
+        }
+
+        .header .meta-item .icon {
+            font-size: 1.1em;
+        }
+
+        /* === FLAG STRIPE === */
+        .flag-stripe {
+            display: flex;
+            height: 6px;
+        }
+        .flag-stripe .blue { flex: 1; background: var(--navy); }
+        .flag-stripe .white { flex: 1; background: var(--white); }
+        .flag-stripe .red { flex: 1; background: var(--red); }
+
+        /* === MAIN CONTENT === */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        /* === DEADLINE BANNER === */
+        .deadline-banner {
+            background: linear-gradient(135deg, var(--red), #8B0000);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 22px 28px;
+            margin-bottom: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(191,10,48,0.25);
+        }
+
+        .deadline-banner .deadline-label {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.85;
+        }
+
+        .deadline-banner .deadline-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .deadline-banner .deadline-note {
+            font-size: 0.9em;
+            opacity: 0.9;
+            background: rgba(0,0,0,0.15);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55em;
+            color: var(--navy);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--sand);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .num {
+            background: var(--navy);
+            color: var(--white);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section h3 {
+            font-size: 1.1em;
+            color: var(--text);
+            margin: 20px 0 10px;
+            font-weight: 700;
+        }
+
+        .section p, .section li {
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .section ul, .section ol {
+            padding-left: 24px;
+        }
+
+        .section ul li::marker {
+            color: var(--navy);
+        }
+
+        /* === QUESTION OVERVIEW TABLE === */
+        .overview-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 16px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .overview-table thead th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 13px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.92em;
+            letter-spacing: 0.3px;
+        }
+
+        .overview-table thead th:last-child {
+            text-align: center;
+            width: 90px;
+        }
+
+        .overview-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #EDE8E0;
+            font-size: 0.95em;
+        }
+
+        .overview-table tbody td:last-child {
+            text-align: center;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .overview-table tbody tr:nth-child(even) {
+            background: #FDFAF5;
+        }
+
+        .overview-table tbody tr:hover {
+            background: #F0EBE1;
+        }
+
+        .overview-table tfoot td {
+            padding: 13px 18px;
+            font-weight: 700;
+            background: var(--sand);
+            border-top: 2px solid var(--border);
+        }
+
+        .overview-table tfoot td:last-child {
+            text-align: center;
+            color: var(--red);
+            font-size: 1.1em;
+        }
+
+        /* === FILE CARDS === */
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .file-card {
+            background: #FDFAF5;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .file-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .file-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        .file-icon.notebook { background: #EBF5FF; color: var(--info); }
+        .file-icon.image    { background: #FFF3E0; color: var(--warning); }
+        .file-icon.csv      { background: #E8F5E9; color: var(--success); }
+
+        .file-info .file-name {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88em;
+            font-weight: 500;
+            color: var(--dark);
+            word-break: break-all;
+        }
+
+        .file-info .file-desc {
+            font-size: 0.82em;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+
+        /* === CALLOUT BOXES === */
+        .callout {
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 18px 0;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .callout .callout-icon {
+            font-size: 1.3em;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .callout p { margin: 0; }
+
+        .callout.warning {
+            background: #FFF8EE;
+            border: 1px solid #F5D9A8;
+        }
+        .callout.warning .callout-icon { color: var(--warning); }
+
+        .callout.important {
+            background: #FFF0F0;
+            border: 1px solid #F5B8B8;
+        }
+        .callout.important .callout-icon { color: var(--red); }
+
+        .callout.tip {
+            background: #F0F7FF;
+            border: 1px solid #B8D4F5;
+        }
+        .callout.tip .callout-icon { color: var(--info); }
+
+        .callout.success {
+            background: #F0FAF4;
+            border: 1px solid #B8E0C8;
+        }
+        .callout.success .callout-icon { color: var(--success); }
+
+        /* === STEP LIST === */
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            padding-left: 0;
+            margin: 16px 0;
+        }
+
+        .steps li {
+            counter-increment: step;
+            position: relative;
+            padding: 14px 18px 14px 56px;
+            background: #FDFAF5;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            width: 28px;
+            height: 28px;
+            background: var(--navy);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82em;
+            font-weight: 700;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88em;
+            background: #EDE8E0;
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: var(--dark);
+        }
+
+        /* === CHECKLIST === */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0;
+        }
+
+        .checklist li {
+            padding: 8px 0 8px 32px;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 4px;
+            font-size: 1.1em;
+            color: var(--navy);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-light);
+            font-size: 0.88em;
+        }
+
+        .footer a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .header { padding: 30px 20px; }
+            .header h1 { font-size: 2em; }
+            .container { padding: 24px 16px 40px; }
+            .section { padding: 22px 18px; }
+            .deadline-banner { flex-direction: column; text-align: center; }
+            .header .meta-bar { justify-content: center; }
+        }
+
+        @media print {
+            body { background: white; }
+            .section { box-shadow: none; break-inside: avoid; }
+            .deadline-banner { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-content">
+        <div class="course-tag">BANA 3308 — Spring 2026</div>
+        <h1>Assignment #1 Instructions</h1>
+        <p class="subtitle">Introduction to Business Analytics — NumPy &amp; Pandas</p>
+        <div class="meta-bar">
+            <div class="meta-item">
+                <span class="icon">👤</span> Prof. Mahyar S Vaghefi
+            </div>
+            <div class="meta-item">
+                <span class="icon">🏫</span> University of Texas Arlington
+            </div>
+            <div class="meta-item">
+                <span class="icon">📄</span> 5 Questions · 100 Points
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="flag-stripe">
+    <div class="blue"></div>
+    <div class="white"></div>
+    <div class="red"></div>
+</div>
+
+<div class="container">
+
+    <!-- DEADLINE -->
+    <div class="deadline-banner">
+        <div>
+            <div class="deadline-label">Submission Deadline</div>
+            <div class="deadline-date">Wednesday, February 25, 2026 — 1:00 PM</div>
+        </div>
+        <div class="deadline-note">⛔ No late submissions accepted</div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section">
+        <h2><span class="num">1</span> Assignment Overview</h2>
+        <p>This assignment covers fundamental skills in <strong>NumPy</strong> (array creation, slicing, broadcasting, image processing) and <strong>Pandas</strong> (DataFrames, slicing, filtering, concatenation, merging, and groupby). Each of the five questions is worth <strong>20 points</strong>.</p>
+
+        <table class="overview-table">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Topic</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Question 1</td>
+                    <td>NumPy Fundamentals — arrays, slicing, boolean indexing, aggregation</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Question 2</td>
+                    <td>Array Operations &amp; Broadcasting — element-wise ops, transpose, matrix multiplication</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Question 3</td>
+                    <td>Image Processing with NumPy — channels, region extraction, color masking</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Question 4</td>
+                    <td>Pandas DataFrame Operations — creation, <code>read_csv</code>, slicing, filtering, concat</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Question 5</td>
+                    <td>Pandas Merge &amp; GroupBy — inner/left/right/outer joins, aggregation</td>
+                    <td>20</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total</td>
+                    <td>100</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- FILES PROVIDED -->
+    <div class="section">
+        <h2><span class="num">2</span> Files Provided</h2>
+        <p>You will receive <strong>three files</strong>. Download all of them and place them in the <strong>same folder</strong> as your notebook.</p>
+
+        <div class="file-grid">
+            <div class="file-card">
+                <div class="file-icon notebook">📓</div>
+                <div class="file-info">
+                    <div class="file-name">BANA3308_Assignment1_Spring_2026.ipynb</div>
+                    <div class="file-desc">Jupyter Notebook with all questions and answer cells. <strong>This is the file you will edit and submit.</strong></div>
+                </div>
+            </div>
+            <div class="file-card">
+                <div class="file-icon image">🖼️</div>
+                <div class="file-info">
+                    <div class="file-name">texas_playground.jpg</div>
+                    <div class="file-desc">Texas-themed image used in <strong>Question 3</strong> (Image Processing). Do not rename this file.</div>
+                </div>
+            </div>
+            <div class="file-card">
+                <div class="file-icon csv">📊</div>
+                <div class="file-info">
+                    <div class="file-name">tx_sales.csv</div>
+                    <div class="file-desc">CSV file with sales data used in <strong>Question 4</strong> (Pandas). Contains columns: OrderID, Product, Category, City, Revenue, Units.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout important">
+            <span class="callout-icon">⚠️</span>
+            <div>
+                <p><strong>All three files must be in the same directory.</strong> When your notebook runs <code>mpimg.imread('texas_playground.jpg')</code> or <code>pd.read_csv('tx_sales.csv')</code>, Python looks for these files in the same folder as the notebook. If they are not there, you will get a <code>FileNotFoundError</code>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOLDER SETUP -->
+    <div class="section">
+        <h2><span class="num">3</span> Setting Up Your Workspace</h2>
+        <p>Before you begin, set up your folder like this:</p>
+
+        <ol class="steps">
+            <li>Create a folder on your computer (e.g., <code>BANA3308_Assignment1</code>)</li>
+            <li>Download all three files from Canvas and place them inside that folder:
+                <br><code>BANA3308_Assignment1/</code>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;<code>├── BANA3308_Assignment1_Spring_2026.ipynb</code>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;<code>├── texas_playground.jpg</code>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;<code>└── tx_sales.csv</code>
+            </li>
+            <li>Open <strong>Jupyter Notebook</strong> (or JupyterLab) and navigate to that folder</li>
+            <li>Open <code>BANA3308_Assignment1_Spring_2026.ipynb</code></li>
+            <li>Enter your <strong>name</strong> and <strong>student ID</strong> in the first code cell</li>
+        </ol>
+
+        <div class="callout tip">
+            <span class="callout-icon">💡</span>
+            <div>
+                <p><strong>Google Colab users:</strong> If you are using Google Colab, you will need to upload <code>texas_playground.jpg</code> and <code>tx_sales.csv</code> to your Colab session. You can do this by clicking the folder icon on the left sidebar and dragging the files in, or using the upload button.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHAT TO DO -->
+    <div class="section">
+        <h2><span class="num">4</span> What You Need to Do</h2>
+
+        <h3>General Instructions</h3>
+        <ul>
+            <li>Read each question carefully in the notebook's <strong>markdown cells</strong> (gray cells with formatted text)</li>
+            <li>Write your code in the corresponding <strong>code cells</strong> labeled <code># Part X - Answer Here</code></li>
+            <li>Run every code cell so that the <strong>output is visible</strong> below each cell</li>
+            <li>Where the question asks you to <em>explain</em> something, use a <strong>comment</strong> (<code>#</code>) inside the code cell</li>
+            <li>For operations that may fail (Questions 2), use <code>try/except</code> blocks as shown in the notebook</li>
+        </ul>
+
+        <h3>Question-Specific Notes</h3>
+
+        <h3 style="color: var(--navy); font-size: 1em;">Question 1 — NumPy Fundamentals</h3>
+        <ul>
+            <li>Set the random seed to <code>2026</code> (not 2025)</li>
+            <li>Each part builds on the previous — run cells in order</li>
+            <li>When asked to "make a copy first," use <code>.copy()</code> so you don't modify the original array</li>
+        </ul>
+
+        <h3 style="color: var(--navy); font-size: 1em;">Question 2 — Array Operations &amp; Broadcasting</h3>
+        <ul>
+            <li>Start by running the <strong>Setup cell</strong> that creates arrays A through F</li>
+            <li>For each operation, first <strong>predict</strong> whether it will work, then <strong>try it</strong></li>
+            <li>Use <code>try/except</code> blocks for operations that might fail</li>
+        </ul>
+
+        <h3 style="color: var(--navy); font-size: 1em;">Question 3 — Image Processing</h3>
+        <ul>
+            <li>Make sure <code>texas_playground.jpg</code> is in the same folder as the notebook</li>
+            <li>Use <code>plt.imshow()</code> to display images and <code>plt.show()</code> to render them</li>
+            <li>When the question asks for "mean pixel value for each channel separately," compute <strong>three separate values</strong> — one for Red, one for Green, one for Blue</li>
+            <li>Always use <code>.copy()</code> before modifying an image to preserve the original</li>
+        </ul>
+
+        <h3 style="color: var(--navy); font-size: 1em;">Question 4 — Pandas DataFrames</h3>
+        <ul>
+            <li>Make sure <code>tx_sales.csv</code> is in the same folder as the notebook</li>
+            <li>Load it using: <code>sales_df = pd.read_csv('tx_sales.csv')</code></li>
+            <li>Remember: <code>.loc</code> is <strong>label-based</strong> and <strong>inclusive</strong>; <code>.iloc</code> is <strong>integer-based</strong> and <strong>exclusive</strong> on the end</li>
+        </ul>
+
+        <h3 style="color: var(--navy); font-size: 1em;">Question 5 — Merge &amp; GroupBy</h3>
+        <ul>
+            <li>Start by running the <strong>Setup cell</strong> that creates the <code>stores</code> and <code>sales</code> DataFrames</li>
+            <li>For each merge type, explain <strong>which rows appear or disappear and why</strong></li>
+            <li>Pay attention to <code>NaN</code> values in your merge results — explain what they mean</li>
+        </ul>
+    </div>
+
+    <!-- WHAT TO SUBMIT -->
+    <div class="section">
+        <h2><span class="num">5</span> What to Submit</h2>
+
+        <p>Submit <strong>one file only</strong> on Canvas:</p>
+
+        <div class="file-grid">
+            <div class="file-card" style="border-color: var(--navy); border-width: 2px;">
+                <div class="file-icon notebook">📓</div>
+                <div class="file-info">
+                    <div class="file-name">BANA3308_Assignment1_Spring_2026.ipynb</div>
+                    <div class="file-desc"><strong>Your completed notebook with all outputs visible.</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Pre-Submission Checklist</h3>
+        <ul class="checklist">
+            <li>Your <strong>name</strong> and <strong>student ID</strong> are filled in at the top</li>
+            <li>All code cells have been <strong>executed</strong> (outputs are visible)</li>
+            <li>All <code>plt.imshow()</code> images are <strong>displayed</strong> in the notebook</li>
+            <li>Explanations and reasoning are written as <strong>comments</strong> where required</li>
+            <li>You have not renamed the notebook file</li>
+            <li>You used <code>try/except</code> blocks where the instructions say to</li>
+            <li>You ran cells <strong>in order</strong> from top to bottom (or use <em>Kernel → Restart &amp; Run All</em>)</li>
+        </ul>
+
+        <div class="callout success">
+            <span class="callout-icon">✅</span>
+            <div>
+                <p><strong>Pro tip:</strong> Before submitting, go to <em>Kernel → Restart &amp; Run All</em> to make sure your entire notebook runs cleanly from top to bottom without errors. This is how it will be graded.</p>
+            </div>
+        </div>
+
+        <div class="callout important">
+            <span class="callout-icon">🚫</span>
+            <div>
+                <p><strong>Do NOT submit</strong> the image file (<code>texas_playground.jpg</code>) or the CSV file (<code>tx_sales.csv</code>). Only submit the <code>.ipynb</code> notebook.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMON MISTAKES -->
+    <div class="section">
+        <h2><span class="num">6</span> Common Mistakes to Avoid</h2>
+        <ul>
+            <li><strong>FileNotFoundError:</strong> The image or CSV file is not in the same folder as the notebook. Move them into the same directory.</li>
+            <li><strong>Forgetting <code>.copy()</code>:</strong> Modifying an array or DataFrame without copying it first will change the original. Always use <code>.copy()</code> when the instructions say to.</li>
+            <li><strong>Running cells out of order:</strong> Later cells depend on variables created in earlier cells. Run from top to bottom.</li>
+            <li><strong><code>.loc</code> vs <code>.iloc</code> confusion:</strong> <code>.loc[0:3]</code> includes row 3 (4 rows), while <code>.iloc[0:3]</code> excludes row 3 (3 rows).</li>
+            <li><strong>Missing outputs:</strong> If you see <code>In [*]:</code> next to a cell, it hasn't finished running. Wait for it to complete or re-run it.</li>
+            <li><strong>No explanation:</strong> Where the question says "explain," write a comment. A blank answer or code-only answer will lose points.</li>
+        </ul>
+    </div>
+
+    <!-- GRADING -->
+    <div class="section">
+        <h2><span class="num">7</span> Grading Criteria</h2>
+        <p>Each question is graded on:</p>
+        <ul>
+            <li><strong>Correctness</strong> — Does the code produce the right output?</li>
+            <li><strong>Completeness</strong> — Are all sub-parts answered?</li>
+            <li><strong>Explanations</strong> — Where required, are your comments clear and accurate?</li>
+            <li><strong>Code Quality</strong> — Is your code readable with appropriate comments?</li>
+        </ul>
+
+        <div class="callout warning">
+            <span class="callout-icon">⏰</span>
+            <div>
+                <p><strong>Deadline: Monday, February 25, 2026 at 1:00 PM.</strong> No late submissions will be accepted under any circumstances. Plan ahead and submit early to avoid last-minute issues.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="flag-stripe">
+    <div class="blue"></div>
+    <div class="white"></div>
+    <div class="red"></div>
+</div>
+
+<div class="footer">
+    BANA 3308 — Introduction to Business Analytics · Spring 2026 · <a href="#">University of Texas Arlington</a>
+</div>
+
+</body>
+</html>

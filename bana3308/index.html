@@ -164,6 +164,47 @@
   .res-icon.amber { background: #FEF3C7; color: #92400E; }
   .res-icon.emerald { background: #D1FAE5; color: #065F46; }
   .res-icon.violet { background: #EDE9FE; color: #5B21B6; }
+  .res-icon.rose { background: #FFE4E6; color: #9F1239; }
+
+  /* ── Assignment cards (non-link, contains sub-links) ── */
+  .assign-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+    transition: box-shadow 0.25s, border-color 0.25s;
+  }
+  .assign-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #cfd5db;
+  }
+  .assign-links {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+  }
+  .assign-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .assign-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+  }
 
   .res-body h3 {
     font-size: 0.95rem;
@@ -269,6 +310,59 @@
 <!-- ── Content ── -->
 <div class="content">
 
+  <p class="section-label">Assignments</p>
+  <div class="resources">
+
+    <div class="assign-card">
+      <div class="res-icon emerald">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="9" y1="8" x2="17" y2="8"/><line x1="9" y1="12" x2="14" y2="12"/></svg>
+      </div>
+      <div class="res-body">
+        <h3>Assignment #1 — NumPy &amp; Pandas</h3>
+        <p>Array creation, slicing, broadcasting, image processing with NumPy, and DataFrames, filtering, merging, and groupby with Pandas.</p>
+        <div class="meta">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Due: Feb 25, 2026 at 1:00 PM · 100 pts
+        </div>
+        <div class="assign-links">
+          <a href="BANA3308_Assignment1_Instructions.html" target="_blank">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Instructions
+          </a>
+          <a href="BANA3308_Assignment1_Spring_2026.ipynb" download>
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Jupyter Notebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="assign-card">
+      <div class="res-icon violet">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="9" y1="8" x2="17" y2="8"/><line x1="9" y1="12" x2="14" y2="12"/></svg>
+      </div>
+      <div class="res-body">
+        <h3>Assignment #2 — Orange Data Mining</h3>
+        <p>Build visual analytics workflows in Orange — explore datasets, apply classification models, and record observations in a Jupyter Notebook.</p>
+        <div class="meta">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Due: Mar 23, 2026 at 1:00 PM · 100 pts
+        </div>
+        <div class="assign-links">
+          <a href="BANA3308_Assignment2_Instructions.html" target="_blank">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Instructions
+          </a>
+          <a href="BANA3308_Assignment2_Spring_2026.ipynb" download>
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Jupyter Notebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <p class="section-label">Course Project</p>
   <div class="resources">
 
@@ -304,6 +398,14 @@
 
   <p class="section-label">Key Dates</p>
   <div class="dates">
+    <div class="date-row">
+      <span class="dt">Feb 25, 1:00 PM</span>
+      <span class="desc">Assignment #1 due on Canvas — NumPy &amp; Pandas</span>
+    </div>
+    <div class="date-row">
+      <span class="dt">Mar 23, 1:00 PM</span>
+      <span class="desc">Assignment #2 due on Canvas — Orange Data Mining</span>
+    </div>
     <div class="date-row">
       <span class="dt">Apr 8, 11:59 PM</span>
       <span class="desc">Group data CSV due on Canvas (min. 225 samples per group)</span>

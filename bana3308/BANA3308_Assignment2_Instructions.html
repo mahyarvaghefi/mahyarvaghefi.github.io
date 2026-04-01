@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANA 3308 – Assignment #2 Instructions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002868;
+            --red: #BF0A30;
+            --white: #FFFFFF;
+            --cream: #FFF9F0;
+            --sand: #F5EDE0;
+            --dark: #1A1A2E;
+            --text: #2D2D3A;
+            --text-light: #5A5A6E;
+            --border: #D8D0C4;
+            --accent-gold: #C9A227;
+            --success: #2D6A4F;
+            --warning: #E07C24;
+            --info: #2563EB;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* === HEADER === */
+        .header {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+            padding: 50px 40px 45px;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                linear-gradient(135deg, rgba(0,40,104,1) 0%, rgba(0,40,104,0.85) 50%, rgba(191,10,48,0.3) 100%);
+        }
+
+        .header-content {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .header .course-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.9);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.15em;
+            font-weight: 400;
+        }
+
+        .header .meta-bar {
+            display: flex;
+            gap: 28px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .header .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.92em;
+        }
+
+        .header .meta-item .icon { font-size: 1.1em; }
+
+        /* === FLAG STRIPE === */
+        .flag-stripe { display: flex; height: 6px; }
+        .flag-stripe .blue  { flex: 1; background: var(--navy); }
+        .flag-stripe .white { flex: 1; background: var(--white); }
+        .flag-stripe .red   { flex: 1; background: var(--red); }
+
+        /* === MAIN CONTENT === */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        /* === DEADLINE BANNER === */
+        .deadline-banner {
+            background: linear-gradient(135deg, var(--red), #8B0000);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 22px 28px;
+            margin-bottom: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(191,10,48,0.25);
+        }
+
+        .deadline-banner .deadline-label {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.85;
+        }
+
+        .deadline-banner .deadline-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .deadline-banner .deadline-note {
+            font-size: 0.9em;
+            opacity: 0.9;
+            background: rgba(0,0,0,0.15);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55em;
+            color: var(--navy);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--sand);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .num {
+            background: var(--navy);
+            color: var(--white);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section h3 {
+            font-size: 1.1em;
+            color: var(--text);
+            margin: 20px 0 10px;
+            font-weight: 700;
+        }
+
+        .section p, .section li { color: var(--text); margin-bottom: 8px; }
+        .section ul, .section ol { padding-left: 24px; }
+        .section ul li::marker { color: var(--navy); }
+
+        /* === OVERVIEW TABLE === */
+        .overview-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 16px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .overview-table thead th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 13px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.92em;
+            letter-spacing: 0.3px;
+        }
+
+        .overview-table thead th:last-child { text-align: center; width: 90px; }
+
+        .overview-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #EDE8E0;
+            font-size: 0.95em;
+        }
+
+        .overview-table tbody td:last-child {
+            text-align: center;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .overview-table tbody tr:nth-child(even) { background: #FDFAF5; }
+        .overview-table tbody tr:hover { background: #F0EBE1; }
+
+        .overview-table tfoot td {
+            padding: 13px 18px;
+            font-weight: 700;
+            background: var(--sand);
+            border-top: 2px solid var(--border);
+        }
+
+        .overview-table tfoot td:last-child {
+            text-align: center;
+            color: var(--red);
+            font-size: 1.1em;
+        }
+
+        /* === FILE CARDS === */
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .file-card {
+            background: #FDFAF5;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .file-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .file-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        .file-icon.notebook { background: #EBF5FF; color: var(--info); }
+        .file-icon.orange   { background: #FFF3E0; color: var(--warning); }
+
+        .file-info .file-name {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88em;
+            font-weight: 500;
+            color: var(--dark);
+            word-break: break-all;
+        }
+
+        .file-info .file-desc {
+            font-size: 0.82em;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+
+        /* === CALLOUT BOXES === */
+        .callout {
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 18px 0;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .callout .callout-icon { font-size: 1.3em; flex-shrink: 0; margin-top: 2px; }
+        .callout p { margin: 0; }
+
+        .callout.warning  { background: #FFF8EE; border: 1px solid #F5D9A8; }
+        .callout.warning .callout-icon { color: var(--warning); }
+
+        .callout.important { background: #FFF0F0; border: 1px solid #F5B8B8; }
+        .callout.important .callout-icon { color: var(--red); }
+
+        .callout.tip { background: #F0F7FF; border: 1px solid #B8D4F5; }
+        .callout.tip .callout-icon { color: var(--info); }
+
+        .callout.success { background: #F0FAF4; border: 1px solid #B8E0C8; }
+        .callout.success .callout-icon { color: var(--success); }
+
+        /* === STEP LIST === */
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            padding-left: 0;
+            margin: 16px 0;
+        }
+
+        .steps li {
+            counter-increment: step;
+            position: relative;
+            padding: 14px 18px 14px 56px;
+            background: #FDFAF5;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            width: 28px;
+            height: 28px;
+            background: var(--navy);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82em;
+            font-weight: 700;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88em;
+            background: #EDE8E0;
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: var(--dark);
+        }
+
+        /* === CHECKLIST === */
+        .checklist { list-style: none; padding: 0; margin: 14px 0; }
+
+        .checklist li { padding: 8px 0 8px 32px; position: relative; }
+
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 4px;
+            font-size: 1.1em;
+            color: var(--navy);
+        }
+
+        /* === PARTS TABLE === */
+        .parts-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 12px 0 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            font-size: 0.93em;
+        }
+
+        .parts-table thead th {
+            background: #EEF2F8;
+            color: var(--navy);
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .parts-table thead th:last-child { text-align: center; width: 70px; }
+
+        .parts-table tbody td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #EDE8E0;
+        }
+
+        .parts-table tbody td:last-child { text-align: center; font-weight: 600; color: var(--navy); }
+        .parts-table tbody tr:nth-child(even) { background: #FDFAF5; }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-light);
+            font-size: 0.88em;
+        }
+
+        .footer a { color: var(--navy); text-decoration: none; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .header { padding: 30px 20px; }
+            .header h1 { font-size: 2em; }
+            .container { padding: 24px 16px 40px; }
+            .section { padding: 22px 18px; }
+            .deadline-banner { flex-direction: column; text-align: center; }
+            .header .meta-bar { justify-content: center; }
+        }
+
+        @media print {
+            body { background: white; }
+            .section { box-shadow: none; break-inside: avoid; }
+            .deadline-banner { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-content">
+        <div class="course-tag">BANA 3308 — Spring 2026</div>
+        <h1>Assignment #2 Instructions</h1>
+        <p class="subtitle">Introduction to Business Analytics — Orange Data Mining</p>
+        <div class="meta-bar">
+            <div class="meta-item">
+                <span class="icon">👤</span> Prof. Mahyar S Vaghefi
+            </div>
+            <div class="meta-item">
+                <span class="icon">🏫</span> University of Texas Arlington
+            </div>
+            <div class="meta-item">
+                <span class="icon">📄</span> 2 Questions · 100 Points
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="flag-stripe">
+    <div class="blue"></div>
+    <div class="white"></div>
+    <div class="red"></div>
+</div>
+
+<div class="container">
+
+    <!-- DEADLINE -->
+    <div class="deadline-banner">
+        <div>
+            <div class="deadline-label">Submission Deadline</div>
+            <div class="deadline-date">Monday, March 23, 2026 — 1:00 PM</div>
+        </div>
+        <div class="deadline-note">⛔ No late submissions accepted</div>
+    </div>
+
+    <!-- SECTION 1: OVERVIEW -->
+    <div class="section">
+        <h2><span class="num">1</span> Assignment Overview</h2>
+        <p>This assignment focuses entirely on <strong>Orange Data Mining</strong> as a visual analytics tool. You will build workflows in Orange, then record your observations and answers in a Jupyter Notebook. No Python coding is required — your answers go in the provided text cells.</p>
+        <p style="margin-top: 12px;">There are <strong>two questions</strong>, each worth <strong>50 points</strong>, for a total of 100 points.</p>
+
+        <table class="overview-table" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Topic</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Question 1</strong></td>
+                    <td>Linear Regression in Orange — Predicting median housing values using the <em>Housing</em> dataset</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td><strong>Question 2</strong></td>
+                    <td>Classification in Orange — Predicting tumor diagnosis using the <em>Breast Cancer Wisconsin</em> dataset</td>
+                    <td>50</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total</td>
+                    <td>100</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <h3>Question 1 — Part Breakdown</h3>
+        <table class="parts-table">
+            <thead>
+                <tr><th>Part</th><th>Description</th><th>Points</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Part 1</td><td>Data Exploration — structure, distributions, correlations</td><td>8</td></tr>
+                <tr><td>Part 2</td><td>Feature Selection, Preprocessing &amp; Scatter Plot</td><td>10</td></tr>
+                <tr><td>Part 3</td><td>Train-Test Split</td><td>7</td></tr>
+                <tr><td>Part 4</td><td>Build &amp; Compare Linear Regression vs. Ridge — metrics &amp; coefficients</td><td>15</td></tr>
+                <tr><td>Part 5</td><td>Prediction Analysis &amp; Generalization Check</td><td>10</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Question 2 — Part Breakdown</h3>
+        <table class="parts-table">
+            <thead>
+                <tr><th>Part</th><th>Description</th><th>Points</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Part 1</td><td>Data Loading &amp; Exploration</td><td>8</td></tr>
+                <tr><td>Part 2</td><td>Feature Selection, Preprocessing &amp; Sampling</td><td>8</td></tr>
+                <tr><td>Part 3</td><td>Logistic Regression — Build, Metrics &amp; Confusion Matrix</td><td>13</td></tr>
+                <tr><td>Part 4</td><td>Coefficients &amp; Generalization Check</td><td>10</td></tr>
+                <tr><td>Part 5</td><td>Critical Analysis</td><td>11</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 2: FILES PROVIDED -->
+    <div class="section">
+        <h2><span class="num">2</span> Files Provided</h2>
+        <p>You will receive <strong>one file</strong> from Canvas. Both datasets used in this assignment are built directly into Orange — no external files to download.</p>
+
+        <div class="file-grid">
+            <div class="file-card" style="border-color: var(--navy); border-width: 2px;">
+                <div class="file-icon notebook">📓</div>
+                <div class="file-info">
+                    <div class="file-name">BANA3308_Assignment2_Spring_2026.ipynb</div>
+                    <div class="file-desc">Jupyter Notebook with all questions and answer cells. <strong>This is the file you will edit and submit.</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Datasets — Built Into Orange</h3>
+        <p>Both datasets are available inside Orange's <strong>Datasets</strong> widget. You do not need to download or import any files.</p>
+
+        <div class="file-grid">
+            <div class="file-card">
+                <div class="file-icon orange">🏠</div>
+                <div class="file-info">
+                    <div class="file-name">Housing</div>
+                    <div class="file-desc">Used in <strong>Question 1</strong>. In Orange's Datasets widget, search for <strong>"Housing"</strong>. Target variable: <code>MEDV</code> (median home value in $1,000s).</div>
+                </div>
+            </div>
+            <div class="file-card">
+                <div class="file-icon orange">🔬</div>
+                <div class="file-info">
+                    <div class="file-name">Breast Cancer Wisconsin</div>
+                    <div class="file-desc">Used in <strong>Question 2</strong>. Search for <strong>"Breast Cancer Wisconsin"</strong> — not just "Breast Cancer". Target variable: <code>type</code> (malignant / benign).</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout important">
+            <span class="callout-icon">⚠️</span>
+            <div>
+                <p>For Question 2, make sure you select <strong>Breast Cancer Wisconsin</strong> in the Datasets widget. There is another dataset simply called "Breast Cancer" — these are different datasets and selecting the wrong one will give you different features and results.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: WORKSPACE SETUP -->
+    <div class="section">
+        <h2><span class="num">3</span> Setting Up Your Workspace</h2>
+        <p>You will need both <strong>Orange Data Mining</strong> and <strong>Jupyter Notebook</strong> open at the same time for this assignment.</p>
+
+        <h3>Installing Orange (if not already installed)</h3>
+        <ol class="steps">
+            <li>Go to <strong>orangedatamining.com</strong> and download the installer for your operating system (Windows or macOS)</li>
+            <li>Run the installer and follow the on-screen instructions</li>
+            <li>Launch Orange — you should see the Orange canvas (a blank workflow area)</li>
+        </ol>
+
+        <h3>Setting Up the Notebook</h3>
+        <ol class="steps">
+            <li>Create a folder on your computer (e.g., <code>BANA3308_Assignment2</code>)</li>
+            <li>Download <code>BANA3308_Assignment2_Spring_2026.ipynb</code> from Canvas and place it in that folder</li>
+            <li>Open <strong>Jupyter Notebook</strong> and navigate to that folder</li>
+            <li>Open <code>BANA3308_Assignment2_Spring_2026.ipynb</code></li>
+            <li>Enter your <strong>name</strong> and <strong>student ID</strong> in the first code cell</li>
+        </ol>
+
+        <div class="callout tip">
+            <span class="callout-icon">💡</span>
+            <div>
+                <p><strong>Tip:</strong> Keep Orange and your Jupyter Notebook open side by side. As you build each workflow in Orange and read the results, switch to the notebook to write your answers. You do not need to run any code — just fill in the answer cells.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: WHAT TO DO -->
+    <div class="section">
+        <h2><span class="num">4</span> What You Need to Do</h2>
+
+        <h3>General Instructions</h3>
+        <ul>
+            <li>Read each question carefully in the notebook's <strong>markdown cells</strong> (formatted text cells)</li>
+            <li>Build the corresponding <strong>Orange workflow</strong> as described in each part</li>
+            <li>Write your answers in the <strong>code cells</strong> labeled <code># Part X — Answer Here</code> using comments (<code>#</code>)</li>
+            <li>Fill in any <strong>HTML tables</strong> in the notebook by replacing <code>[Your answer]</code> with your actual values</li>
+            <li>Save your Orange workflow after completing each question using <strong>File → Save As</strong></li>
+        </ul>
+
+        <div class="callout tip">
+            <span class="callout-icon">💡</span>
+            <div>
+                <p><strong>How to edit HTML tables in Jupyter:</strong> Double-click a markdown cell to enter edit mode. Replace <code>[Your answer]</code> with your value. Press <strong>Shift + Enter</strong> to render the cell again.</p>
+            </div>
+        </div>
+
+        <div class="callout success">
+            <span class="callout-icon">📘</span>
+            <div>
+                <p><strong>A note on new widgets and topics:</strong> This assignment intentionally introduces a few widgets and concepts — such as the <code>Correlations</code> widget and <strong>Ridge Regression</strong> — that may not have been covered directly in class. This is by design. Part of working with real analytics tools is learning to use features beyond what is explicitly taught. Where a topic requires background knowledge, the notebook provides a plain-English explanation before asking you to use it. You are not expected to have prior knowledge of these — read the provided explanations carefully and you will have everything you need to complete the task.</p>
+            </div>
+        </div>
+
+        <h3 style="color: var(--navy); font-size: 1em; margin-top: 24px;">Question 1 — Linear Regression (Housing Dataset)</h3>
+        <ul>
+            <li><strong>Part 1:</strong> Load the <em>Housing</em> dataset via the <code>Datasets</code> widget. Connect it to <code>Data Table</code>, <code>Feature Statistics</code>, <code>Distributions</code>, and <code>Correlations</code> to explore the data before building any model.</li>
+            <li><strong>Part 2:</strong> Use <code>Select Columns</code> to keep features CRIM, RM, AGE, DIS, TAX, PTRATIO, LSTAT and target MEDV. Add <code>Continuize</code> with Z-score normalization. Add a <code>Scatter Plot</code> connected to the <em>non-normalized</em> output to explore RM vs. MEDV and LSTAT vs. MEDV.</li>
+            <li><strong>Part 3:</strong> Connect <code>Data Sampler</code> after Continuize. Set it to <strong>75% training / 25% test</strong> and enable <strong>Replicable (deterministic) sampling</strong>. Connect the two outputs to separate <code>Data Table</code> widgets labeled "Training Data" and "Test Data".</li>
+            <li><strong>Part 4:</strong> Build two models — a plain <code>Linear Regression</code> and a <code>Ridge Regression</code> (set regularization to Ridge L2, slider ~3/4 of the way). Each model needs its own <code>Predictions</code> widget receiving Training Data as the model and Test Data as input. Also connect each regression widget to a <code>Data Table</code> to inspect coefficients.</li>
+            <li><strong>Part 5:</strong> Connect your Predictions widget to a <code>Scatter Plot</code> to visualize actual vs. predicted values. Create a second Predictions widget for Model A using Training Data on both inputs (to compare in-sample vs. out-of-sample performance).</li>
+        </ul>
+
+        <h3 style="color: var(--navy); font-size: 1em; margin-top: 24px;">Question 2 — Classification (Breast Cancer Wisconsin)</h3>
+        <ul>
+            <li><strong>Part 1:</strong> Load <em>Breast Cancer Wisconsin</em> via the <code>Datasets</code> widget. Connect to <code>Data Table</code>, <code>Distributions</code>, and <code>Feature Statistics</code>. Use Distributions to examine the target variable <code>type</code> and individual features, coloring by class.</li>
+            <li><strong>Part 2:</strong> Use <code>Select Columns</code> to select all 9 features (Clump_thickness, Unif_Cell_Size, Unif_Cell_Shape, Marginal_Adhesion, Single_Cell_Size, Bare_Nuclei, Bland_Chromatine, Normal_Nucleoli, Mitoses) and target <code>type</code>. Add <code>Continuize</code> with Z-score normalization. Configure <code>Data Sampler</code> to <strong>70% training / 30% test</strong> with Replicable and Stratified sampling enabled.</li>
+            <li><strong>Part 3:</strong> Build a <code>Logistic Regression</code> model (regularization: None). Connect Training Data → Logistic Regression → Predictions → Confusion Matrix. Connect Test Data to the Predictions widget. Record all metrics from the Predictions widget and TP/TN/FP/FN from the Confusion Matrix.</li>
+            <li><strong>Part 4:</strong> Connect your <code>Logistic Regression</code> widget to a <code>Data Table</code> to view coefficients. Also build a second Logistic Regression trained on <em>non-normalized</em> data (bypassing Continuize) to compare coefficient tables. Create a second Predictions widget using Training Data on both inputs to check generalization.</li>
+            <li><strong>Part 5:</strong> Answer critical analysis questions based on all results gathered in Parts 1–4. No new Orange widgets needed for this part.</li>
+        </ul>
+
+        <div class="callout warning">
+            <span class="callout-icon">⚠️</span>
+            <div>
+                <p><strong>Predictions widget setup:</strong> Each model requires its own Predictions widget. The model (e.g., Linear Regression widget) connects to the Predictions widget as the <em>learner</em>, and the Test Data connects as the <em>data</em> to be evaluated. These are two separate input connections on the same Predictions widget.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: WHAT TO SUBMIT -->
+    <div class="section">
+        <h2><span class="num">5</span> What to Submit</h2>
+
+        <p>Submit <strong>three files</strong> on Canvas:</p>
+
+        <div class="file-grid">
+            <div class="file-card" style="border-color: var(--navy); border-width: 2px;">
+                <div class="file-icon notebook">📓</div>
+                <div class="file-info">
+                    <div class="file-name">Assignment2_YourLastName.ipynb</div>
+                    <div class="file-desc">Your completed Jupyter Notebook with all answer cells filled in.</div>
+                </div>
+            </div>
+            <div class="file-card" style="border-color: var(--warning); border-width: 2px;">
+                <div class="file-icon orange">🍊</div>
+                <div class="file-info">
+                    <div class="file-name">Q1_YourLastName.ows</div>
+                    <div class="file-desc">Your Orange workflow file for Question 1 (Housing — Linear Regression).</div>
+                </div>
+            </div>
+            <div class="file-card" style="border-color: var(--warning); border-width: 2px;">
+                <div class="file-icon orange">🍊</div>
+                <div class="file-info">
+                    <div class="file-name">Q2_YourLastName.ows</div>
+                    <div class="file-desc">Your Orange workflow file for Question 2 (Breast Cancer Wisconsin — Classification).</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <span class="callout-icon">💡</span>
+            <div>
+                <p><strong>How to save an Orange workflow:</strong> In Orange, go to <strong>File → Save As</strong> and name the file <code>Q1_YourLastName.ows</code> (or Q2). The <code>.ows</code> extension is Orange's workflow format and will be saved automatically.</p>
+            </div>
+        </div>
+
+        <h3>Pre-Submission Checklist</h3>
+        <ul class="checklist">
+            <li>Your <strong>name</strong> and <strong>student ID</strong> are filled in at the top of the notebook</li>
+            <li>All answer cells in the notebook are completed — no <code>[Your answer]</code> placeholders remain</li>
+            <li>All HTML metric tables in the notebook are filled in with actual values from Orange</li>
+            <li>Your Orange workflow for Q1 is saved as <code>Q1_YourLastName.ows</code></li>
+            <li>Your Orange workflow for Q2 is saved as <code>Q2_YourLastName.ows</code></li>
+            <li>Notebook file is renamed to <code>Assignment2_YourLastName.ipynb</code></li>
+            <li>All three files are uploaded to Canvas before the deadline</li>
+        </ul>
+
+        <div class="callout important">
+            <span class="callout-icon">🚫</span>
+            <div>
+                <p><strong>Do NOT</strong> submit with placeholder text like <code>[Your answer]</code> still in the notebook. Replace every placeholder with your actual observed values from Orange.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 6: COMMON MISTAKES -->
+    <div class="section">
+        <h2><span class="num">6</span> Common Mistakes to Avoid</h2>
+        <ul>
+            <li><strong>Wrong dataset selected:</strong> For Question 2, search for <em>Breast Cancer Wisconsin</em> exactly. Selecting the wrong "Breast Cancer" dataset will give you different features and incorrect results.</li>
+            <li><strong>Predictions widget wired incorrectly:</strong> The model widget (e.g., Linear Regression) connects as the <em>learner</em> input and the data (Test Data) connects as the <em>data</em> input. Both must be connected for the widget to show results.</li>
+            <li><strong>Using the same Predictions widget for training and test:</strong> Parts 4 and 5 require separate Predictions widgets — one evaluating Test Data (out-of-sample) and one evaluating Training Data (in-sample). Do not reuse the same widget.</li>
+            <li><strong>Normalization applied to scatter plots:</strong> When creating scatter plots in Part 2, connect to the <em>non-normalized</em> output of Select Columns, not the output of Continuize. Normalized values make scatter plots harder to interpret.</li>
+            <li><strong>Coefficients without normalization:</strong> When comparing feature importance using coefficients, you must use the normalized version of your model. Raw coefficients from non-normalized data cannot be directly compared across features with different scales.</li>
+            <li><strong>Missing explanations:</strong> Many questions ask you to explain or interpret a result — not just report a number. A number alone without an explanation will lose points.</li>
+            <li><strong>Leaving placeholder text:</strong> Before submitting, search your notebook for <code>[Your answer]</code> to make sure no cells were missed.</li>
+        </ul>
+    </div>
+
+    <!-- SECTION 7: GRADING -->
+    <div class="section">
+        <h2><span class="num">7</span> Grading Criteria</h2>
+        <p>Each part is graded on:</p>
+        <ul>
+            <li><strong>Correctness</strong> — Do your reported values match what Orange produces for the described workflow?</li>
+            <li><strong>Completeness</strong> — Are all sub-questions answered?</li>
+            <li><strong>Explanations</strong> — Where required, are your interpretations clear, accurate, and in your own words?</li>
+            <li><strong>Workflow files</strong> — Do your submitted <code>.ows</code> files reflect the workflows described in each question?</li>
+        </ul>
+
+        <div class="callout warning">
+            <span class="callout-icon">⏰</span>
+            <div>
+                <p><strong>Deadline: Monday, March 23, 2026 at 1:00 PM.</strong> No late submissions will be accepted under any circumstances. Plan ahead — building Orange workflows takes time, especially if you are new to the tool. Do not leave this for the last hour.</p>
+            </div>
+        </div>
+
+        <div class="callout success">
+            <span class="callout-icon">✅</span>
+            <div>
+                <p><strong>Pro tip:</strong> Build your Orange workflow one widget at a time and verify the output at each step before adding the next widget. This makes it much easier to catch mistakes early rather than troubleshooting a large workflow at the end.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="flag-stripe">
+    <div class="blue"></div>
+    <div class="white"></div>
+    <div class="red"></div>
+</div>
+
+<div class="footer">
+    BANA 3308 — Introduction to Business Analytics · Spring 2026 · <a href="#">University of Texas Arlington</a>
+</div>
+
+</body>
+</html>
