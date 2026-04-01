@@ -35,10 +35,23 @@
   .example-box strong{color:#534AB7}
   .svg-wrap{margin:24px 0;text-align:center}
   .svg-wrap svg{max-width:100%;height:auto;border:1px solid var(--border);border-radius:8px}
-  @media print{.top-bar{padding:16px}.container{padding:16px}h2{page-break-after:avoid}}
+  @media print{.top-bar{padding:16px}.container{padding:16px}h2{page-break-after:avoid}.back-bar{display:none}}
+  .back-bar{background:#143d5c;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;max-width:100%}
+  .back-bar a{color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+  .back-bar a:hover{color:#fff}
 </style>
 </head>
 <body>
+<div class="back-bar">
+  <a href="./">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Course Page
+  </a>
+  <a href="../">
+    Dr. Sharif Vaghefi — Main Page
+    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+  </a>
+</div>
 <div class="top-bar">
   <div class="course">BANA 3308 · Intro to Business Analytics</div>
   <h1>Handwritten Letter Classification</h1>
@@ -298,16 +311,19 @@
 <h2>Part 3: Predictive Analytics</h2>
 <h3>3.1 Data Preparation for Modeling</h3>
 <p><strong>Target variable:</strong> label (A, B, C, D, or E)</p>
-<p><strong>Feature sets — compare two approaches:</strong></p>
+<p><strong>Feature sets — you must compare at least two of the following, but you are encouraged to try more:</strong></p>
 <ul>
   <li><strong>Raw features:</strong> All 784 pixel columns (p0–p783)</li>
   <li><strong>PCA features:</strong> The reduced set of principal components (capturing ≥90% variance)</li>
+  <li><strong>Engineered features:</strong> The features you created in Part 1 (Total_Ink, Brightness, Center_Mass_X, Center_Mass_Y) — either alone or combined with raw/PCA features</li>
+  <li><strong>Custom features (optional):</strong> Any additional features you can think of and extract from the pixel data. For example: symmetry scores (comparing left vs. right halves), quadrant densities (ink in each quarter of the grid), edge pixel counts, or any other creative feature you believe could help distinguish the letters. This is where your group can differentiate its approach.</li>
 </ul>
 <p><strong>DO NOT include:</strong> the <code>group</code> column in the model. Use Select Columns to move it to "meta".</p>
 
 <h3>3.2 Build Classification Models</h3>
-<p>Build and compare <strong>five</strong> models using each feature set:</p>
+<p>Build and compare <strong>at minimum</strong> these five models:</p>
 <ul><li>Logistic Regression</li><li>Naïve Bayes</li><li>Decision Tree</li><li>Random Forest</li><li>KNN (k-Nearest Neighbors)</li></ul>
+<p><strong>You are encouraged to go beyond these five.</strong> Orange offers additional classifiers such as SVM, Neural Network, AdaBoost, Gradient Boosting, and others. Experimenting with additional models, tuning their parameters, or trying different feature set combinations is how your group can stand out — and may give you an edge in the presentation day competition.</p>
 
 <h3>3.3 Model Evaluation with Test and Score</h3>
 <ul>
@@ -405,7 +421,7 @@
   <tr><th>Component</th><th>Points</th><th>Criteria</th></tr>
   <tr><td><strong>Data Collection &amp; Preparation</strong></td><td>20</td><td>Minimum samples met, proper aggregation, data quality checks with specific findings, feature engineering (Total_Ink, Brightness, Center_Mass_X, Center_Mass_Y)</td></tr>
   <tr><td><strong>Descriptive Analytics &amp; PCA</strong></td><td>30</td><td>Quality visualizations with interpretation, correct PCA application, variance analysis, 2D scatter with cluster discussion, component interpretation</td></tr>
-  <tr><td><strong>Predictive Analytics</strong></td><td>50</td><td>All five models with both feature sets, stratified 10-fold CV, metrics table, raw vs. PCA comparison, confusion matrix analysis, data size experiment, business application</td></tr>
+  <tr><td><strong>Predictive Analytics</strong></td><td>50</td><td>Minimum five models with at least two feature sets, stratified 10-fold CV, metrics table, confusion matrix analysis, data size experiment, business application. Additional models, custom features, and parameter tuning encouraged.</td></tr>
   <tr class="total"><td><strong>Total</strong></td><td><strong>100</strong></td><td></td></tr>
   <tr class="bonus"><td><strong>Bonus: Confusion Deep-Dive</strong></td><td>+10</td><td>Top confused pairs, Jupyter-generated images, hypothesis, improvement strategy tested</td></tr>
   <tr class="comp"><td><strong>Presentation Competition</strong></td><td>+2</td><td>Highest accuracy on instructor's unseen test dataset on presentation day</td></tr>
