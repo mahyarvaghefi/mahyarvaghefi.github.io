@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy Workshop - Practical AI Tools for Educators</title>
+    <style>
+        :root {
+            --primary-dark: #1a365d;
+            --primary-medium: #2c5282;
+            --accent-teal: #234e52;
+            --bg-light: #f7fafc;
+            --bg-highlight: #ebf8ff;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --border-color: #cbd5e0;
+            --success: #276749;
+            --warning: #975a16;
+            --ai-purple: #6b46c1;
+            --ai-gradient: linear-gradient(135deg, #6b46c1, #805ad5);
+        }
+        
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        
+        header {
+            background: var(--ai-gradient);
+            color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        header h1 { margin: 0 0 10px 0; font-size: 2.2em; }
+        header .subtitle { opacity: 0.95; font-size: 1.1em; }
+        header .meta { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+        
+        h2 {
+            color: var(--primary-dark);
+            border-bottom: 3px solid var(--ai-purple);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 { color: var(--primary-medium); margin-top: 25px; }
+        h4 { color: var(--accent-teal); margin-top: 20px; }
+        
+        .toc {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+        }
+        
+        .toc h2 { margin-top: 0; border-bottom: none; font-size: 1.3em; }
+        .toc ol { column-count: 2; column-gap: 40px; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: var(--primary-medium); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        
+        .section {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .section h2 { margin-top: 0; }
+        
+        .highlight-box {
+            background-color: var(--bg-highlight);
+            border-left: 4px solid var(--primary-medium);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .success-box {
+            background-color: #f0fff4;
+            border-left: 4px solid var(--success);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .critical-box {
+            background-color: #fff5f5;
+            border-left: 4px solid #c53030;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .purple-box {
+            background-color: #faf5ff;
+            border-left: 4px solid var(--ai-purple);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tool-card {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .tool-card h4 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tool-card .price {
+            background: var(--ai-purple);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        th {
+            background-color: var(--ai-purple);
+            color: #ffffff;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        tr:nth-child(even) { background-color: var(--bg-light); }
+        tr:hover { background-color: var(--bg-highlight); }
+        
+        code {
+            background-color: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: var(--accent-teal);
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 900px) {
+            .three-column { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .two-column, .three-column { grid-template-columns: 1fr; }
+            .toc ol { column-count: 1; }
+        }
+        
+        .comparison-card {
+            background-color: var(--bg-light);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .comparison-card h4 { margin-top: 0; }
+        
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 12px 15px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--ai-purple);
+        }
+        
+        .workflow-step .step-num {
+            background: var(--ai-purple);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .case-study {
+            background: linear-gradient(135deg, #fff5f5, #fed7d7);
+            border: 2px solid #fc8181;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .case-study h4 {
+            margin-top: 0;
+            color: #c53030;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+        
+        .stat-box .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--ai-purple);
+        }
+        
+        .stat-box .label {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+        
+        .pro-tip {
+            background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+            border: 2px solid #68d391;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+        }
+        
+        .pro-tip::before {
+            content: "💡 Pro Tip: ";
+            font-weight: bold;
+            color: var(--success);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🤖 AI Literacy Workshop</h1>
+        <div class="subtitle">Practical AI Tools for Educators: From Transcription to Course Design</div>
+        <div class="meta">
+            <strong>Date:</strong> April 24, 2026 | 
+            <strong>Presenter:</strong> Dr. Mahyar Vaghefi |
+            <strong>Duration:</strong> 1h 53m
+        </div>
+    </header>
+    
+    <nav class="toc">
+        <h2>📑 Table of Contents</h2>
+        <ol>
+            <li><a href="#ai-landscape">The AI Tool Landscape</a></li>
+            <li><a href="#claude-vs-chatgpt">Claude vs ChatGPT: Key Differences</a></li>
+            <li><a href="#claude-features">Claude Features: Chat vs Cowork</a></li>
+            <li><a href="#transcription">Recording & Transcription Setup</a></li>
+            <li><a href="#html-summaries">Creating HTML Course Summaries</a></li>
+            <li><a href="#canvas-integration">Canvas Integration</a></li>
+            <li><a href="#assignments">Generating Assignments & Exams</a></li>
+            <li><a href="#case-studies">AI in Practice: Case Studies & Games</a></li>
+            <li><a href="#failures">AI Failures: Cautionary Tales</a></li>
+            <li><a href="#research">AI for Research</a></li>
+            <li><a href="#other-tools">Other Useful Tools</a></li>
+            <li><a href="#ai-policy">AI Policy & Academic Integrity</a></li>
+            <li><a href="#future">The Future of Education with AI</a></li>
+        </ol>
+    </nav>
+    
+    <!-- AI Landscape -->
+    <section class="section" id="ai-landscape">
+        <h2>1. The AI Tool Landscape</h2>
+        
+        <h3>Current AI Adoption Statistics</h3>
+        
+        <p>Despite the hype, AI adoption is still limited:</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0;">
+            <div class="stat-box">
+                <div class="number">840</div>
+                <div class="label">out of 1,000 people<br><strong>NEVER use AI</strong></div>
+            </div>
+            <div class="stat-box">
+                <div class="number">7</div>
+                <div class="label">out of 1,000<br>use <strong>paid ChatGPT</strong></div>
+            </div>
+            <div class="stat-box">
+                <div class="number">10</div>
+                <div class="label">out of 1,000<br>use <strong>free AI tools</strong></div>
+            </div>
+            <div class="stat-box">
+                <div class="number">4</div>
+                <div class="label">out of 1,000<br>use <strong>other paid AI</strong></div>
+            </div>
+        </div>
+        
+        <h3>AI Tool Recommendations</h3>
+        
+        <div class="tool-card">
+            <h4>🟣 Claude (Anthropic) <span class="price">$20/month or $100/month</span></h4>
+            <p><strong>Highly Recommended!</strong> The dominant AI platform for professional use.</p>
+            <ul>
+                <li>More accurate and less hallucination than ChatGPT</li>
+                <li>Better organization and academic-quality output</li>
+                <li>Superior artifact creation (files, code, diagrams)</li>
+                <li>$100 version: Much more memory, longer conversations</li>
+            </ul>
+        </div>
+        
+        <div class="tool-card">
+            <h4>🟢 ChatGPT (OpenAI) <span class="price">$20/month</span></h4>
+            <p>Good alternative with image generation capabilities.</p>
+            <ul>
+                <li>Can generate images (DALL-E integration)</li>
+                <li>More "people-pleasing" — may have confirmation bias</li>
+                <li>Can upload more files at once (20+ vs 7-8)</li>
+            </ul>
+        </div>
+        
+        <div class="tool-card">
+            <h4>🔵 Copilot (Microsoft) <span class="price">Free with university</span></h4>
+            <p>Available but limited capabilities.</p>
+            <ul>
+                <li>Sometimes uses ChatGPT backend</li>
+                <li>Doesn't maintain conversation memory well</li>
+                <li>"Even when they want to say something is bad, they say it's Copilot"</li>
+            </ul>
+        </div>
+        
+        <div class="tool-card">
+            <h4>🔴 Grok (xAI) <span class="price">Paid</span></h4>
+            <p>Known for brutally honest feedback.</p>
+            <ul>
+                <li>Trained on Twitter/X data — reflects harsher, more direct tone</li>
+                <li>"It will say your paper is trash" — not people-pleasing</li>
+                <li>Good for getting unfiltered criticism on your work</li>
+                <li>Provides current sentiment data from social media</li>
+            </ul>
+        </div>
+        
+        <div class="tool-card">
+            <h4>🟡 Gemini (Google) <span class="price">Free / Paid</span></h4>
+            <p>Google's AI with unique integrations.</p>
+            <ul>
+                <li><strong>Direct access to Google Scholar</strong> — can find real papers</li>
+                <li><strong>Notebook LM</strong> — useful for literature reviews</li>
+                <li>Must prompt specifically: "go to Google Scholar, do not hallucinate"</li>
+                <li>Presenter noted: "I personally have not used Gemini" extensively</li>
+            </ul>
+        </div>
+        
+        <div class="critical-box">
+            <strong>🚨 NEVER Use Free Versions for Sensitive Data!</strong>
+            <ul>
+                <li>Free versions may use your data for training</li>
+                <li>Student names, grades, research data = HIGH RISK</li>
+                <li>Even "deleted" data may be retained on servers</li>
+                <li>Paid versions have opt-out options, but still be cautious</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Claude vs ChatGPT -->
+    <section class="section" id="claude-vs-chatgpt">
+        <h2>2. Claude vs ChatGPT: Key Differences</h2>
+        
+        <table>
+            <tr><th>Feature</th><th>Claude</th><th>ChatGPT</th></tr>
+            <tr><td><strong>Accuracy</strong></td><td>Higher precision, less hallucination</td><td>More prone to making up information</td></tr>
+            <tr><td><strong>Response Style</strong></td><td>Will tell you when you're wrong</td><td>Tends to agree/confirm (people-pleasing)</td></tr>
+            <tr><td><strong>Training Data</strong></td><td>More academic/book-based</td><td>Broader, includes social media</td></tr>
+            <tr><td><strong>Organization</strong></td><td>Better structured outputs</td><td>More brief, casual style</td></tr>
+            <tr><td><strong>File Upload</strong></td><td>7-8 files at once (100 max per chat)</td><td>20+ files at once</td></tr>
+            <tr><td><strong>Image Generation</strong></td><td>❌ No</td><td>✅ Yes (DALL-E)</td></tr>
+            <tr><td><strong>Diagrams</strong></td><td>✅ Excellent SVG diagrams</td><td>Limited</td></tr>
+            <tr><td><strong>Memory ($20)</strong></td><td>Limited, fills up quickly</td><td>More capacity</td></tr>
+            <tr><td><strong>Research Feature</strong></td><td>✅ Deep research (20-30 min)</td><td>Web browsing</td></tr>
+        </table>
+        
+        <div class="pro-tip">
+            Word files consume LESS memory than PDFs when uploading. Always convert PDFs to Word before uploading to maximize your token capacity!
+        </div>
+        
+        <div class="highlight-box">
+            <strong>💬 Quote from Harvard Faculty:</strong>
+            <p><em>"If you are not using Claude, you are far behind the others."</em></p>
+        </div>
+    </section>
+    
+    <!-- Claude Features -->
+    <section class="section" id="claude-features">
+        <h2>3. Claude Features: Chat vs Cowork</h2>
+        
+        <p>Claude has two main modes (requires downloading the desktop app):</p>
+        
+        <div class="warning-box">
+            <strong>⚠️ Windows Installation Note:</strong>
+            <p>Windows users may need to <strong>enable Developer Mode</strong> to install the Claude desktop app. You'll see a message: "Trusted app installs must be enabled to install Claude."</p>
+            <ul>
+                <li>Go to Settings → System → Turn on Developer Mode</li>
+                <li>Warning: "Apps from outside Microsoft Store could expose you to risks"</li>
+                <li>Mac users did not encounter this issue</li>
+                <li><strong>Check your school/IT policy before enabling</strong></li>
+            </ul>
+        </div>
+        
+
+        
+        <div class="two-column">
+            <div class="comparison-card" style="border-color: var(--ai-purple);">
+                <h4 style="color: var(--ai-purple);">💬 Chat Mode</h4>
+                <ul>
+                    <li>Upload files directly to conversation</li>
+                    <li>Has web search/research capabilities</li>
+                    <li>Each chat is separate (no cross-chat memory)</li>
+                    <li>Can activate "Research" skill for deep paper searches</li>
+                    <li>Better for online research tasks</li>
+                </ul>
+            </div>
+            <div class="comparison-card" style="border-color: var(--success);">
+                <h4 style="color: var(--success);">📁 Cowork Mode</h4>
+                <ul>
+                    <li>Point to a <strong>folder on your computer</strong></li>
+                    <li>No need to upload — reads files as needed</li>
+                    <li>Consumes LESS memory/tokens</li>
+                    <li>Can manipulate files in place (rename, edit)</li>
+                    <li>Better for working with many local files</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h3>Cowork Use Case Example</h3>
+        
+        <div class="purple-box">
+            <strong>📂 File Renaming Example:</strong>
+            <p>"I had a folder of research papers with random names. I pointed Cowork to that folder and asked it to rename all files using: Author Name - Journal Name - Year."</p>
+            <p>It went inside each PDF, extracted the information, and renamed them in place!</p>
+        </div>
+        
+        <div class="warning-box">
+            <strong>⚠️ Privacy Warning for Cowork:</strong>
+            <ul>
+                <li>Be careful which folders you give access to</li>
+                <li>Never point to folders containing student data</li>
+                <li>Use separate folders for course materials only</li>
+            </ul>
+        </div>
+        
+        <h3>Projects Feature</h3>
+        
+        <p>Both Claude and ChatGPT support <strong>Projects</strong> — organized collections of chats.</p>
+        
+        <ul>
+            <li>Keep related chats together (e.g., "Python Course Materials")</li>
+            <li>Easy to find and continue previous work</li>
+            <li>Same session can be used to build on previous summaries</li>
+            <li>Connect new transcripts to previous sessions for continuity</li>
+        </ul>
+    </section>
+    
+    <!-- Transcription Setup -->
+    <section class="section" id="transcription">
+        <h2>4. Recording & Transcription Setup</h2>
+        
+        <h3>The Dual-Screen Method</h3>
+        
+        <div class="workflow-step"><span class="step-num">1</span> Use TWO devices: Personal laptop + School computer</div>
+        <div class="workflow-step"><span class="step-num">2</span> Join Microsoft Teams meeting from school computer (for recording)</div>
+        <div class="workflow-step"><span class="step-num">3</span> Share screen from personal laptop (for presentation)</div>
+        <div class="workflow-step"><span class="step-num">4</span> Turn OFF speaker on laptop (prevents echo)</div>
+        <div class="workflow-step"><span class="step-num">5</span> School computer microphone captures everything (stronger mic)</div>
+        
+        <div class="highlight-box">
+            <strong>💡 Why This Works:</strong>
+            <ul>
+                <li>Gets both video/audio AND transcript</li>
+                <li>School microphone is stronger — captures student questions too</li>
+                <li>If students speak low, repeat their question for the recording</li>
+            </ul>
+        </div>
+        
+        <h3>Microsoft Teams Transcription Quality</h3>
+        
+        <ul>
+            <li>Teams transcription is <strong>extremely good</strong></li>
+            <li>Even detects when you're writing code on the board</li>
+            <li>Separates board writing from spoken content</li>
+            <li>Can correct mistakes and detect context</li>
+        </ul>
+        
+        <h3>Downloading the Transcript</h3>
+        
+        <ol>
+            <li>During meeting: Click "Show transcript" to verify it's working</li>
+            <li>After meeting: Download as separate file (.docx or .vtt)</li>
+            <li>Feed transcript to Claude for summarization</li>
+        </ol>
+    </section>
+    
+    <!-- HTML Summaries -->
+    <section class="section" id="html-summaries">
+        <h2>5. Creating HTML Course Summaries</h2>
+        
+        <div class="success-box">
+            <strong>✅ This is the MOST EFFECTIVE use of AI for teaching!</strong>
+            <p>Students love having summarized notes. Even if they miss a session, they can catch up easily.</p>
+        </div>
+        
+        <h3>Why HTML Instead of PDF/Word?</h3>
+        
+        <table>
+            <tr><th>Format</th><th>Accessibility Score</th><th>Memory Usage</th><th>Editing</th></tr>
+            <tr><td><strong>HTML</strong></td><td>96-97% (excellent)</td><td>Smallest</td><td>Easy in Canvas</td></tr>
+            <tr><td>Word</td><td>Medium</td><td>Medium</td><td>Requires download</td></tr>
+            <tr><td>PDF</td><td>Low (disaster!)</td><td>Largest</td><td>Very difficult</td></tr>
+        </table>
+        
+        <div class="purple-box">
+            <strong>🏛️ Texas Accessibility Requirements:</strong>
+            <p>HTML automatically meets most accessibility requirements. Tags are easy to add. Colors can be adjusted. PDF/Word files often fail compliance checks.</p>
+            <p><strong>Need help?</strong> Contact <strong>CDE</strong> (Center for Distance Education) and <strong>OIT</strong> (Office of Information Technology) — they can assist with making content accessible.</p>
+        </div>
+        
+        <h3>The Summarization Workflow</h3>
+        
+        <div class="workflow-step"><span class="step-num">1</span> Upload transcript to Claude</div>
+        <div class="workflow-step"><span class="step-num">2</span> Ask for structured HTML summary with tables, diagrams, key points</div>
+        <div class="workflow-step"><span class="step-num">3</span> Request: "Integrate all CSS styles inside HTML tags" (important for Canvas!)</div>
+        <div class="workflow-step"><span class="step-num">4</span> Download HTML file</div>
+        <div class="workflow-step"><span class="step-num">5</span> Upload to Canvas or paste into Page HTML editor</div>
+        
+        <h3>Critical: CSS Integration</h3>
+        
+        <div class="warning-box">
+            <strong>⚠️ Canvas Removes External CSS!</strong>
+            <p>When creating HTML for Canvas Pages, always tell Claude:</p>
+            <code>"I want to upload this to Canvas. Integrate all CSS styles inside the HTML tags rather than a separate CSS file."</code>
+            <p>Otherwise, your page will appear as plain text with no formatting!</p>
+        </div>
+        
+        <h3>Maintaining Continuity</h3>
+        
+        <p>Keep the <strong>same chat session</strong> for all your course summaries:</p>
+        <ul>
+            <li>Upload new transcript to the same chat</li>
+            <li>Say: "Continue from the previous session, enhance what we had, and provide a new summary"</li>
+            <li>AI will connect topics and show progression between sessions</li>
+        </ul>
+    </section>
+    
+    <!-- Canvas Integration -->
+    <section class="section" id="canvas-integration">
+        <h2>6. Canvas Integration</h2>
+        
+        <h3>Uploading HTML Files</h3>
+        
+        <p>Simply upload the HTML file to Canvas Files → Link in Modules. Students click and see the formatted page.</p>
+        
+        <h3>Creating Custom Pages</h3>
+        
+        <div class="workflow-step"><span class="step-num">1</span> Go to Pages → View All Pages → Add Page</div>
+        <div class="workflow-step"><span class="step-num">2</span> Switch to <strong>HTML Editor</strong> view</div>
+        <div class="workflow-step"><span class="step-num">3</span> Paste your HTML code (with integrated CSS)</div>
+        <div class="workflow-step"><span class="step-num">4</span> Save the page</div>
+        <div class="workflow-step"><span class="step-num">5</span> Use "Set as Front Page" for welcome pages</div>
+        
+        <h3>Front Page Feature</h3>
+        
+        <ul>
+            <li>Go to Pages → View All Pages</li>
+            <li>Select any page → "Set as Front Page"</li>
+            <li>Students see this when they open the course</li>
+            <li>Great for welcome messages, exam reminders, announcements</li>
+            <li>Can change it anytime (e.g., "Good luck on the exam!")</li>
+        </ul>
+        
+        <h3>Editing After Upload</h3>
+        
+        <p>You can edit pages in the visual editor (not just HTML):</p>
+        <ul>
+            <li>Click Edit on any page</li>
+            <li>Make changes in the WYSIWYG editor</li>
+            <li>No need to touch the code</li>
+        </ul>
+    </section>
+    
+    <!-- Assignments & Exams -->
+    <section class="section" id="assignments">
+        <h2>7. Generating Assignments & Exams</h2>
+        
+        <h3>Using Your Summaries to Create Questions</h3>
+        
+        <p>Once you have HTML summaries of your course:</p>
+        
+        <ul>
+            <li>Upload summaries to Claude Chat OR point Cowork to your folder</li>
+            <li>Ask for questions based on specific sessions</li>
+            <li>Specify: difficulty level, question types, computational vs conceptual</li>
+            <li>Request tables, images, or scenarios as needed</li>
+        </ul>
+        
+        <h3>Canvas Quiz Import & Lockdown Browser</h3>
+        
+        <div class="highlight-box">
+            <strong>💡 Presenter's Workflow:</strong>
+            <p>"I generally use the <strong>Lockdown Browser</strong> to conduct exams. After I develop the questions, I provide them to Claude and ask for the import package to Canvas."</p>
+        </div>
+        
+        <div class="success-box">
+            <strong>✅ Huge Time Saver!</strong>
+            <p>Ask Claude to convert your questions into a <strong>Canvas import package</strong>. Upload one file and all questions appear in your quiz — no manual entry!</p>
+        </div>
+        
+        <div class="highlight-box">
+            <strong>💡 Quality Control Prompt:</strong>
+            <p>"Make sure all questions are correct, all options make sense, there is no repetition, and convert to Canvas import format."</p>
+        </div>
+        
+        <h3>Question Verification</h3>
+        
+        <p>Always ask AI to verify before finalizing:</p>
+        <ul>
+            <li>Check that answers are correct</li>
+            <li>Ensure options are plausible but distinct</li>
+            <li>Remove any duplicate questions</li>
+            <li>Verify difficulty matches your requirements</li>
+        </ul>
+    </section>
+    
+    <!-- Case Studies & Games -->
+    <section class="section" id="case-studies">
+        <h2>8. AI in Practice: Case Studies & Games</h2>
+        
+        <h3>Creating Case Studies with Built-in Errors</h3>
+        
+        <div class="purple-box">
+            <strong>🎯 Evaluation > Generation:</strong>
+            <p>Instead of asking students to write (which they can outsource to AI), give them AI-generated content with <strong>deliberate problems</strong> to find!</p>
+        </div>
+        
+        <h4>The "20 Problems" Case Study</h4>
+        
+        <ol>
+            <li><strong>Warm up the AI:</strong> Feed it your PowerPoint/course materials</li>
+            <li><strong>Discuss each topic:</strong> Let AI understand what you're covering</li>
+            <li><strong>Request the case:</strong> "Create a compelling case study covering these topics with 20 hidden problems"</li>
+            <li><strong>Refine:</strong> Ask for storytelling elements, game-like structure</li>
+            <li><strong>Use in class:</strong> Groups find and discuss the problems (5-10 min activity)</li>
+        </ol>
+        
+        <div class="pro-tip">
+            The first draft is usually boring. Ask AI to make it "more story-based with a gaming structure" for better engagement!
+        </div>
+        
+        <h3>Jeopardy-Style Games</h3>
+        
+        <div class="tool-card">
+            <h4>🎮 AI-Generated Classroom Games</h4>
+            <p>Takes about <strong>5 minutes</strong> to generate!</p>
+            <ol>
+                <li>Provide your case study or content</li>
+                <li>Ask: "Create a Jeopardy-style game for [X] groups based on this content"</li>
+                <li>Specify: round-robin format, point values, categories</li>
+                <li>Claude generates interactive HTML with clickable categories</li>
+                <li>Open in browser and play in class</li>
+            </ol>
+        </div>
+        
+        <p>Questions can reference specific parts of the case study — students must identify if something is a problem or not.</p>
+    </section>
+    
+    <!-- AI Failures -->
+    <section class="section" id="failures">
+        <h2>9. AI Failures: Cautionary Tales</h2>
+        
+        <p>These real-world examples show why AI implementation requires careful planning:</p>
+        
+        <div class="case-study">
+            <h4>✈️ Air Canada Chatbot Lawsuit</h4>
+            <p>A customer traveling for a funeral asked the chatbot about bereavement discounts. The AI said: "Buy the ticket, call us after, and we'll refund you."</p>
+            <p><strong>Problem:</strong> No such policy existed — the AI made it up.</p>
+            <p><strong>Result:</strong> Customer sued. Air Canada paid $800. Court ruled: <em>Anything on your website (chatbot, AI, etc.) represents your company.</em></p>
+            <p><strong>Impact:</strong> Many law firms immediately removed their chatbots.</p>
+        </div>
+        
+        <div class="case-study">
+            <h4>🍔 McDonald's Voice AI Disaster</h4>
+            <p>McDonald's partnered with IBM for AI-powered drive-through ordering.</p>
+            <p><strong>Lab Testing:</strong> Perfect performance</p>
+            <p><strong>Reality:</strong> Drive-throughs have rain, dogs, babies, unclear audio</p>
+            <p><strong>Results:</strong></p>
+            <ul>
+                <li>Customer ordered ice cream cone → Got ice cream with bacon</li>
+                <li>Customer ordered diet coke → Got sweet teas</li>
+                <li>One customer received 200 sandwiches</li>
+            </ul>
+            <p><strong>Videos went viral on TikTok → Major reputation damage → McDonald's ended IBM partnership</strong></p>
+        </div>
+        
+        <div class="case-study">
+            <h4>📱 Samsung AI Data Leak</h4>
+            <p>Samsung banned AI in workplace → Employee pressure → Opened access for 3 weeks</p>
+            <p><strong>Three incidents in three weeks:</strong></p>
+            <ul>
+                <li>Highly confidential semiconductor code uploaded to ChatGPT</li>
+                <li>Confidential meeting information copied into AI</li>
+                <li>Sensitive data potentially used for training</li>
+            </ul>
+            <p><strong>They could not remove the data from ChatGPT.</strong></p>
+        </div>
+        
+        <div class="case-study">
+            <h4>💳 Klarna Workforce Reduction</h4>
+            <p>Buy-now-pay-later company reduced workforce by ~40% (from ~5,000 to ~3,000 employees) through AI adoption, natural attrition, and a hiring freeze. Their AI chatbot handled work equivalent to 700 employees.</p>
+            <p><strong>First 2 years:</strong> Cost savings, faster responses</p>
+            <p><strong>After:</strong> Customer dissatisfaction increased — these businesses have emotional customer interactions (payment problems, stress). Chatbots couldn't handle the nuance.</p>
+            <p><strong>CEO publicly admitted "we went too far" and Klarna is now rehiring human staff.</strong></p>
+        </div>
+        
+        <div class="highlight-box">
+            <strong>📊 Boston Consulting Group Recommendation:</strong>
+            <ul>
+                <li>10% of AI budget → Algorithm</li>
+                <li>20% → Technology</li>
+                <li><strong>70% → Training People</strong></li>
+            </ul>
+            <p>Without proper training, most AI implementations fail!</p>
+        </div>
+    </section>
+    
+    <!-- Research -->
+    <section class="section" id="research">
+        <h2>10. AI for Research</h2>
+        
+        <h3>Finding Papers with Claude</h3>
+        
+        <div class="workflow-step"><span class="step-num">1</span> In Claude chat, click the <strong>+</strong> button</div>
+        <div class="workflow-step"><span class="step-num">2</span> Activate the <strong>Research</strong> skill</div>
+        <div class="workflow-step"><span class="step-num">3</span> Ask: "Find 50 papers published in FT50 journals about [topic]"</div>
+        <div class="workflow-step"><span class="step-num">4</span> Wait 20-30 minutes for deep search</div>
+        <div class="workflow-step"><span class="step-num">5</span> Get properly cited, real papers (no hallucination)</div>
+        
+        <div class="highlight-box">
+            <strong>📚 What is FT50?</strong>
+            <p><strong>Financial Times Top 50</strong> — a list of the 50 most prestigious business and management journals used for faculty research rankings. Specifying "FT50 journals" ensures Claude searches for high-quality, peer-reviewed academic sources.</p>
+        </div>
+        
+        <h3>Paper Summarization</h3>
+        
+        <p>Upload a paper and ask Claude to summarize:</p>
+        <ul>
+            <li>Introduction summary</li>
+            <li>Research questions</li>
+            <li>Literature review with references</li>
+            <li>Dataset used</li>
+            <li>Methodology</li>
+            <li>Implications</li>
+        </ul>
+        
+        <div class="pro-tip">
+            Claude can convert PDF summaries to Word files — Word files are smaller and easier to add to future chats!
+        </div>
+        
+        <h3>Finding Missing References</h3>
+        
+        <p>Put bracketed sections in your draft:</p>
+        <p><code>"For the [square bracket part], I need more references related to this topic."</code></p>
+        <p>Claude will find relevant papers for that specific section.</p>
+        
+        <h3>Creating Diagrams</h3>
+        
+        <p>For research frameworks and paper figures:</p>
+        <ul>
+            <li>Explain your framework to Claude</li>
+            <li>Ask for an <strong>SVG diagram</strong></li>
+            <li>SVG format is professional and publication-ready</li>
+            <li>Best diagram generation compared to other tools</li>
+        </ul>
+        
+        <div class="warning-box">
+            <strong>⚠️ Privacy Caution:</strong>
+            <p>Uploading unpublished research has risks. On paid versions, you can opt out of training, but data may still be retained on servers. Consider the sensitivity of your work.</p>
+        </div>
+    </section>
+    
+    <!-- Other Tools -->
+    <section class="section" id="other-tools">
+        <h2>11. Other Useful Tools</h2>
+        
+        <div class="two-column">
+            <div class="tool-card">
+                <h4>🎨 Canva <span class="price">Free (edu) / $12/month</span></h4>
+                <ul>
+                    <li>Create course books, posters, presentations</li>
+                    <li>Free version with .edu email</li>
+                    <li>Combine with Claude for content, ChatGPT for images</li>
+                    <li>Export to PDF, video, or any format</li>
+                    <li>Used to create entire course textbooks</li>
+                </ul>
+            </div>
+            <div class="tool-card">
+                <h4>🎤 Eleven Labs <span class="price">Paid</span></h4>
+                <ul>
+                    <li>Convert text to speech</li>
+                    <li>Convert speech to text</li>
+                    <li>Clone voices or use library</li>
+                    <li>Create voiceovers for videos</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="two-column">
+            <div class="tool-card">
+                <h4>🍌 Nano Banana <span class="price">Free tier available</span></h4>
+                <ul>
+                    <li>Add motion to still images</li>
+                    <li>Create animated marketing content</li>
+                    <li>Add talking capability to images</li>
+                    <li>Turn ChatGPT avatars into video</li>
+                </ul>
+            </div>
+            <div class="tool-card">
+                <h4>🌐 GitHub Pages <span class="price">Free</span></h4>
+                <ul>
+                    <li>Host personal websites</li>
+                    <li>Claude generates complete website code</li>
+                    <li>"Find a website you like, show it to Claude, provide your CV"</li>
+                    <li>10 minutes to create professional portfolio</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h3>Monthly Tool Costs (Example)</h3>
+        
+        <table>
+            <tr><th>Tool</th><th>Cost</th><th>Purpose</th></tr>
+            <tr><td>Claude</td><td>$100/month</td><td>Primary AI (research, content creation)</td></tr>
+            <tr><td>ChatGPT</td><td>$20/month</td><td>Image generation</td></tr>
+            <tr><td>Canva</td><td>$12/month</td><td>Design, books, videos</td></tr>
+            <tr><td>Eleven Labs</td><td>Varies</td><td>Voice generation</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>~$150/month</strong></td><td></td></tr>
+        </table>
+        
+        <div class="highlight-box">
+            <strong>💡 ROI Perspective:</strong>
+            <p>"$20 for Claude saves an incredible amount of time. The time saved on creating question banks, summaries, and assignments alone makes it worthwhile."</p>
+        </div>
+    </section>
+    
+    <!-- AI Policy -->
+    <section class="section" id="ai-policy">
+        <h2>12. AI Policy & Academic Integrity</h2>
+        
+        <h3>Setting Up AI Policy</h3>
+        
+        <div class="success-box">
+            <strong>✅ Effective Approach:</strong>
+            <p>Put your AI policy in a <strong>Discussion Board</strong> and require students to sign/acknowledge. This creates a clear record.</p>
+        </div>
+        
+        <p>Example policy elements:</p>
+        <ul>
+            <li>Specify which assignments allow/prohibit AI</li>
+            <li>Require disclosure of AI use</li>
+            <li>State consequences for violations</li>
+            <li>Have students digitally sign acknowledgment</li>
+        </ul>
+        
+        <h3>Detecting AI-Generated Work</h3>
+        
+        <div class="two-column">
+            <div>
+                <h4>Detection Methods</h4>
+                <ul>
+                    <li><strong>Reverse engineer the prompt:</strong> Give their work to AI and ask "How would you generate this?"</li>
+                    <li><strong>Quality mismatch:</strong> Sudden jump in writing quality from previous work</li>
+                    <li><strong>Too clean:</strong> Unusually polished for student level</li>
+                    <li><strong>Sophisticated functions:</strong> Code uses methods beyond course content</li>
+                    <li><strong>Ask questions:</strong> If they can't explain their work, they didn't do it</li>
+                </ul>
+            </div>
+            <div>
+                <h4>In-Class Verification</h4>
+                <ul>
+                    <li>Give AI-generated content with errors</li>
+                    <li>Students must find and fix problems</li>
+                    <li>Evaluation happens in class (no take-home)</li>
+                    <li>Group discussions reveal understanding</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <strong>⚠️ The Student Reality:</strong>
+            <p>"When you ask if they have access to AI, they say no. But when they deliver work, they clearly had access."</p>
+            <p>Education systems haven't figured out how to handle this yet.</p>
+        </div>
+    </section>
+    
+    <!-- Future of Education -->
+    <section class="section" id="future">
+        <h2>13. The Future of Education with AI</h2>
+        
+        <h3>Predicted Model: Flipped Classroom 2.0</h3>
+        
+        <div class="purple-box">
+            <h4 style="margin-top: 0;">The New Structure</h4>
+            <ul>
+                <li><strong>Before Class:</strong> Videos, materials, chatbots for Q&A — students study independently</li>
+                <li><strong>In Class:</strong> Activities, evaluations, presentations, skill-building</li>
+                <li><strong>Assessment:</strong> Happens in-person, not take-home</li>
+            </ul>
+            <p><em>"Harvard is already doing this — all materials available beforehand, class time for applications."</em></p>
+        </div>
+        
+        <h3>Future: Screen Monitoring for Online Assessments</h3>
+        
+        <div class="highlight-box">
+            <strong>🔮 Coming Soon:</strong>
+            <p>Tools that will <strong>capture and monitor screen activity over time</strong> for online assessments:</p>
+            <ul>
+                <li>Log every click, copy/paste, reading time, writing patterns</li>
+                <li>Predict whether AI was used based on activity patterns</li>
+                <li>Create platforms where students must spend real time engaging with content</li>
+            </ul>
+            <p><em>Caveat: "If someone wants to cheat, they're going to figure out how to do it — you just have to increase the cost of cheating."</em></p>
+        </div>
+        
+        <h3>The Competitive Reality</h3>
+        
+        <div class="critical-box">
+            <strong>🚨 Critical Point:</strong>
+            <p>"We are reaching the point that if you are not using AI, you are losing competitive advantage — both in research and teaching."</p>
+            <p>Expectations are changing. Eventually, AI access will be assumed like internet access.</p>
+        </div>
+        
+        <h3>Key Takeaways</h3>
+        
+        <div class="three-column">
+            <div class="stat-box" style="background: linear-gradient(135deg, #faf5ff, #e9d8fd);">
+                <div class="number" style="font-size: 1.5em;">📝</div>
+                <div class="label"><strong>Summarization</strong><br>Most effective use of AI for teaching</div>
+            </div>
+            <div class="stat-box" style="background: linear-gradient(135deg, #f0fff4, #c6f6d5);">
+                <div class="number" style="font-size: 1.5em;">🎯</div>
+                <div class="label"><strong>Evaluation > Generation</strong><br>Have students find errors, not create</div>
+            </div>
+            <div class="stat-box" style="background: linear-gradient(135deg, #ebf8ff, #bee3f8);">
+                <div class="number" style="font-size: 1.5em;">🔒</div>
+                <div class="label"><strong>Privacy First</strong><br>Never use free versions for sensitive data</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quick Reference -->
+    <section class="section">
+        <h2>📋 Quick Reference Summary</h2>
+        
+        <div class="two-column">
+            <div>
+                <h4>Top Recommendations</h4>
+                <ul>
+                    <li>✅ Use Claude ($20 minimum, $100 for heavy use)</li>
+                    <li>✅ HTML format for all course materials</li>
+                    <li>✅ Same chat for related summaries</li>
+                    <li>✅ Integrate CSS in HTML tags for Canvas</li>
+                    <li>✅ Word files over PDFs when uploading</li>
+                    <li>✅ Cowork for local file management</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Never Do</h4>
+                <ul>
+                    <li>❌ Use free AI versions for student data</li>
+                    <li>❌ Upload sensitive research to free tiers</li>
+                    <li>❌ Assume chatbots will handle edge cases</li>
+                    <li>❌ Skip testing AI outputs</li>
+                    <li>❌ Give take-home AI-possible assignments</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <strong>💬 Final Quote:</strong>
+            <p><em>"Question is, can we go back and live without these tools? I don't think that I can."</em></p>
+        </div>
+    </section>
+    
+    <footer style="text-align: center; padding: 30px; color: #666; border-top: 1px solid var(--border-color); margin-top: 30px;">
+        <p><strong>AI Literacy Workshop</strong></p>
+        <p>Practical AI Tools for Educators</p>
+        <p>Presented by Dr. Mahyar Vaghefi | April 24, 2026</p>
+    </footer>
+</body>
+</html>
