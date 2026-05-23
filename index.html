@@ -464,6 +464,23 @@
         }
         .training-info a:hover { text-decoration: underline; }
 
+        /* ── Tools ── */
+        .tool-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s;
+        }
+        .tool-link:hover { transform: translateY(-2px); }
+        .tool-link:hover .card {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+        .tool-link:hover .training-icon { background: var(--accent); }
+        .tool-link:hover .training-icon svg { color: #fff; }
+        .tool-link .training-icon { transition: background 0.2s; }
+        .tool-link .training-icon svg { transition: color 0.2s; }
+
         /* ── Blog / Activities ── */
         .blog-card .blog-date {
             font-family: var(--mono);
@@ -649,6 +666,7 @@
                 <a href="#lectures">Lectures</a>
                 <a href="#teaching">Teaching</a>
                 <a href="#training">Training</a>
+                <a href="#tools">Tools</a>
                 <a href="docs/Mahyar_CV_GitHub.pdf" target="_blank">CV</a>
                 <a href="mailto:Mahyar.sharifvaghefi@uta.edu">Contact</a>
             </div>
@@ -1592,6 +1610,44 @@
                     </span>
                 </div>
             </div>
+        </div>
+    </section>
+
+
+
+    <!-- ═══ TOOLS ═══ -->
+    <section class="section fade-in" id="tools">
+        <div class="section-header">
+            <h2>Tools</h2>
+            <div class="line"></div>
+        </div>
+        <div class="card-grid">
+
+            <!-- ── Tool: Marginalia ── -->
+            <a href="tools/highlighter.html" target="_blank" class="tool-link">
+                <div class="card training-card">
+                    <div class="training-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="m9 11-6 6v3h3l6-6"/>
+                            <path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/>
+                        </svg>
+                    </div>
+                    <div class="training-info">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
+                            <h3 style="margin: 0;">Marginalia</h3>
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="color: var(--text-muted); flex-shrink: 0; margin-top: 0.25rem;">
+                                <path d="M7 17L17 7"/>
+                                <path d="M7 7h10v10"/>
+                            </svg>
+                        </div>
+                        <p style="font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted); margin: 0.15rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.06em;">HTML Highlighter</p>
+                        <p>Drop in any HTML reading &mdash; lecture notes, articles, syllabus drafts &mdash; and mark it up in five highlighter colors with inline notes. Export your annotated copy when you&rsquo;re done.</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Add more tools below by duplicating the <a class="tool-link">…</a> block above. -->
+
         </div>
     </section>
 
