@@ -503,17 +503,52 @@
             color: var(--text-secondary);
             line-height: 1.65;
         }
-        .blog-card .news-images {
+        .blog-card {
+            padding: 0;
+            overflow: hidden;
             display: flex;
-            gap: 0.5rem;
-            margin-top: 0.75rem;
+            flex-direction: column;
         }
-        .blog-card .news-images img {
-            width: 50%;
-            border-radius: 6px;
+        .blog-card .blog-cover {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            display: flex;
+            gap: 2px;
+            overflow: hidden;
+            background: var(--accent-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .blog-card .blog-cover img {
+            width: 100%;
+            height: 100%;
+            min-width: 0;
+            flex: 1;
             object-fit: cover;
-            aspect-ratio: 4/3;
+            transition: transform 0.45s ease;
         }
+        .blog-card:hover .blog-cover img { transform: scale(1.045); }
+        @media (prefers-reduced-motion: reduce) {
+            .blog-card .blog-cover img { transition: none; }
+            .blog-card:hover .blog-cover img { transform: none; }
+        }
+        .blog-card .blog-cover .blog-tag {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            z-index: 1;
+            margin-bottom: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        /* Decorative cover for posts without a photo */
+        .blog-card .blog-cover.cover-plain {
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 20% 15%, rgba(255,255,255,0.55), transparent 55%),
+                linear-gradient(135deg, var(--accent-light) 0%, #BAE6FD 100%);
+        }
+        .blog-card .blog-cover.cover-plain svg { color: var(--accent); opacity: 0.85; }
+        .blog-card .blog-body { padding: 1.25rem 1.5rem 1.5rem; }
         .blog-tag {
             display: inline-block;
             background: var(--accent-light);
@@ -727,58 +762,76 @@
         </div>
         <div class="news-scroll">
             <div class="card blog-card">
-                <p class="blog-date">2026-05-01</p>
-                <span class="blog-tag" style="background: #FEF3C7; color: #92400E;">Teaching</span>
-                <h3><a href="#">Teaching Business Analytics to Undergraduates</a></h3>
-                <p>After years of graduate-level teaching, taught Business Analytics to undergraduates this year &mdash; pure joy. Proud of this group for showing up, working hard right through to the end, and making every class better.</p>
-                <div class="news-images" style="justify-content: center;">
-                    <img src="images/business-analytics-class-2026.jpg" alt="Undergraduate Business Analytics class group photo at UT Arlington">
+                <div class="blog-cover">
+                    <span class="blog-tag" style="background: #FEF3C7; color: #92400E;">Teaching</span>
+                    <img src="images/business-analytics-class-2026.jpg" alt="Undergraduate Business Analytics class group photo at UT Arlington" loading="lazy">
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2026-05-01</p>
+                    <h3><a href="#">Teaching Business Analytics to Undergraduates</a></h3>
+                    <p>After years of graduate-level teaching, taught Business Analytics to undergraduates this year &mdash; pure joy. Proud of this group for showing up, working hard right through to the end, and making every class better.</p>
                 </div>
             </div>
             <div class="card blog-card">
-                <p class="blog-date">2026-04-17</p>
-                <span class="blog-tag">Event</span>
-                <h3><a href="#">Hosting Dr. Ling Xue at UTA</a></h3>
-                <p>Our department hosted Dr. Ling Xue from the Terry College of Business, University of Georgia, for a research talk. An insightful discussion on EV charging inefficiencies, platform interoperability, and the future of charging network efficiency.</p>
-                <div class="news-images">
-                    <img src="images/C2_Ling_Xue_Visit.jpg" alt="Dr. Ling Xue presenting on EV charging inefficiencies at UTA">
-                    <img src="images/C3_Ling_Xue_Visit.jpg" alt="Dr. Ling Xue research talk audience at UTA">
+                <div class="blog-cover">
+                    <span class="blog-tag">Event</span>
+                    <img src="images/C2_Ling_Xue_Visit.jpg" alt="Dr. Ling Xue presenting on EV charging inefficiencies at UTA" loading="lazy">
+                    <img src="images/C3_Ling_Xue_Visit.jpg" alt="Dr. Ling Xue research talk audience at UTA" loading="lazy">
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2026-04-17</p>
+                    <h3><a href="#">Hosting Dr. Ling Xue at UTA</a></h3>
+                    <p>Our department hosted Dr. Ling Xue from the Terry College of Business, University of Georgia, for a research talk. An insightful discussion on EV charging inefficiencies, platform interoperability, and the future of charging network efficiency.</p>
                 </div>
             </div>
             <div class="card blog-card">
-                <p class="blog-date">2026-03-18</p>
-                <span class="blog-tag" style="background: #F0FDF4; color: #166534;">Milestone</span>
-                <h3><a href="#">Promoted to Associate Professor</a></h3>
-                <p>Thrilled to share that I have been promoted to Associate Professor in the Department of Information Systems &amp; Operations Management at UT Arlington. Grateful to my colleagues, students, and mentors who have supported this journey.</p>
-            </div>
-            <div class="card blog-card">
-                <p class="blog-date">2026-02-06</p>
-                <span class="blog-tag">Event</span>
-                <h3><a href="#">Hosting Dr. Viswanath Venkatesh at UTA</a></h3>
-                <p>Our department hosted Dr. Viswanath Venkatesh from Virginia Tech for a research talk. A wonderful opportunity to learn from one of the leading scholars in IS.</p>
-                <div class="news-images">
-                    <img src="images/IMG_0898.jpg" alt="Dr. Venkatesh visit at UTA">
-                    <img src="images/IMG_4941.jpg" alt="Dr. Venkatesh research talk">
+                <div class="blog-cover cover-plain">
+                    <span class="blog-tag" style="background: #F0FDF4; color: #166534;">Milestone</span>
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="6"></circle>
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                    </svg>
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2026-03-18</p>
+                    <h3><a href="#">Promoted to Associate Professor</a></h3>
+                    <p>Thrilled to share that I have been promoted to Associate Professor in the Department of Information Systems &amp; Operations Management at UT Arlington. Grateful to my colleagues, students, and mentors who have supported this journey.</p>
                 </div>
             </div>
             <div class="card blog-card">
-                <p class="blog-date">2025-12-15</p>
-                <span class="blog-tag">Conference</span>
-                <h3><a href="#">ICIS 2025 — Nashville, TN</a></h3>
-                <p>Attended the International Conference on Information Systems (ICIS) 2025 in Nashville. A great opportunity to present research, connect with colleagues, and exchange ideas with the global IS community.</p>
-                <div class="news-images">
-                    <img src="images/icis-2025-1.jpg" alt="ICIS 2025 roundtable discussion">
-                    <img src="images/icis-2025-2.jpg" alt="ICIS 2025 with colleagues in Nashville">
+                <div class="blog-cover">
+                    <span class="blog-tag">Event</span>
+                    <img src="images/IMG_0898.jpg" alt="Dr. Venkatesh visit at UTA" loading="lazy">
+                    <img src="images/IMG_4941.jpg" alt="Dr. Venkatesh research talk" loading="lazy">
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2026-02-06</p>
+                    <h3><a href="#">Hosting Dr. Viswanath Venkatesh at UTA</a></h3>
+                    <p>Our department hosted Dr. Viswanath Venkatesh from Virginia Tech for a research talk. A wonderful opportunity to learn from one of the leading scholars in IS.</p>
                 </div>
             </div>
             <div class="card blog-card">
-                <p class="blog-date">2025-10-18</p>
-                <span class="blog-tag">Conference</span>
-                <h3><a href="#">CIST 2025 — Atlanta, GA</a></h3>
-                <p>Participated in the Conference on Information Systems and Technology (CIST) 2025 in Atlanta. Engaged in stimulating discussions on emerging IS research and enjoyed catching up with fellow researchers.</p>
-                <div class="news-images">
-                    <img src="images/cist-2025-1.jpg" alt="CIST 2025 group photo in Atlanta">
-                    <img src="images/cist-2025-2.jpg" alt="CIST 2025 with colleagues">
+                <div class="blog-cover">
+                    <span class="blog-tag">Conference</span>
+                    <img src="images/icis-2025-1.jpg" alt="ICIS 2025 roundtable discussion" loading="lazy">
+                    <img src="images/icis-2025-2.jpg" alt="ICIS 2025 with colleagues in Nashville" loading="lazy">
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2025-12-15</p>
+                    <h3><a href="#">ICIS 2025 — Nashville, TN</a></h3>
+                    <p>Attended the International Conference on Information Systems (ICIS) 2025 in Nashville. A great opportunity to present research, connect with colleagues, and exchange ideas with the global IS community.</p>
+                </div>
+            </div>
+            <div class="card blog-card">
+                <div class="blog-cover">
+                    <span class="blog-tag">Conference</span>
+                    <img src="images/cist-2025-1.jpg" alt="CIST 2025 group photo in Atlanta" loading="lazy">
+                    <img src="images/cist-2025-2.jpg" alt="CIST 2025 with colleagues" loading="lazy">
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2025-10-18</p>
+                    <h3><a href="#">CIST 2025 — Atlanta, GA</a></h3>
+                    <p>Participated in the Conference on Information Systems and Technology (CIST) 2025 in Atlanta. Engaged in stimulating discussions on emerging IS research and enjoyed catching up with fellow researchers.</p>
                 </div>
             </div>
         </div>
