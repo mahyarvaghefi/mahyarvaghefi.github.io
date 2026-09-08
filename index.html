@@ -290,6 +290,75 @@
         }
         .pub-links a:hover { border-color: var(--accent); color: var(--accent); }
 
+        /* ── Video lightbox (paper videos) ── */
+        .pub-links a.has-video { display: inline-flex; align-items: center; gap: 0.3rem; }
+        .pub-links a.has-video svg { flex-shrink: 0; }
+
+        .video-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(10, 10, 10, 0.82);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+        .video-lightbox.open { display: flex; }
+        .video-lightbox .vl-dialog {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+        }
+        .video-lightbox .vl-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        .video-lightbox .vl-frame iframe,
+        .video-lightbox .vl-frame video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+        .video-lightbox .vl-caption {
+            margin-top: 0.75rem;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.82);
+        }
+        .video-lightbox .vl-close {
+            position: absolute;
+            top: -2.6rem;
+            right: 0;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            background: rgba(255,255,255,0.14);
+            color: #fff;
+            transition: background 0.2s;
+        }
+        .video-lightbox .vl-close:hover { background: rgba(255,255,255,0.28); }
+        .video-lightbox .vl-close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+        body.vl-open { overflow: hidden; }
+        @media (max-width: 768px) {
+            .video-lightbox { padding: 1rem; }
+            .video-lightbox .vl-close { top: -2.4rem; }
+        }
+
         /* ── Code / Software ── */
         .repo-card .repo-header {
             display: flex;
@@ -763,6 +832,37 @@
         </div>
         <div class="news-scroll">
             <div class="card blog-card">
+                <div class="blog-cover cover-plain">
+                    <span class="blog-tag" style="background: #EFF6FF; color: #1E40AF;">Publication</span>
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        <path d="M9 7h7"></path>
+                        <path d="M9 11h5"></path>
+                    </svg>
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2026-09-04</p>
+                    <h3><a href="#research">Paper Accepted at JAIS</a></h3>
+                    <p>Our paper &ldquo;Going Solo or Joining a Team? How Team Participation Impacts Individual Solver Gains in Open Innovation Contests&rdquo; has been accepted for publication in the <em>Journal of the Association for Information Systems</em>. Joint work with Indika Dissanayake, Mahmut Yasar, Sridhar Nerur, and Jie Jennifer Zhang. Congratulations and thanks to my wonderful co-authors!</p>
+                </div>
+            </div>
+            <div class="card blog-card">
+                <div class="blog-cover cover-plain">
+                    <span class="blog-tag">Conference</span>
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M12 2v2"></path>
+                        <path d="M9 21h6"></path>
+                    </svg>
+                </div>
+                <div class="blog-body">
+                    <p class="blog-date">2026-08-22</p>
+                    <h3><a href="#">AMCIS 2026 &mdash; Reno, NV</a></h3>
+                    <p>Attended the Americas Conference on Information Systems (AMCIS) 2026 in Reno, Nevada, August 20&ndash;22. Three days of sessions on &ldquo;The Next Transformation&rdquo; &mdash; AI, digital platforms, and data-driven innovation &mdash; and a welcome chance to reconnect with the IS community.</p>
+                </div>
+            </div>
+            <div class="card blog-card">
                 <div class="blog-cover">
                     <span class="blog-tag" style="background: #FEF3C7; color: #92400E;">Teaching</span>
                     <img src="images/emba-ai-leadership-2026.jpg" alt="Summer 2026 EMBA cohort with Dr. Vaghefi after the AI Leadership course at UT Arlington" loading="lazy">
@@ -856,6 +956,25 @@
             <div class="line"></div>
         </div>
         <div class="pub-list">
+            <div class="pub-item">
+                <div class="pub-year">2026</div>
+                <div class="pub-content">
+                    <h3>Going Solo or Joining a Team? How Team Participation Impacts Individual Solver Gains in Open Innovation Contests</h3>
+                    <p class="pub-meta">M.S. Vaghefi, I. Dissanayake, M. Yasar, S.P. Nerur, J.J. Zhang · <em>Journal of the Association for Information Systems</em>, forthcoming (accepted September 2026)</p>
+                    <div class="pub-links">
+                        <a href="#">PDF</a>
+                        <a href="#">DOI</a>
+                        <a class="has-video"
+                           href="https://youtu.be/8_GeCg626Fk"
+                           target="_blank"
+                           data-video="8_GeCg626Fk"
+                           data-video-title="Going Solo or Joining a Team? — paper overview">
+                            <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                            Video
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="pub-item">
                 <div class="pub-year">2024</div>
                 <div class="pub-content">
@@ -1560,6 +1679,7 @@
                 <p>Introduces fundamental analytics concepts, descriptive and predictive modeling techniques, and data-driven decision-making for business contexts.</p>
                 <div class="course-tags">
                     <span class="tag">Undergraduate</span>
+                    <span class="tag">Fall 2026</span>
                     <a href="bana3308/" class="tag" style="background:var(--accent);color:#FFFFFF;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:0.3rem;transition:all 0.2s;">
                         Spring 2026
                         <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
@@ -1795,6 +1915,86 @@
     </footer>
 
     <!-- ═══ SCRIPTS ═══ -->
+    <!-- ═══ VIDEO LIGHTBOX (shared by all paper videos) ═══ -->
+    <div class="video-lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Paper video">
+        <div class="vl-dialog">
+            <button class="vl-close" id="vlClose" type="button" aria-label="Close video">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="vl-frame" id="vlFrame"></div>
+            <p class="vl-caption" id="vlCaption"></p>
+        </div>
+    </div>
+
+    <script>
+        /* Paper-video lightbox.
+           To add a video to any publication, give its link a data-video
+           attribute holding the YouTube ID, e.g.:
+             <a href="https://youtu.be/ABC123" data-video="ABC123"
+                data-video-title="Paper title">Video</a>
+           The href stays a real URL so the link still works without JS
+           and can be opened in a new tab. For a self-hosted file, use
+           data-video-src="videos/name.mp4" instead of data-video. */
+        (function () {
+            var box     = document.getElementById('videoLightbox');
+            var frame   = document.getElementById('vlFrame');
+            var caption = document.getElementById('vlCaption');
+            var closeBtn= document.getElementById('vlClose');
+            if (!box || !frame) return;
+
+            var lastFocused = null;
+
+            function open(trigger) {
+                var id    = trigger.getAttribute('data-video');
+                var src   = trigger.getAttribute('data-video-src');
+                var title = trigger.getAttribute('data-video-title') || 'Paper video';
+                if (!id && !src) return false;
+
+                if (src) {
+                    frame.innerHTML =
+                        '<video controls autoplay playsinline preload="metadata">' +
+                        '<source src="' + src + '" type="video/mp4">' +
+                        'Your browser does not support embedded video.</video>';
+                } else {
+                    frame.innerHTML =
+                        '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+                        '?autoplay=1&rel=0" title="' + title + '" allowfullscreen ' +
+                        'allow="autoplay; encrypted-media; picture-in-picture"></iframe>';
+                }
+
+                caption.textContent = title;
+                box.setAttribute('aria-label', title);
+                lastFocused = document.activeElement;
+                box.classList.add('open');
+                document.body.classList.add('vl-open');
+                closeBtn.focus();
+                return true;
+            }
+
+            function close() {
+                box.classList.remove('open');
+                document.body.classList.remove('vl-open');
+                frame.innerHTML = '';           // stops playback
+                caption.textContent = '';
+                if (lastFocused) lastFocused.focus();
+            }
+
+            document.addEventListener('click', function (e) {
+                var trigger = e.target.closest('[data-video], [data-video-src]');
+                if (trigger) {
+                    if (open(trigger)) e.preventDefault();
+                    return;
+                }
+                if (e.target === box) close();   // click the backdrop
+                if (e.target.closest('#vlClose')) close();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && box.classList.contains('open')) close();
+            });
+        })();
+    </script>
+
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navbar scroll effect
         const nav = document.getElementById('navbar');
@@ -1823,4 +2023,24 @@
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
         // Active nav link highlighting
-        const se
+        const sections = document.querySelectorAll('section[id]');
+        const navLinkMap = {};
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+            const id = link.getAttribute('href').slice(1);
+            if (id) navLinkMap[id] = link;
+        });
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const link = navLinkMap[entry.target.id];
+                if (link && entry.isIntersecting) {
+                    Object.keys(navLinkMap).forEach(k => navLinkMap[k].classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        sections.forEach(sec => navObserver.observe(sec));
+    </script>
+</body>
+</html>
