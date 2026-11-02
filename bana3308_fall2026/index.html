@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANA 3308 — Fall 2026 · Dr. Mahyar Sharif Vaghefi</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#1A5276;--med-blue:#2E86C1;--light-blue:#D6EAF8;--bg:#FAFCFE;--card:#FFFFFF;--text:#1C1C1C;--gray:#5A6577;--border:#DDE4EB}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Source Sans 3','Segoe UI',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;font-size:16px}
+  a{color:var(--med-blue)}
+  a:focus-visible{outline:3px solid var(--med-blue);outline-offset:3px;border-radius:4px}
+
+  .nav{background:var(--blue);display:flex;justify-content:flex-end;gap:20px;padding:12px 24px;font-size:14px}
+  .nav a{color:#fff;opacity:.85;text-decoration:none}
+  .nav a:hover{opacity:1;text-decoration:underline}
+
+  header{background:var(--blue);color:#fff;padding:24px 24px 44px;text-align:center}
+  header .code{font-size:15px;font-weight:600;opacity:.75;margin-bottom:6px}
+  header h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(28px,5vw,42px);font-weight:700;line-height:1.2;margin-bottom:8px}
+  header .term{font-size:16px;opacity:.85}
+  header .instructor{font-size:15px;opacity:.8;margin-top:10px}
+  header .instructor a{color:#fff}
+
+  main{max-width:860px;margin:0 auto;padding:40px 24px 64px}
+  h2{font-family:'Source Serif 4',Georgia,serif;font-size:24px;color:var(--blue);margin:0 0 18px;padding-bottom:8px;border-bottom:3px solid var(--light-blue)}
+  section+section{margin-top:48px}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .card{display:block;background:var(--card);border:1px solid var(--border);border-top:4px solid var(--med-blue);border-radius:8px;padding:20px 22px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s}
+  .card:hover{border-color:var(--med-blue);box-shadow:0 4px 14px rgba(26,82,118,.12)}
+  .card .kind{font-size:13px;font-weight:600;color:var(--med-blue);margin-bottom:4px}
+  .card h3{font-size:19px;font-weight:700;color:var(--blue);margin-bottom:8px}
+  .card p{font-size:15px;color:var(--text);margin-bottom:12px}
+  .card .meta{font-size:13px;color:var(--gray)}
+  .card .shapes{font-size:20px;letter-spacing:6px;color:var(--med-blue);margin-bottom:10px}
+
+  .dates{list-style:none;border:1px solid var(--border);border-radius:8px;background:var(--card);overflow:hidden}
+  .dates li{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border)}
+  .dates li:last-child{border-bottom:none}
+  .dates .when{font-weight:700;color:var(--blue)}
+  .dates .what{color:var(--text)}
+  .dates .what span{display:block;font-size:14px;color:var(--gray)}
+
+  footer{text-align:center;font-size:13px;color:var(--gray);padding:24px;border-top:1px solid var(--border)}
+  footer a{color:var(--gray)}
+
+  @media (max-width:560px){
+    .dates li{grid-template-columns:1fr;gap:2px}
+  }
+  @media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="External links">
+  <a href="https://mahyarvaghefi.github.io/">Back to Main Page</a>
+  <a href="https://www.uta.edu/academics/faculty/profile?user=mahyar.sharifvaghefi">UTA Faculty Profile</a>
+</nav>
+
+<header>
+  <div class="code">BANA 3308</div>
+  <h1>Introduction to Business Analytics</h1>
+  <div class="term">Fall 2026 · University of Texas at Arlington</div>
+  <div class="instructor">Instructor: <a href="https://mahyarvaghefi.github.io/">Dr. Mahyar Sharif Vaghefi</a> · College of Business, Room 508</div>
+</header>
+
+<main>
+  <section>
+    <h2>Course Project</h2>
+    <div class="cards">
+      <a class="card" href="project_instructions.html">
+        <div class="kind">Project instructions</div>
+        <h3>Hand-Drawn Shape Classification</h3>
+        <p>Collect hand-drawn shape data, engineer features, apply PCA, and build classification models using Orange Data Mining.</p>
+        <div class="meta">Group project · 100 pts + bonus</div>
+      </a>
+      <a class="card" href="shape-pixel-converter.html">
+        <div class="kind">Interactive tool</div>
+        <h3>Shape → Pixel Converter</h3>
+        <div class="shapes" aria-hidden="true">●▲■★♥</div>
+        <p>Draw circles, triangles, squares, stars, and hearts, then convert them into 28×28 pixel grids (784 features) for your dataset.</p>
+        <div class="meta">Works on desktop &amp; mobile</div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Key Dates</h2>
+    <ul class="dates">
+      <li>
+        <div class="when">Fri, Nov 6, 11:59 PM</div>
+        <div class="what">Group data CSV due on Canvas<span>Minimum 225 samples per group</span></div>
+      </li>
+      <li>
+        <div class="when">Sat, Nov 28, 11:59 PM</div>
+        <div class="what">Final report and Orange workflow due<span>Report as PDF (8–10 pages) plus the .ows file</span></div>
+      </li>
+      <li>
+        <div class="when">Mon, Nov 30</div>
+        <div class="what">Presentation day and live model competition<span>+2 bonus points for the highest accuracy on unseen data</span></div>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  © 2026 <a href="https://mahyarvaghefi.github.io/">Dr. Mahyar Sharif Vaghefi</a> · BANA 3308 · <a href="https://www.uta.edu">University of Texas at Arlington</a>
+</footer>
+
+</body>
+</html>
